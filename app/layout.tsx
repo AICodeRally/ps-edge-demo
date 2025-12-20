@@ -3,7 +3,7 @@ import './globals.css'
 import { ThemeProvider } from '@/src/context/ThemeContext'
 
 export const metadata: Metadata = {
-  title: 'PS-Edge - Professional Services Platform',
+  title: 'PS-Edge',
   description: 'Complete professional services platform for consulting firms. Manage clients, projects, team utilization, billing, and channel partnerships in one unified system.',
   keywords: ['professional services', 'consulting', 'project management', 'client management', 'channel partner portal'],
   authors: [{ name: 'Phoenix Philanthropy Group' }],
