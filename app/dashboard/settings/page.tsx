@@ -1,59 +1,107 @@
 /**
  * Settings Page
- * Configure user preferences and application settings
+ * Manage user preferences and system configuration
  */
 
 'use client';
 
+import { useState } from 'react';
+
 export default function SettingsPage() {
+  const [emailNotifications, setEmailNotifications] = useState(true);
+  const [slackNotifications, setSlackNotifications] = useState(false);
+  const [weeklyReports, setWeeklyReports] = useState(true);
+
   return (
     <div className="h-full flex flex-col">
-      {/* Header */}
       <div className="px-6 py-4 border-b border-gray-200 dark:border-dark-border-default bg-white dark:bg-dark-bg-secondary">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-            Settings
-          </h1>
-          <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-            Configure your preferences and application settings
-          </p>
-        </div>
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Settings</h1>
+        <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">Manage your preferences and system configuration</p>
       </div>
-
-      {/* Content */}
       <div className="flex-1 overflow-auto p-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="card p-8 text-center">
-            <div className="text-gray-400 dark:text-gray-600 mb-4">
-              <svg
-                className="w-16 h-16 mx-auto"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-                />
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                />
-              </svg>
+        <div className="max-w-3xl mx-auto space-y-6">
+          <div className="card p-6">
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Profile Information</h2>
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Full Name</label>
+                <input type="text" defaultValue="Demo User" className="w-full px-4 py-2 border border-gray-200 dark:border-dark-border-default rounded-lg bg-white dark:bg-dark-bg-primary text-gray-900 dark:text-gray-100" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email</label>
+                <input type="email" defaultValue="user@ppg.com" className="w-full px-4 py-2 border border-gray-200 dark:border-dark-border-default rounded-lg bg-white dark:bg-dark-bg-primary text-gray-900 dark:text-gray-100" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Role</label>
+                <select className="w-full px-4 py-2 border border-gray-200 dark:border-dark-border-default rounded-lg bg-white dark:bg-dark-bg-primary text-gray-900 dark:text-gray-100">
+                  <option>Administrator</option>
+                  <option>Consultant</option>
+                  <option>Finance Manager</option>
+                  <option>Partner Manager</option>
+                </select>
+              </div>
             </div>
-            <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">
-              Application Settings
-            </h2>
-            <p className="text-gray-600 dark:text-gray-400 mb-4">
-              Manage user preferences, notification settings, integrations, and system configuration.
-            </p>
-            <div className="text-sm text-gray-500 dark:text-gray-400">
-              Coming soon - User preferences and settings management
+          </div>
+
+          <div className="card p-6">
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Notifications</h2>
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="font-medium text-gray-900 dark:text-gray-100">Email Notifications</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">Receive email updates about important events</div>
+                </div>
+                <button onClick={() => setEmailNotifications(!emailNotifications)} className={`w-12 h-6 rounded-full transition-colors ${emailNotifications ? 'bg-teal-500' : 'bg-gray-300'}`}>
+                  <div className={`w-5 h-5 bg-white rounded-full transition-transform ${emailNotifications ? 'translate-x-6' : 'translate-x-1'}`} />
+                </button>
+              </div>
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="font-medium text-gray-900 dark:text-gray-100">Slack Notifications</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">Get notified in Slack channels</div>
+                </div>
+                <button onClick={() => setSlackNotifications(!slackNotifications)} className={`w-12 h-6 rounded-full transition-colors ${slackNotifications ? 'bg-teal-500' : 'bg-gray-300'}`}>
+                  <div className={`w-5 h-5 bg-white rounded-full transition-transform ${slackNotifications ? 'translate-x-6' : 'translate-x-1'}`} />
+                </button>
+              </div>
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="font-medium text-gray-900 dark:text-gray-100">Weekly Reports</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">Receive weekly summary reports</div>
+                </div>
+                <button onClick={() => setWeeklyReports(!weeklyReports)} className={`w-12 h-6 rounded-full transition-colors ${weeklyReports ? 'bg-teal-500' : 'bg-gray-300'}`}>
+                  <div className={`w-5 h-5 bg-white rounded-full transition-transform ${weeklyReports ? 'translate-x-6' : 'translate-x-1'}`} />
+                </button>
+              </div>
             </div>
+          </div>
+
+          <div className="card p-6">
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Organization</h2>
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Organization Name</label>
+                <input type="text" defaultValue="Phoenix Philanthropy Group" className="w-full px-4 py-2 border border-gray-200 dark:border-dark-border-default rounded-lg bg-white dark:bg-dark-bg-primary text-gray-900 dark:text-gray-100" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Time Zone</label>
+                <select className="w-full px-4 py-2 border border-gray-200 dark:border-dark-border-default rounded-lg bg-white dark:bg-dark-bg-primary text-gray-900 dark:text-gray-100">
+                  <option>Pacific Time (PT)</option>
+                  <option>Mountain Time (MT)</option>
+                  <option>Central Time (CT)</option>
+                  <option>Eastern Time (ET)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex justify-end gap-3">
+            <button className="px-4 py-2 border border-gray-200 dark:border-dark-border-default rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-dark-bg-tertiary">
+              Cancel
+            </button>
+            <button className="px-4 py-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600">
+              Save Changes
+            </button>
           </div>
         </div>
       </div>
