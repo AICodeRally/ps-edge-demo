@@ -14,7 +14,8 @@ import {
   ChevronRightIcon,
   ChevronDownIcon,
   HamburgerMenuIcon,
-  Cross1Icon
+  Cross1Icon,
+  MixIcon
 } from '@radix-ui/react-icons';
 import { Breadcrumbs } from './Breadcrumbs';
 import { ThemeToggle } from './ThemeToggle';
@@ -101,6 +102,20 @@ const secondaryDepartments: Department[] = [
       { name: 'Benchmarks', href: '/dashboard/partner-portal/benchmarks' },
       { name: 'Usage', href: '/dashboard/partner-portal/usage' },
       { name: 'Revenue', href: '/dashboard/partner-portal/revenue' },
+    ],
+  },
+  {
+    name: 'Operations',
+    icon: MixIcon,
+    color: 'text-gray-600 dark:text-gray-400',
+    dashboardPath: '/dashboard/operations',
+    items: [
+      { name: 'Dashboard', href: '/dashboard/operations' },
+      { name: 'Data Management', href: '/dashboard/operations/data' },
+      { name: 'Integration Hub', href: '/dashboard/operations/integrations' },
+      { name: 'AI Management', href: '/dashboard/operations/ai' },
+      { name: 'Document Library', href: '/dashboard/operations/documents' },
+      { name: 'Knowledge Library', href: '/dashboard/operations/knowledge' },
     ],
   },
 ];
