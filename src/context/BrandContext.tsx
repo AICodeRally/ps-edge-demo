@@ -14,8 +14,8 @@ interface BrandContextType {
 }
 
 const defaultColors: BrandColors = {
-  gradientStart: '#14b8a6', // teal-500
-  gradientEnd: '#3b82f6',   // blue-500
+  gradientStart: '#9333ea', // purple-600
+  gradientEnd: '#eab308',   // yellow-500
 };
 
 const BrandContext = createContext<BrandContextType | undefined>(undefined);

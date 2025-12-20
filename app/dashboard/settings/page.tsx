@@ -56,7 +56,7 @@ export default function SettingsPage() {
               </button>
             </div>
             <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-              Customize the logo gradient colors. These colors will update throughout the entire application.
+              Customize the logo gradient colors. These colors will update the PS logo and branding throughout the app. Note: AI orbs always remain purple to indicate AI features.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
@@ -73,7 +73,7 @@ export default function SettingsPage() {
                     value={colors.gradientStart}
                     onChange={(e) => setColors({ ...colors, gradientStart: e.target.value })}
                     className="flex-1 px-4 py-2 border border-gray-200 dark:border-dark-border-default rounded-lg bg-white dark:bg-dark-bg-primary text-gray-900 dark:text-gray-100 font-mono text-sm"
-                    placeholder="#14b8a6"
+                    placeholder="#9333ea"
                   />
                 </div>
               </div>
@@ -91,7 +91,7 @@ export default function SettingsPage() {
                     value={colors.gradientEnd}
                     onChange={(e) => setColors({ ...colors, gradientEnd: e.target.value })}
                     className="flex-1 px-4 py-2 border border-gray-200 dark:border-dark-border-default rounded-lg bg-white dark:bg-dark-bg-primary text-gray-900 dark:text-gray-100 font-mono text-sm"
-                    placeholder="#3b82f6"
+                    placeholder="#eab308"
                   />
                 </div>
               </div>

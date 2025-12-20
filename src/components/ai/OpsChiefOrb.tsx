@@ -102,8 +102,9 @@ export function OpsChiefOrb({ appName = 'PS-Edge', enabled = true, position = 'f
     ? `fixed bottom-4 left-4 z-40 flex h-14 w-14 items-center justify-center rounded-full text-white shadow-lg transition-all hover:scale-110 hover:shadow-xl group ${className}`
     : `flex h-12 w-12 items-center justify-center rounded-full text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl group ${className}`;
 
+  // AI orbs always use purple - don't change with brand settings
   const buttonStyle = {
-    background: 'linear-gradient(135deg, var(--brand-gradient-start, #14b8a6), var(--brand-gradient-end, #3b82f6))',
+    background: 'linear-gradient(135deg, #6b21a8, #7c3aed)', // purple-800 to purple-600
   };
 
   return (
