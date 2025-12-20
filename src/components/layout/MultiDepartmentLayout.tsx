@@ -43,7 +43,6 @@ const primaryDepartments: Department[] = [
     color: 'text-dept-sales',
     dashboardPath: '/dashboard/sales',
     items: [
-      { name: 'Dashboard', href: '/dashboard/sales' },
       { name: 'Pipeline', href: '/dashboard/sales/pipeline' },
       { name: 'Proposals', href: '/dashboard/sales/proposals' },
       { name: 'Clients', href: '/dashboard/sales/clients' },
@@ -55,7 +54,6 @@ const primaryDepartments: Department[] = [
     color: 'text-dept-delivery',
     dashboardPath: '/dashboard/delivery',
     items: [
-      { name: 'Dashboard', href: '/dashboard/delivery' },
       { name: 'Engagements', href: '/dashboard/delivery/engagements' },
       { name: 'Deliverables', href: '/dashboard/delivery/deliverables' },
       { name: 'Team', href: '/dashboard/delivery/team' },
@@ -67,7 +65,6 @@ const primaryDepartments: Department[] = [
     color: 'text-dept-clientSuccess',
     dashboardPath: '/dashboard/client-success',
     items: [
-      { name: 'Dashboard', href: '/dashboard/client-success' },
       { name: 'Health Monitor', href: '/dashboard/client-success/health' },
       { name: 'Renewals', href: '/dashboard/client-success/renewals' },
       { name: 'Support', href: '/dashboard/client-success/support' },
@@ -80,10 +77,22 @@ const primaryDepartments: Department[] = [
     color: 'text-dept-finance',
     dashboardPath: '/dashboard/finance',
     items: [
-      { name: 'Dashboard', href: '/dashboard/finance' },
       { name: 'Timesheets', href: '/dashboard/finance/timesheets' },
       { name: 'Invoices', href: '/dashboard/finance/invoices' },
       { name: 'Revenue', href: '/dashboard/finance/revenue' },
+    ],
+  },
+  {
+    name: 'Operations',
+    icon: MixIcon,
+    color: 'text-gray-600 dark:text-gray-400',
+    dashboardPath: '/dashboard/operations',
+    items: [
+      { name: 'Data Management', href: '/dashboard/operations/data' },
+      { name: 'Integration Hub', href: '/dashboard/operations/integrations' },
+      { name: 'AI Management', href: '/dashboard/operations/ai' },
+      { name: 'Document Library', href: '/dashboard/operations/documents' },
+      { name: 'Knowledge Library', href: '/dashboard/operations/knowledge' },
     ],
   },
 ];
@@ -96,26 +105,11 @@ const secondaryDepartments: Department[] = [
     color: 'text-dept-partnerPortal',
     dashboardPath: '/dashboard/partner-portal',
     items: [
-      { name: 'Dashboard', href: '/dashboard/partner-portal' },
       { name: 'Client Tenants', href: '/dashboard/partner-portal/tenants' },
       { name: 'Signals', href: '/dashboard/partner-portal/signals' },
       { name: 'Benchmarks', href: '/dashboard/partner-portal/benchmarks' },
       { name: 'Usage', href: '/dashboard/partner-portal/usage' },
       { name: 'Revenue', href: '/dashboard/partner-portal/revenue' },
-    ],
-  },
-  {
-    name: 'Operations',
-    icon: MixIcon,
-    color: 'text-gray-600 dark:text-gray-400',
-    dashboardPath: '/dashboard/operations',
-    items: [
-      { name: 'Dashboard', href: '/dashboard/operations' },
-      { name: 'Data Management', href: '/dashboard/operations/data' },
-      { name: 'Integration Hub', href: '/dashboard/operations/integrations' },
-      { name: 'AI Management', href: '/dashboard/operations/ai' },
-      { name: 'Document Library', href: '/dashboard/operations/documents' },
-      { name: 'Knowledge Library', href: '/dashboard/operations/knowledge' },
     ],
   },
 ];
@@ -201,30 +195,43 @@ export function MultiDepartmentLayout({ children }: { children: React.ReactNode 
               return (
                 <div key={dept.name} className="mb-2">
                   {/* Department Header */}
-                  <button
-                    onClick={() => sidebarOpen && toggleDepartment(dept.name)}
-                    className={`w-full flex items-center justify-between px-3 py-2 rounded-lg transition-colors ${
-                      isDeptActive
+                  <div
+                    className={`flex items-center justify-between px-3 py-2 rounded-lg transition-colors ${
+                      isActive(dept.dashboardPath || '')
+                        ? 'bg-brand-50 dark:bg-brand-900/20'
+                        : isDeptActive
                         ? 'bg-gray-100 dark:bg-dark-bg-tertiary'
                         : 'hover:bg-gray-50 dark:hover:bg-dark-bg-tertiary'
                     }`}
                   >
-                    <div className="flex items-center gap-3">
+                    <Link
+                      href={dept.dashboardPath || '#'}
+                      className="flex items-center gap-3 flex-1"
+                    >
                       <Icon className={`w-5 h-5 ${dept.color}`} />
                       {sidebarOpen && (
-                        <span className="text-sm font-medium text-gray-900 dark:text-gray-100">
+                        <span className={`text-sm font-medium ${
+                          isActive(dept.dashboardPath || '')
+                            ? 'text-brand-600 dark:text-brand-400'
+                            : 'text-gray-900 dark:text-gray-100'
+                        }`}>
                           {dept.name}
                         </span>
                       )}
-                    </div>
+                    </Link>
                     {sidebarOpen && (
-                      isExpanded ? (
-                        <ChevronDownIcon className="w-4 h-4 text-gray-400" />
-                      ) : (
-                        <ChevronRightIcon className="w-4 h-4 text-gray-400" />
-                      )
+                      <button
+                        onClick={() => toggleDepartment(dept.name)}
+                        className="p-1 hover:bg-gray-200 dark:hover:bg-dark-bg-primary rounded"
+                      >
+                        {isExpanded ? (
+                          <ChevronDownIcon className="w-4 h-4 text-gray-400" />
+                        ) : (
+                          <ChevronRightIcon className="w-4 h-4 text-gray-400" />
+                        )}
+                      </button>
                     )}
-                  </button>
+                  </div>
 
                   {/* Department Items */}
                   {sidebarOpen && isExpanded && (
@@ -267,30 +274,43 @@ export function MultiDepartmentLayout({ children }: { children: React.ReactNode 
               return (
                 <div key={dept.name} className="mb-2">
                   {/* Department Header */}
-                  <button
-                    onClick={() => sidebarOpen && toggleDepartment(dept.name)}
-                    className={`w-full flex items-center justify-between px-3 py-2 rounded-lg transition-colors ${
-                      isDeptActive
+                  <div
+                    className={`flex items-center justify-between px-3 py-2 rounded-lg transition-colors ${
+                      isActive(dept.dashboardPath || '')
+                        ? 'bg-brand-50 dark:bg-brand-900/20'
+                        : isDeptActive
                         ? 'bg-gray-100 dark:bg-dark-bg-tertiary'
                         : 'hover:bg-gray-50 dark:hover:bg-dark-bg-tertiary'
                     }`}
                   >
-                    <div className="flex items-center gap-3">
+                    <Link
+                      href={dept.dashboardPath || '#'}
+                      className="flex items-center gap-3 flex-1"
+                    >
                       <Icon className={`w-5 h-5 ${dept.color}`} />
                       {sidebarOpen && (
-                        <span className="text-sm font-medium text-gray-900 dark:text-gray-100">
+                        <span className={`text-sm font-medium ${
+                          isActive(dept.dashboardPath || '')
+                            ? 'text-brand-600 dark:text-brand-400'
+                            : 'text-gray-900 dark:text-gray-100'
+                        }`}>
                           {dept.name}
                         </span>
                       )}
-                    </div>
+                    </Link>
                     {sidebarOpen && (
-                      isExpanded ? (
-                        <ChevronDownIcon className="w-4 h-4 text-gray-400" />
-                      ) : (
-                        <ChevronRightIcon className="w-4 h-4 text-gray-400" />
-                      )
+                      <button
+                        onClick={() => toggleDepartment(dept.name)}
+                        className="p-1 hover:bg-gray-200 dark:hover:bg-dark-bg-primary rounded"
+                      >
+                        {isExpanded ? (
+                          <ChevronDownIcon className="w-4 h-4 text-gray-400" />
+                        ) : (
+                          <ChevronRightIcon className="w-4 h-4 text-gray-400" />
+                        )}
+                      </button>
                     )}
-                  </button>
+                  </div>
 
                   {/* Department Items */}
                   {sidebarOpen && isExpanded && (
