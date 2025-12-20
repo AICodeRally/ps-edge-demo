@@ -58,40 +58,58 @@ export default function SettingsPage() {
             <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
               Customize the logo gradient colors. These colors will update the PS logo and branding throughout the app. Note: AI orbs always remain purple to indicate AI features.
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Gradient Start Color</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Start (Purple)</label>
                 <div className="flex items-center gap-3">
                   <input
                     type="color"
                     value={colors.gradientStart}
                     onChange={(e) => setColors({ ...colors, gradientStart: e.target.value })}
-                    className="h-12 w-20 rounded border border-gray-300 dark:border-dark-border-default cursor-pointer"
+                    className="h-12 w-16 rounded border border-gray-300 dark:border-dark-border-default cursor-pointer"
                   />
                   <input
                     type="text"
                     value={colors.gradientStart}
                     onChange={(e) => setColors({ ...colors, gradientStart: e.target.value })}
-                    className="flex-1 px-4 py-2 border border-gray-200 dark:border-dark-border-default rounded-lg bg-white dark:bg-dark-bg-primary text-gray-900 dark:text-gray-100 font-mono text-sm"
+                    className="flex-1 px-3 py-2 border border-gray-200 dark:border-dark-border-default rounded-lg bg-white dark:bg-dark-bg-primary text-gray-900 dark:text-gray-100 font-mono text-xs"
                     placeholder="#9333ea"
                   />
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Gradient End Color</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Middle (Fuchsia)</label>
+                <div className="flex items-center gap-3">
+                  <input
+                    type="color"
+                    value={colors.gradientMiddle}
+                    onChange={(e) => setColors({ ...colors, gradientMiddle: e.target.value })}
+                    className="h-12 w-16 rounded border border-gray-300 dark:border-dark-border-default cursor-pointer"
+                  />
+                  <input
+                    type="text"
+                    value={colors.gradientMiddle}
+                    onChange={(e) => setColors({ ...colors, gradientMiddle: e.target.value })}
+                    className="flex-1 px-3 py-2 border border-gray-200 dark:border-dark-border-default rounded-lg bg-white dark:bg-dark-bg-primary text-gray-900 dark:text-gray-100 font-mono text-xs"
+                    placeholder="#c026d3"
+                  />
+                </div>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">End (Yellow)</label>
                 <div className="flex items-center gap-3">
                   <input
                     type="color"
                     value={colors.gradientEnd}
                     onChange={(e) => setColors({ ...colors, gradientEnd: e.target.value })}
-                    className="h-12 w-20 rounded border border-gray-300 dark:border-dark-border-default cursor-pointer"
+                    className="h-12 w-16 rounded border border-gray-300 dark:border-dark-border-default cursor-pointer"
                   />
                   <input
                     type="text"
                     value={colors.gradientEnd}
                     onChange={(e) => setColors({ ...colors, gradientEnd: e.target.value })}
-                    className="flex-1 px-4 py-2 border border-gray-200 dark:border-dark-border-default rounded-lg bg-white dark:bg-dark-bg-primary text-gray-900 dark:text-gray-100 font-mono text-sm"
-                    placeholder="#eab308"
+                    className="flex-1 px-3 py-2 border border-gray-200 dark:border-dark-border-default rounded-lg bg-white dark:bg-dark-bg-primary text-gray-900 dark:text-gray-100 font-mono text-xs"
+                    placeholder="#facc15"
                   />
                 </div>
               </div>
@@ -101,14 +119,14 @@ export default function SettingsPage() {
               <div
                 className="h-16 rounded-lg"
                 style={{
-                  background: `linear-gradient(135deg, ${colors.gradientStart}, ${colors.gradientEnd})`,
+                  background: `linear-gradient(135deg, ${colors.gradientStart}, ${colors.gradientMiddle}, ${colors.gradientEnd})`,
                 }}
               />
               <div className="mt-3 flex items-center justify-center gap-3">
                 <div
                   className="w-12 h-12 rounded-lg flex items-center justify-center text-white font-bold shadow-lg"
                   style={{
-                    background: `linear-gradient(135deg, ${colors.gradientStart}, ${colors.gradientEnd})`,
+                    background: `linear-gradient(135deg, ${colors.gradientStart}, ${colors.gradientMiddle}, ${colors.gradientEnd})`,
                   }}
                 >
                   PS

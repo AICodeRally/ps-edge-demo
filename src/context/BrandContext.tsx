@@ -4,6 +4,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 
 interface BrandColors {
   gradientStart: string;
+  gradientMiddle: string;
   gradientEnd: string;
 }
 
@@ -14,8 +15,9 @@ interface BrandContextType {
 }
 
 const defaultColors: BrandColors = {
-  gradientStart: '#9333ea', // purple-600
-  gradientEnd: '#eab308',   // yellow-500
+  gradientStart: '#9333ea',  // purple-600
+  gradientMiddle: '#c026d3', // fuchsia-600
+  gradientEnd: '#facc15',    // yellow-400
 };
 
 const BrandContext = createContext<BrandContextType | undefined>(undefined);
@@ -41,6 +43,7 @@ export function BrandProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       document.documentElement.style.setProperty('--brand-gradient-start', colors.gradientStart);
+      document.documentElement.style.setProperty('--brand-gradient-middle', colors.gradientMiddle);
       document.documentElement.style.setProperty('--brand-gradient-end', colors.gradientEnd);
     }
   }, [colors]);

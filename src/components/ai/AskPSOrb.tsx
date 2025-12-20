@@ -124,13 +124,18 @@ export function AskPSOrb({ appName = 'PS-Edge', enabled = true, position = 'fixe
     'How do I create a proposal?',
   ];
 
+  const hasActivity = isLoading || messages.length > 0;
+  const pulseClass = hasActivity ? 'animate-pulse-glow' : '';
+
   const buttonBaseClasses = position === 'fixed'
-    ? `fixed bottom-4 right-4 z-40 flex h-14 w-14 items-center justify-center rounded-full text-white shadow-lg transition-all hover:scale-110 hover:shadow-xl ${className}`
-    : `flex h-12 w-12 items-center justify-center rounded-full text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl ${className}`;
+    ? `fixed bottom-4 right-4 z-40 flex h-14 w-14 items-center justify-center rounded-full text-white shadow-lg transition-all hover:scale-110 hover:shadow-xl ${pulseClass} ${className}`
+    : `flex h-12 w-12 items-center justify-center rounded-full text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl ${pulseClass} ${className}`;
 
   // AI orbs always use purple - don't change with brand settings
+  // AskPS uses lighter, brighter purple/violet
   const buttonStyle = {
-    background: 'linear-gradient(135deg, #6b21a8, #7c3aed)', // purple-800 to purple-600
+    background: 'linear-gradient(135deg, #7c3aed, #a855f7)', // purple-600 to purple-500
+    boxShadow: '0 0 20px rgba(168, 85, 247, 0.4)',
   };
 
   return (

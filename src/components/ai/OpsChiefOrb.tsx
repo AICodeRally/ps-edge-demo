@@ -98,13 +98,18 @@ export function OpsChiefOrb({ appName = 'PS-Edge', enabled = true, position = 'f
   const alertCount = insights.filter(i => i.type === 'alert').length;
   const warningCount = insights.filter(i => i.type === 'warning').length;
 
+  const hasActivity = alertCount > 0 || isLoading;
+  const pulseClass = hasActivity ? 'animate-pulse-glow' : '';
+
   const buttonBaseClasses = position === 'fixed'
-    ? `fixed bottom-4 left-4 z-40 flex h-14 w-14 items-center justify-center rounded-full text-white shadow-lg transition-all hover:scale-110 hover:shadow-xl group ${className}`
-    : `flex h-12 w-12 items-center justify-center rounded-full text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl group ${className}`;
+    ? `fixed bottom-4 left-4 z-40 flex h-14 w-14 items-center justify-center rounded-full text-white shadow-lg transition-all hover:scale-110 hover:shadow-xl group ${pulseClass} ${className}`
+    : `flex h-12 w-12 items-center justify-center rounded-full text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl group ${pulseClass} ${className}`;
 
   // AI orbs always use purple - don't change with brand settings
+  // OpsChief uses darker, richer purple
   const buttonStyle = {
-    background: 'linear-gradient(135deg, #6b21a8, #7c3aed)', // purple-800 to purple-600
+    background: 'linear-gradient(135deg, #581c87, #7c3aed)', // purple-900 to purple-600
+    boxShadow: '0 0 20px rgba(124, 58, 237, 0.4)',
   };
 
   return (
