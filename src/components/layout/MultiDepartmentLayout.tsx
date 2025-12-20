@@ -350,7 +350,28 @@ export function MultiDepartmentLayout({ children }: { children: React.ReactNode 
         </nav>
 
         {/* Footer */}
-        <div className="border-t border-gray-200 dark:border-dark-border-default p-4">
+        <div className="border-t border-gray-200 dark:border-dark-border-default p-4 space-y-3">
+          {/* AI Assistants */}
+          {sidebarOpen && (
+            <>
+              <div className="flex items-center justify-center gap-3">
+                <button
+                  className={`w-12 h-12 ${BRAND_CONFIG.gradient.bgClassBr} rounded-full flex items-center justify-center text-white font-bold shadow-lg hover:opacity-90 transition-all hover:scale-105`}
+                  title="OpsChief - Operations Insights"
+                >
+                  🎯
+                </button>
+                <button
+                  className={`w-12 h-12 ${BRAND_CONFIG.gradient.bgClassBr} rounded-full flex items-center justify-center text-white font-bold shadow-lg hover:opacity-90 transition-all hover:scale-105`}
+                  title="AskPS - Professional Services Assistant"
+                >
+                  💬
+                </button>
+              </div>
+              <div className="h-px bg-gray-200 dark:bg-dark-border-default" />
+            </>
+          )}
+
           {/* User */}
           <div className={`flex items-center gap-3 px-3 py-2 rounded-lg border border-gray-200 dark:border-dark-border-default`}>
             <PersonIcon className="w-5 h-5 text-gray-600 dark:text-gray-400" />
