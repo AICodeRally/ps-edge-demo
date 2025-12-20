@@ -168,12 +168,21 @@ export function MultiDepartmentLayout({ children }: { children: React.ReactNode 
                   <p className="text-xs text-gray-500 dark:text-gray-400">Professional Services OS</p>
                 </div>
               </Link>
-              <button
-                onClick={() => setSidebarOpen(false)}
-                className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
-              >
-                <Cross1Icon className="w-4 h-4" />
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={toggleTheme}
+                  className={`p-2 rounded-lg ${BRAND_CONFIG.gradient.bgClassBr} text-white hover:opacity-90 transition-opacity shadow-sm`}
+                  title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+                >
+                  {theme === 'dark' ? '☀️' : '🌙'}
+                </button>
+                <button
+                  onClick={() => setSidebarOpen(false)}
+                  className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
+                >
+                  <Cross1Icon className="w-4 h-4" />
+                </button>
+              </div>
             </>
           ) : (
             <button
@@ -360,17 +369,6 @@ export function MultiDepartmentLayout({ children }: { children: React.ReactNode 
 
       {/* Main Content */}
       <main className="flex-1 flex flex-col overflow-hidden">
-        {/* Top Bar */}
-        <div className="h-14 bg-white dark:bg-dark-bg-secondary border-b border-gray-200 dark:border-dark-border-default flex items-center justify-end px-6">
-          <button
-            onClick={toggleTheme}
-            className={`px-4 py-2 rounded-lg ${BRAND_CONFIG.gradient.bgClassBr} text-white font-medium text-sm hover:opacity-90 transition-opacity shadow-sm`}
-            title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-          >
-            {theme === 'dark' ? '☀️ Light' : '🌙 Dark'}
-          </button>
-        </div>
-
         {/* Page Content */}
         <div className="flex-1 overflow-auto">
           {children}
