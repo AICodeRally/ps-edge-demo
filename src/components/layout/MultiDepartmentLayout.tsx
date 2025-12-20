@@ -356,7 +356,7 @@ export function MultiDepartmentLayout({ children }: { children: React.ReactNode 
           {/* AI Assistants */}
           {sidebarOpen && (
             <>
-              <div className="flex items-center justify-center gap-3">
+              <div className="flex items-center justify-center gap-6">
                 <OpsChiefOrb position="inline" enabled={true} />
                 <AskPSOrb position="inline" enabled={true} />
               </div>
