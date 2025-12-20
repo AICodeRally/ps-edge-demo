@@ -106,6 +106,7 @@ const secondaryDepartments: Department[] = [
     dashboardPath: '/dashboard/partner-portal',
     items: [
       { name: 'Client Tenants', href: '/dashboard/partner-portal/tenants' },
+      { name: 'Commissions', href: '/dashboard/partner-portal/commissions' },
       { name: 'Signals', href: '/dashboard/partner-portal/signals' },
       { name: 'Benchmarks', href: '/dashboard/partner-portal/benchmarks' },
       { name: 'Usage', href: '/dashboard/partner-portal/usage' },
