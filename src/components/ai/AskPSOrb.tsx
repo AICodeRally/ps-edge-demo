@@ -15,9 +15,11 @@ interface Message {
 interface AskPSOrbProps {
   appName?: string;
   enabled?: boolean;
+  position?: 'fixed' | 'inline';
+  className?: string;
 }
 
-export function AskPSOrb({ appName = 'PS-Edge', enabled = true }: AskPSOrbProps) {
+export function AskPSOrb({ appName = 'PS-Edge', enabled = true, position = 'fixed', className = '' }: AskPSOrbProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
@@ -122,17 +124,21 @@ export function AskPSOrb({ appName = 'PS-Edge', enabled = true }: AskPSOrbProps)
     'How do I create a proposal?',
   ];
 
+  const buttonClasses = position === 'fixed'
+    ? `fixed bottom-4 right-4 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-teal-500 to-cyan-500 text-white shadow-lg transition-all hover:scale-110 hover:shadow-xl ${className}`
+    : `flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-teal-500 to-cyan-500 text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl ${className}`;
+
   return (
     <>
-      {/* Floating Button - Lower Right (when closed) */}
+      {/* Orb Button */}
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-4 right-4 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-teal-500 to-cyan-500 text-white shadow-lg transition-all hover:scale-110 hover:shadow-xl"
+          className={buttonClasses}
           aria-label="Open AskPS AI Assistant"
           title="AskPS - Professional Services AI Assistant"
         >
-          <ChatBubbleIcon className="h-6 w-6" />
+          <ChatBubbleIcon className={position === 'fixed' ? 'h-6 w-6' : 'h-5 w-5'} />
         </button>
       )}
 

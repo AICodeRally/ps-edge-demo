@@ -17,9 +17,11 @@ interface Insight {
 interface OpsChiefOrbProps {
   appName?: string;
   enabled?: boolean;
+  position?: 'fixed' | 'inline';
+  className?: string;
 }
 
-export function OpsChiefOrb({ appName = 'PS-Edge', enabled = true }: OpsChiefOrbProps) {
+export function OpsChiefOrb({ appName = 'PS-Edge', enabled = true, position = 'fixed', className = '' }: OpsChiefOrbProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [insights, setInsights] = useState<Insight[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -96,16 +98,20 @@ export function OpsChiefOrb({ appName = 'PS-Edge', enabled = true }: OpsChiefOrb
   const alertCount = insights.filter(i => i.type === 'alert').length;
   const warningCount = insights.filter(i => i.type === 'warning').length;
 
+  const buttonClasses = position === 'fixed'
+    ? `fixed bottom-4 left-4 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-purple-600 text-white shadow-lg transition-all hover:scale-110 hover:shadow-xl group ${className}`
+    : `flex h-12 w-12 items-center justify-center rounded-full bg-purple-600 text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl group ${className}`;
+
   return (
     <>
-      {/* Floating Orb - Lower Left (Purple disc with pulse) */}
+      {/* Orb Button */}
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-4 left-4 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-purple-600 text-white shadow-lg transition-all hover:scale-110 hover:shadow-xl group"
+        className={buttonClasses}
         aria-label="Open OpsChief Insights"
         title="OpsChief - Business Health & Insights"
       >
-        <ActivityLogIcon className="h-6 w-6" />
+        <ActivityLogIcon className={position === 'fixed' ? 'h-6 w-6' : 'h-5 w-5'} />
         {/* Pulse glow on hover */}
         <div className="absolute inset-0 rounded-full bg-purple-500 opacity-0 group-hover:opacity-30 transition-opacity blur-lg -z-10" />
         {/* Alert badge */}

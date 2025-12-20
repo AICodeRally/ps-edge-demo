@@ -20,6 +20,8 @@ import {
 import { Breadcrumbs } from './Breadcrumbs';
 import { useTheme } from '@/src/context/ThemeContext';
 import { BRAND_CONFIG } from '@/src/config/brand.config';
+import { OpsChiefOrb } from '@/src/components/ai/OpsChiefOrb';
+import { AskPSOrb } from '@/src/components/ai/AskPSOrb';
 
 interface NavItem {
   name: string;
@@ -355,18 +357,8 @@ export function MultiDepartmentLayout({ children }: { children: React.ReactNode 
           {sidebarOpen && (
             <>
               <div className="flex items-center justify-center gap-3">
-                <button
-                  className={`w-12 h-12 ${BRAND_CONFIG.gradient.bgClassBr} rounded-full flex items-center justify-center text-white font-bold shadow-lg hover:opacity-90 transition-all hover:scale-105`}
-                  title="OpsChief - Operations Insights"
-                >
-                  🎯
-                </button>
-                <button
-                  className={`w-12 h-12 ${BRAND_CONFIG.gradient.bgClassBr} rounded-full flex items-center justify-center text-white font-bold shadow-lg hover:opacity-90 transition-all hover:scale-105`}
-                  title="AskPS - Professional Services Assistant"
-                >
-                  💬
-                </button>
+                <OpsChiefOrb position="inline" enabled={true} />
+                <AskPSOrb position="inline" enabled={true} />
               </div>
               <div className="h-px bg-gray-200 dark:bg-dark-border-default" />
             </>
