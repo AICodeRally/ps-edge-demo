@@ -18,7 +18,7 @@ import {
   MixIcon
 } from '@radix-ui/react-icons';
 import { Breadcrumbs } from './Breadcrumbs';
-import { ThemeToggle } from './ThemeToggle';
+import { useTheme } from '@/src/context/ThemeContext';
 import { BRAND_CONFIG } from '@/src/config/brand.config';
 
 interface NavItem {
@@ -93,6 +93,7 @@ const primaryDepartments: Department[] = [
       { name: 'AI Management', href: '/dashboard/operations/ai' },
       { name: 'Document Library', href: '/dashboard/operations/documents' },
       { name: 'Knowledge Library', href: '/dashboard/operations/knowledge' },
+      { name: 'Settings', href: '/dashboard/settings' },
     ],
   },
 ];
@@ -117,10 +118,15 @@ const secondaryDepartments: Department[] = [
 
 export function MultiDepartmentLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const { theme, setTheme } = useTheme();
   const [expandedDepartments, setExpandedDepartments] = useState<Set<string>>(
     new Set([...primaryDepartments.map(d => d.name), ...secondaryDepartments.map(d => d.name)])
   );
   const [sidebarOpen, setSidebarOpen] = useState(true);
+
+  const toggleTheme = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark');
+  };
 
   const toggleDepartment = (deptName: string) => {
     setExpandedDepartments(prev => {
@@ -338,28 +344,7 @@ export function MultiDepartmentLayout({ children }: { children: React.ReactNode 
         </nav>
 
         {/* Footer */}
-        <div className="border-t border-gray-200 dark:border-dark-border-default p-4 space-y-3">
-          {/* Theme Toggle */}
-          {sidebarOpen && (
-            <div>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-wider">Theme</p>
-              <ThemeToggle />
-            </div>
-          )}
-
-          {/* Settings */}
-          <Link
-            href="/dashboard/settings"
-            className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors ${
-              pathname === '/dashboard/settings'
-                ? 'bg-brand-50 dark:bg-brand-900/20 text-brand-600 dark:text-brand-400'
-                : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-dark-bg-tertiary'
-            }`}
-          >
-            <GearIcon className="w-5 h-5" />
-            {sidebarOpen && <span className="text-sm">Settings</span>}
-          </Link>
-
+        <div className="border-t border-gray-200 dark:border-dark-border-default p-4">
           {/* User */}
           <div className={`flex items-center gap-3 px-3 py-2 rounded-lg border border-gray-200 dark:border-dark-border-default`}>
             <PersonIcon className="w-5 h-5 text-gray-600 dark:text-gray-400" />
@@ -375,6 +360,17 @@ export function MultiDepartmentLayout({ children }: { children: React.ReactNode 
 
       {/* Main Content */}
       <main className="flex-1 flex flex-col overflow-hidden">
+        {/* Top Bar */}
+        <div className="h-14 bg-white dark:bg-dark-bg-secondary border-b border-gray-200 dark:border-dark-border-default flex items-center justify-end px-6">
+          <button
+            onClick={toggleTheme}
+            className={`px-4 py-2 rounded-lg ${BRAND_CONFIG.gradient.bgClassBr} text-white font-medium text-sm hover:opacity-90 transition-opacity shadow-sm`}
+            title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+          >
+            {theme === 'dark' ? '☀️ Light' : '🌙 Dark'}
+          </button>
+        </div>
+
         {/* Page Content */}
         <div className="flex-1 overflow-auto">
           {children}
