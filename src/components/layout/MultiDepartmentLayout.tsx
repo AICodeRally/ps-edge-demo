@@ -172,7 +172,7 @@ export function MultiDepartmentLayout({ children }: { children: React.ReactNode 
                 <Link href="/dashboard" className="flex-1">
                   <div>
                     <h1 className="text-lg font-bold text-gray-900 dark:text-gray-100 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">PS-Edge</h1>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">Professional Services OS</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap">Professional Services</p>
                   </div>
                 </Link>
               </div>
