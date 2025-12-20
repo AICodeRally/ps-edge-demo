@@ -104,11 +104,11 @@ export function OpsChiefOrb({ appName = 'PS-Edge', enabled = true, position = 'f
 
   return (
     <>
-      {/* Orb Button */}
+      {/* Orb Button - Always visible */}
       <button
-        onClick={() => setIsOpen(true)}
+        onClick={() => setIsOpen(!isOpen)}
         className={buttonClasses}
-        aria-label="Open OpsChief Insights"
+        aria-label={isOpen ? "Close OpsChief Insights" : "Open OpsChief Insights"}
         title="OpsChief - Business Health & Insights"
       >
         <ActivityLogIcon className={position === 'fixed' ? 'h-6 w-6' : 'h-5 w-5'} />
@@ -124,8 +124,8 @@ export function OpsChiefOrb({ appName = 'PS-Edge', enabled = true, position = 'f
 
       {/* Insights Panel */}
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-          <div className="relative w-full max-w-3xl max-h-[90vh] flex flex-col rounded-lg bg-white dark:bg-dark-bg-secondary shadow-2xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4" onClick={() => setIsOpen(false)}>
+          <div className="relative w-full max-w-3xl max-h-[90vh] flex flex-col rounded-lg bg-white dark:bg-dark-bg-secondary shadow-2xl" onClick={(e) => e.stopPropagation()}>
             {/* Header */}
             <div className="flex items-center justify-between border-b border-gray-200 dark:border-dark-border-default p-4">
               <div className="flex items-center gap-3">

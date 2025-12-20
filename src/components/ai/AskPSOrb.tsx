@@ -130,16 +130,21 @@ export function AskPSOrb({ appName = 'PS-Edge', enabled = true, position = 'fixe
 
   return (
     <>
-      {/* Orb Button */}
-      {!isOpen && (
+      {/* Orb Button - Always visible */}
+      {!isMinimized && (
         <button
-          onClick={() => setIsOpen(true)}
+          onClick={() => setIsOpen(!isOpen)}
           className={buttonClasses}
-          aria-label="Open AskPS AI Assistant"
+          aria-label={isOpen ? "Close AskPS AI Assistant" : "Open AskPS AI Assistant"}
           title="AskPS - Professional Services AI Assistant"
         >
           <ChatBubbleIcon className={position === 'fixed' ? 'h-6 w-6' : 'h-5 w-5'} />
         </button>
+      )}
+
+      {/* Backdrop */}
+      {isOpen && !isMinimized && (
+        <div className="fixed inset-0 z-39" onClick={() => setIsOpen(false)} />
       )}
 
       {/* Chat Panel - Slides in from right */}
