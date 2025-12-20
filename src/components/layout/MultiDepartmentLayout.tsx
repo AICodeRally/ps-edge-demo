@@ -159,30 +159,27 @@ export function MultiDepartmentLayout({ children }: { children: React.ReactNode 
         <div className="h-14 flex items-center justify-between px-4 border-b border-gray-200 dark:border-dark-border-default">
           {sidebarOpen ? (
             <>
-              <Link href="/dashboard" className="flex items-center gap-2">
-                <div className={`w-10 h-10 ${BRAND_CONFIG.gradient.bgClassBr} rounded-lg flex items-center justify-center text-white font-bold`}>
-                  PS
-                </div>
-                <div>
-                  <h1 className="text-lg font-bold text-gray-900 dark:text-gray-100">PS-Edge</h1>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">Professional Services OS</p>
-                </div>
-              </Link>
               <div className="flex items-center gap-2">
                 <button
                   onClick={toggleTheme}
-                  className={`p-2 rounded-lg ${BRAND_CONFIG.gradient.bgClassBr} text-white hover:opacity-90 transition-opacity shadow-sm`}
+                  className={`w-10 h-10 ${BRAND_CONFIG.gradient.bgClassBr} rounded-lg flex items-center justify-center text-white font-bold hover:opacity-90 transition-opacity`}
                   title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
                 >
-                  {theme === 'dark' ? '☀️' : '🌙'}
+                  PS
                 </button>
-                <button
-                  onClick={() => setSidebarOpen(false)}
-                  className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
-                >
-                  <Cross1Icon className="w-4 h-4" />
-                </button>
+                <Link href="/dashboard" className="flex-1">
+                  <div>
+                    <h1 className="text-lg font-bold text-gray-900 dark:text-gray-100 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">PS-Edge</h1>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">Professional Services OS</p>
+                  </div>
+                </Link>
               </div>
+              <button
+                onClick={() => setSidebarOpen(false)}
+                className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
+              >
+                <Cross1Icon className="w-4 h-4" />
+              </button>
             </>
           ) : (
             <button
