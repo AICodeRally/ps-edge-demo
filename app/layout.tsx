@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { ThemeProvider } from '@/src/context/ThemeContext'
+import { BrandProvider } from '@/src/context/BrandContext'
 
 export const metadata: Metadata = {
   title: 'PS-Edge',
@@ -32,7 +33,9 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body>
         <ThemeProvider>
-          {children}
+          <BrandProvider>
+            {children}
+          </BrandProvider>
         </ThemeProvider>
       </body>
     </html>

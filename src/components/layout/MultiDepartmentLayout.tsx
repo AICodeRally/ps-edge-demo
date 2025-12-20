@@ -164,7 +164,10 @@ export function MultiDepartmentLayout({ children }: { children: React.ReactNode 
               <div className="flex items-center gap-2">
                 <button
                   onClick={toggleTheme}
-                  className={`w-10 h-10 ${BRAND_CONFIG.gradient.bgClassBr} rounded-lg flex items-center justify-center text-white font-bold hover:opacity-90 transition-opacity`}
+                  className="w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold hover:opacity-90 transition-opacity"
+                  style={{
+                    background: 'linear-gradient(135deg, var(--brand-gradient-start, #14b8a6), var(--brand-gradient-end, #3b82f6))',
+                  }}
                   title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
                 >
                   PS

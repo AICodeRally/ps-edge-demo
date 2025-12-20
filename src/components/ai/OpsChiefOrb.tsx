@@ -98,16 +98,21 @@ export function OpsChiefOrb({ appName = 'PS-Edge', enabled = true, position = 'f
   const alertCount = insights.filter(i => i.type === 'alert').length;
   const warningCount = insights.filter(i => i.type === 'warning').length;
 
-  const buttonClasses = position === 'fixed'
-    ? `fixed bottom-4 left-4 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-purple-600 text-white shadow-lg transition-all hover:scale-110 hover:shadow-xl group ${className}`
-    : `flex h-12 w-12 items-center justify-center rounded-full bg-purple-600 text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl group ${className}`;
+  const buttonBaseClasses = position === 'fixed'
+    ? `fixed bottom-4 left-4 z-40 flex h-14 w-14 items-center justify-center rounded-full text-white shadow-lg transition-all hover:scale-110 hover:shadow-xl group ${className}`
+    : `flex h-12 w-12 items-center justify-center rounded-full text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl group ${className}`;
+
+  const buttonStyle = {
+    background: 'linear-gradient(135deg, var(--brand-gradient-start, #14b8a6), var(--brand-gradient-end, #3b82f6))',
+  };
 
   return (
     <>
       {/* Orb Button - Always visible */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={buttonClasses}
+        className={buttonBaseClasses}
+        style={buttonStyle}
         aria-label={isOpen ? "Close OpsChief Insights" : "Open OpsChief Insights"}
         title="OpsChief - Business Health & Insights"
       >
