@@ -7,5 +7,3 @@
 
 export type { IClientPort } from './client.port';
 export type { IEngagementPort } from './engagement.port';
-export type { IPulsePort } from './pulse.port';
-export type { ITaskPort } from './task.port';

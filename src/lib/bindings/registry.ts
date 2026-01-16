@@ -14,8 +14,6 @@
 
 import type { IClientPort } from '../ports/client.port';
 import type { IEngagementPort } from '../ports/engagement.port';
-import type { IPulsePort } from '../ports/pulse.port';
-import type { ITaskPort } from '../ports/task.port';
 
 /**
  * Binding modes
@@ -28,8 +26,6 @@ export type BindingMode = 'synthetic' | 'mapped' | 'live';
 export interface PortMap {
   client: IClientPort;
   engagement: IEngagementPort;
-  pulse: IPulsePort;
-  task: ITaskPort;
 }
 
 /**

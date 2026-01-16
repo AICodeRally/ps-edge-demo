@@ -17,7 +17,3 @@ export * from './consultant.contract';
 // Channel Partner Contracts
 export * from './client-tenant.contract';
 export * from './client-signal.contract';
-
-// AICR Platform Contracts
-export * from './pulse.contract';
-export * from './task.contract';

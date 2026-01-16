@@ -7,8 +7,6 @@
 import { SixPsDashboard } from '@/src/components/ps-edge/SixPsDashboard';
 import { AGGREGATE_SIX_PS } from '@/src/data/ps-edge/six-ps.data';
 import { BRAND_CONFIG } from '@/src/config/brand.config';
-import { PulseWidget } from '@/src/components/pulse/PulseWidget';
-import { TaskWidget } from '@/src/components/tasks/TaskWidget';
 
 export default function Dashboard() {
   return (
@@ -28,12 +26,6 @@ export default function Dashboard() {
       {/* 6Ps Dashboard - Aggregated View */}
       <div className="flex-1 overflow-auto p-4">
         <div className="max-w-7xl mx-auto space-y-6">
-          {/* AICR Platform Widgets */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <PulseWidget />
-            <TaskWidget />
-          </div>
-
           <SixPsDashboard
             data={AGGREGATE_SIX_PS}
             title="Your live view of Purpose, People, Product, Process, Pipeline, Profit"

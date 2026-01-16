@@ -5,40 +5,45 @@ import Link from 'next/link';
 /**
  * Footer Component (SGM Pattern)
  *
- * Fixed bottom footer with:
- * - AI orbs (OpsChief + AskPS)
- * - Department quick links
- * - Legal links
- * - Edge Biz Ops branding
+ * 3 centered rows:
+ * - Row 1: AI orbs (3 left, 2 right) + department links
+ * - Row 2: Copyright + legal links
+ * - Row 3: Branding tagline
  */
-
-const departmentLinks = [
-  { name: 'Sales', href: '/dashboard/sales' },
-  { name: 'Marketing', href: '/dashboard/marketing' },
-  { name: 'Services', href: '/dashboard/delivery' },
-  { name: 'Operations', href: '/dashboard/operations' },
-];
 
 /**
  * Mini AI Orb Component for footer
  */
-function MiniOrb({ variant }: { variant: 'opschief' | 'askps' }) {
-  const gradients = {
-    opschief: 'linear-gradient(135deg, #6b21a8, #9333ea, #a855f7)',
-    askps: 'linear-gradient(135deg, #a855f7, #c084fc, #d8b4fe)',
-  };
-
+function MiniOrb({
+  name,
+  gradient
+}: {
+  name: string;
+  gradient: string;
+}) {
   return (
     <div
-      className="w-6 h-6 rounded-full animate-pulse cursor-pointer hover:scale-110 transition-transform"
+      className="w-5 h-5 rounded-full animate-pulse cursor-pointer hover:scale-110 transition-transform"
       style={{
-        background: gradients[variant],
-        boxShadow: '0 0 8px rgba(147, 51, 234, 0.4)',
+        background: gradient,
+        boxShadow: '0 0 6px rgba(147, 51, 234, 0.4)',
       }}
-      title={variant === 'opschief' ? 'OpsChief AI' : 'AskPS Assistant'}
+      title={name}
     />
   );
 }
+
+// 5 AI Chiefs - matching SGM
+const leftOrbs = [
+  { name: 'GovChief', gradient: 'linear-gradient(135deg, #6b21a8, #9333ea)' },
+  { name: 'OpsChief', gradient: 'linear-gradient(135deg, #7c3aed, #a855f7)' },
+  { name: 'TaskChief', gradient: 'linear-gradient(135deg, #8b5cf6, #c084fc)' },
+];
+
+const rightOrbs = [
+  { name: 'KBChief', gradient: 'linear-gradient(135deg, #a855f7, #d8b4fe)' },
+  { name: 'StrategyChief', gradient: 'linear-gradient(135deg, #c084fc, #e9d5ff)' },
+];
 
 export function Footer() {
   return (
@@ -51,51 +56,62 @@ export function Footer() {
         }}
       />
 
-      <div className="px-4 py-2">
-        <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
-          {/* Left: AI Orbs */}
-          <div className="flex items-center gap-2">
-            <MiniOrb variant="opschief" />
-            <MiniOrb variant="askps" />
-          </div>
-
-          {/* Center: Department Links */}
-          <div className="flex items-center gap-1">
-            {departmentLinks.map((link, index) => (
-              <span key={link.href} className="flex items-center">
-                <Link
-                  href={link.href}
-                  className="hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
-                >
-                  {link.name}
-                </Link>
-                {index < departmentLinks.length - 1 && (
-                  <span className="mx-2 text-gray-300 dark:text-gray-600">|</span>
-                )}
-              </span>
+      <div className="px-4 py-3 space-y-2">
+        {/* Row 1: Orbs + Department Links */}
+        <div className="flex items-center justify-center gap-4 text-xs text-gray-500 dark:text-gray-400">
+          {/* Left Orbs */}
+          <div className="flex items-center gap-1.5">
+            {leftOrbs.map((orb) => (
+              <MiniOrb key={orb.name} name={orb.name} gradient={orb.gradient} />
             ))}
           </div>
 
-          {/* Right: Legal & Branding */}
-          <div className="flex items-center gap-1 text-gray-400 dark:text-gray-500">
-            <span>© 2026 BHG Consulting</span>
-            <span className="mx-1">•</span>
-            <Link href="#" className="hover:text-purple-600 dark:hover:text-purple-400">
-              Privacy
+          {/* Department Links */}
+          <div className="flex items-center gap-1">
+            <Link href="/dashboard/sales" className="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
+              Sales
             </Link>
-            <span className="mx-1">•</span>
-            <Link href="#" className="hover:text-purple-600 dark:hover:text-purple-400">
-              Terms
+            <span className="text-gray-300 dark:text-gray-600 mx-1">|</span>
+            <Link href="/dashboard/marketing" className="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
+              Marketing
             </Link>
-            <span className="mx-1">•</span>
-            <Link href="#" className="hover:text-purple-600 dark:hover:text-purple-400">
-              Support
+            <span className="text-gray-300 dark:text-gray-600 mx-1">|</span>
+            <Link href="/dashboard/delivery" className="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
+              Services
             </Link>
+            <span className="text-gray-300 dark:text-gray-600 mx-1">|</span>
+            <Link href="/dashboard/operations" className="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
+              Operations
+            </Link>
+          </div>
+
+          {/* Right Orbs */}
+          <div className="flex items-center gap-1.5">
+            {rightOrbs.map((orb) => (
+              <MiniOrb key={orb.name} name={orb.name} gradient={orb.gradient} />
+            ))}
           </div>
         </div>
 
-        {/* Bottom Row: Branding */}
-        <div className="text-center text-xs text-gray-400 dark:text-gray-500 mt-1">
+        {/* Row 2: Copyright + Legal */}
+        <div className="flex items-center justify-center gap-1 text-xs text-gray-400 dark:text-gray-500">
+          <span>© 2026 BHG Consulting</span>
+          <span className="mx-1">•</span>
+          <Link href="#" className="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
+            Privacy
+          </Link>
+          <span className="mx-1">•</span>
+          <Link href="#" className="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
+            Terms
+          </Link>
+          <span className="mx-1">•</span>
+          <Link href="#" className="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
+            Support
+          </Link>
+        </div>
+
+        {/* Row 3: Branding */}
+        <div className="text-center text-xs text-gray-400 dark:text-gray-500">
           An Edge Biz Ops Solution • Powered by AICR
         </div>
       </div>

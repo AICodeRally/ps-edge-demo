@@ -17,8 +17,6 @@ import {
   HamburgerMenuIcon,
   Cross1Icon,
   MixIcon,
-  ActivityLogIcon,
-  CheckboxIcon,
 } from '@radix-ui/react-icons';
 import { Breadcrumbs } from './Breadcrumbs';
 import { UserDropdown } from './UserDropdown';
@@ -120,12 +118,6 @@ const secondaryDepartments: Department[] = [
       { name: 'Revenue', href: '/dashboard/partner-portal/revenue' },
     ],
   },
-];
-
-// AICR Platform Links
-const platformLinks = [
-  { name: 'Pulse', href: '/dashboard/pulse', icon: ActivityLogIcon },
-  { name: 'Tasks', href: '/dashboard/tasks', icon: CheckboxIcon },
 ];
 
 export function MultiDepartmentLayout({ children }: { children: React.ReactNode }) {
@@ -368,34 +360,6 @@ export function MultiDepartmentLayout({ children }: { children: React.ReactNode 
             })}
           </div>
 
-          {/* Separator */}
-          {sidebarOpen && <div className="h-px bg-gray-200 dark:bg-dark-border-default my-4" />}
-
-          {/* AICR Platform */}
-          <div>
-            {sidebarOpen && (
-              <p className="px-3 mb-2 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                AICR Platform
-              </p>
-            )}
-            {platformLinks.map(link => {
-              const Icon = link.icon;
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors mb-1 ${
-                    isActive(link.href)
-                      ? 'bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400'
-                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-dark-bg-tertiary'
-                  }`}
-                >
-                  <Icon className="w-5 h-5" />
-                  {sidebarOpen && <span className="text-sm font-medium">{link.name}</span>}
-                </Link>
-              );
-            })}
-          </div>
         </nav>
 
         {/* Footer */}
