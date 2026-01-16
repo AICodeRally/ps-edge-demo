@@ -21,6 +21,7 @@ import {
   CheckboxIcon,
 } from '@radix-ui/react-icons';
 import { Breadcrumbs } from './Breadcrumbs';
+import { UserDropdown } from './UserDropdown';
 import { useTheme } from '@/src/context/ThemeContext';
 import { BRAND_CONFIG } from '@/src/config/brand.config';
 import { OpsChiefOrb } from '@/src/components/ai/OpsChiefOrb';
@@ -425,6 +426,10 @@ export function MultiDepartmentLayout({ children }: { children: React.ReactNode 
 
       {/* Main Content */}
       <main className="flex-1 flex flex-col overflow-hidden">
+        {/* Top Header Row - aligned with sidebar header */}
+        <div className="h-14 flex items-center justify-end px-4 border-b border-gray-200 dark:border-dark-border-default bg-white dark:bg-dark-bg-secondary">
+          <UserDropdown />
+        </div>
         {/* Page Content */}
         <div className="flex-1 overflow-auto">
           {children}
