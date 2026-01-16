@@ -133,7 +133,7 @@ export function MultiDepartmentLayout({ children }: { children: React.ReactNode 
   const { theme, setTheme } = useTheme();
   const { data: session } = useSession();
   const [expandedDepartments, setExpandedDepartments] = useState<Set<string>>(
-    new Set([...primaryDepartments.map(d => d.name), ...secondaryDepartments.map(d => d.name)])
+    new Set() // Start collapsed - user can expand as needed
   );
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
