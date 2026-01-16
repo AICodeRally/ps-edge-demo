@@ -91,6 +91,17 @@ DATABASE_URL="postgresql://user:pass@localhost:5432/ps_edge_demo?schema=ppg-main
 TELEMETRY_API_KEY="your-api-key"
 ```
 
+## Agent Instructions
+
+See `.claude/agents/` for agent definitions and session starters.
+
+**Available Agents:**
+- `ps-edge-dev` - Primary development agent
+
+**At session end:**
+1. Update `.claude/daily-reviews/YYYY-MM-DD/PROGRESS.md` with final status
+2. Log any discovered issues or improvements
+
 ---
 
 **Port:** 3010
