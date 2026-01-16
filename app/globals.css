@@ -2,6 +2,71 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================================================
+   PS-Edge Design System - CSS Custom Properties
+   Based on SPARCC 4-color gradient system
+   ============================================================================ */
+
+:root {
+  /* SPARCC Gradient Colors */
+  --sparcc-gradient-start: #9333ea;    /* Purple */
+  --sparcc-gradient-mid1: #c026d3;     /* Fuchsia */
+  --sparcc-gradient-mid2: #db2777;     /* Pink */
+  --sparcc-gradient-end: #facc15;      /* Yellow */
+
+  /* Primary Brand Color (derived from gradient start) */
+  --color-primary: var(--sparcc-gradient-start);
+  --color-primary-hover: #7c22c7;
+  --color-primary-light: #a855f7;
+
+  /* Surface Colors */
+  --color-surface: #ffffff;
+  --color-surface-elevated: #ffffff;
+  --color-surface-muted: #f9fafb;
+
+  /* Text Colors */
+  --color-foreground: #111827;
+  --color-foreground-muted: #6b7280;
+  --color-foreground-subtle: #9ca3af;
+
+  /* Border Colors */
+  --color-border: #e5e7eb;
+  --color-border-muted: #f3f4f6;
+
+  /* Department Colors */
+  --color-dept-sales: #f97316;
+  --color-dept-delivery: #3b82f6;
+  --color-dept-clientSuccess: #10b981;
+  --color-dept-finance: #9333ea;
+  --color-dept-operations: #6b7280;
+  --color-dept-partnerPortal: #14b8a6;
+
+  /* AI Colors (Purple = AI) */
+  --color-ai-primary: #9333ea;
+  --color-ai-secondary: #c026d3;
+  --color-ai-glow: rgba(147, 51, 234, 0.4);
+}
+
+/* Dark Mode Variables */
+.dark {
+  --color-primary: #a855f7;
+  --color-primary-hover: #c084fc;
+  --color-primary-light: #d8b4fe;
+
+  --color-surface: #1f2937;
+  --color-surface-elevated: #374151;
+  --color-surface-muted: #111827;
+
+  --color-foreground: #f9fafb;
+  --color-foreground-muted: #9ca3af;
+  --color-foreground-subtle: #6b7280;
+
+  --color-border: #374151;
+  --color-border-muted: #1f2937;
+
+  --color-ai-glow: rgba(168, 85, 247, 0.3);
+}
+
 @layer base {
   body {
     @apply bg-gray-50 text-gray-900 dark:bg-dark-bg-primary dark:text-gray-100;

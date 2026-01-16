@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 import {
   TargetIcon,
   RocketIcon,
@@ -15,7 +16,9 @@ import {
   ChevronDownIcon,
   HamburgerMenuIcon,
   Cross1Icon,
-  MixIcon
+  MixIcon,
+  ActivityLogIcon,
+  CheckboxIcon,
 } from '@radix-ui/react-icons';
 import { Breadcrumbs } from './Breadcrumbs';
 import { useTheme } from '@/src/context/ThemeContext';
@@ -118,13 +121,24 @@ const secondaryDepartments: Department[] = [
   },
 ];
 
+// AICR Platform Links
+const platformLinks = [
+  { name: 'Pulse', href: '/dashboard/pulse', icon: ActivityLogIcon },
+  { name: 'Tasks', href: '/dashboard/tasks', icon: CheckboxIcon },
+];
+
 export function MultiDepartmentLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const { theme, setTheme } = useTheme();
+  const { data: session } = useSession();
   const [expandedDepartments, setExpandedDepartments] = useState<Set<string>>(
     new Set([...primaryDepartments.map(d => d.name), ...secondaryDepartments.map(d => d.name)])
   );
   const [sidebarOpen, setSidebarOpen] = useState(true);
+
+  // Get user info from session
+  const userName = session?.user?.name || 'Demo User';
+  const userEmail = session?.user?.email || 'user@ppg.com';
 
   const toggleTheme = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark');
@@ -150,7 +164,7 @@ export function MultiDepartmentLayout({ children }: { children: React.ReactNode 
   };
 
   return (
-    <div className="h-screen flex bg-gray-50 dark:bg-dark-bg-primary">
+    <div className="flex-1 flex bg-gray-50 dark:bg-dark-bg-primary">
       {/* Sidebar */}
       <aside
         className={`${
@@ -352,6 +366,35 @@ export function MultiDepartmentLayout({ children }: { children: React.ReactNode 
               );
             })}
           </div>
+
+          {/* Separator */}
+          {sidebarOpen && <div className="h-px bg-gray-200 dark:bg-dark-border-default my-4" />}
+
+          {/* AICR Platform */}
+          <div>
+            {sidebarOpen && (
+              <p className="px-3 mb-2 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                AICR Platform
+              </p>
+            )}
+            {platformLinks.map(link => {
+              const Icon = link.icon;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors mb-1 ${
+                    isActive(link.href)
+                      ? 'bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400'
+                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-dark-bg-tertiary'
+                  }`}
+                >
+                  <Icon className="w-5 h-5" />
+                  {sidebarOpen && <span className="text-sm font-medium">{link.name}</span>}
+                </Link>
+              );
+            })}
+          </div>
         </nav>
 
         {/* Footer */}
@@ -372,8 +415,8 @@ export function MultiDepartmentLayout({ children }: { children: React.ReactNode 
             <PersonIcon className="w-5 h-5 text-gray-600 dark:text-gray-400" />
             {sidebarOpen && (
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-gray-900 dark:text-gray-100 truncate">Demo User</p>
-                <p className="text-xs text-gray-500 dark:text-gray-400 truncate">user@ppg.com</p>
+                <p className="text-sm font-medium text-gray-900 dark:text-gray-100 truncate">{userName}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400 truncate">{userEmail}</p>
               </div>
             )}
           </div>
