@@ -15,6 +15,7 @@ import {
   BarChartIcon,
   GearIcon,
   CheckCircledIcon,
+  PersonIcon,
 } from '@radix-ui/react-icons';
 
 interface OperationCard {
@@ -80,6 +81,17 @@ const operationCards: OperationCard[] = [
     stats: [
       { label: 'Assets', value: '248' },
       { label: 'Views', value: '12.5K' },
+    ],
+  },
+  {
+    title: 'Agent Control Center',
+    description: 'Manage Claude Code agents, runtime AI agents, and custom agents',
+    href: '/aicc/acc',
+    icon: PersonIcon,
+    color: 'fuchsia',
+    stats: [
+      { label: 'Apps', value: '3' },
+      { label: 'Agents', value: 'Sync' },
     ],
   },
 ];

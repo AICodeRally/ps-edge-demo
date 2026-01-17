@@ -469,3 +469,121 @@ model ApiUsageLog {
   @@index([timestamp])
   @@map("api_usage_logs")
 }
+
+// ============================================================================
+// AGENT CONTROL CENTER (ACC) MODELS
+// ============================================================================
+
+model AppRegistry {
+  id              String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  slug            String    @unique @db.VarChar(100)  // "spot", "sgm-summit-demo"
+  name            String    @db.VarChar(255)
+  description     String?
+
+  // Repository Info
+  repoPath        String?   @map("repo_path")         // "/Users/toddlebaron/dev/spot"
+  repoUrl         String?   @map("repo_url")          // GitHub URL
+  port            Int?
+  hostname        String?   @db.VarChar(100)          // "spot.local"
+
+  // Classification
+  tier            String    @default("demo")          // core, demo, external
+  status          String    @default("active")        // active, inactive, archived
+
+  // Sync Status
+  lastSyncAt      DateTime? @map("last_sync_at")
+  lastSyncStatus  String?   @map("last_sync_status")  // success, failed, pending
+
+  // Extensibility
+  config          Json      @default("{}")
+
+  createdAt       DateTime  @default(now()) @map("created_at")
+  updatedAt       DateTime  @updatedAt @map("updated_at")
+
+  // Relations
+  agents          AgentDefinition[]
+
+  @@index([tier])
+  @@index([status])
+  @@map("app_registry")
+}
+
+model AgentDefinition {
+  id              String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  slug            String    @db.VarChar(100)        // "spot-dev", "sgm-dev"
+  name            String    @db.VarChar(255)
+  description     String?
+
+  // Universal Fields
+  agentType       String    @map("agent_type")      // plan_execute, multi_agent, rag, etc.
+  provider        String    @default("claude")      // claude, openai, anthropic, ollama, custom
+  modelId         String?   @map("model_id")        // specific model (gpt-4, claude-3, llama3)
+
+  // Scope
+  scope           String    @default("app")         // platform, domain, tenant, app
+  appRegistryId   String?   @map("app_registry_id") @db.Uuid
+  tenantId        String?   @map("tenant_id")
+
+  // Configuration
+  systemPrompt    String?   @map("system_prompt")   @db.Text
+  tools           Json      @default("[]")
+  config          Json      @default("{}")          // provider-specific config
+  memoryConfig    Json      @default("{}") @map("memory_config")
+
+  // Session Management
+  sessionStartProcedure  String? @map("session_start_procedure") @db.Text
+  sessionEndProcedure    String? @map("session_end_procedure") @db.Text
+  progressTemplate       String? @map("progress_template") @db.Text
+
+  // File Sync
+  filePath        String?   @map("file_path")       // ".claude/agents/spot-dev.md"
+  fileHash        String?   @map("file_hash")       // For change detection
+  lastFileSync    DateTime? @map("last_file_sync")
+
+  // Governance
+  status          String    @default("draft")       // draft, active, deprecated, archived
+  version         Int       @default(1)
+  approvedBy      String?   @map("approved_by")
+  approvedAt      DateTime? @map("approved_at")
+
+  // Timestamps
+  createdBy       String?   @map("created_by")
+  createdAt       DateTime  @default(now()) @map("created_at")
+  updatedAt       DateTime  @updatedAt @map("updated_at")
+
+  // Relations
+  app             AppRegistry? @relation(fields: [appRegistryId], references: [id])
+  versions        AgentDefinitionVersion[]
+
+  @@unique([slug, appRegistryId])
+  @@index([provider])
+  @@index([status])
+  @@index([scope])
+  @@map("agent_definitions")
+}
+
+model AgentDefinitionVersion {
+  id                  String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  agentDefinitionId   String    @map("agent_definition_id") @db.Uuid
+  version             Int
+
+  // Snapshot of Fields
+  name                String    @db.VarChar(255)
+  description         String?
+  agentType           String    @map("agent_type")
+  provider            String
+  systemPrompt        String?   @map("system_prompt") @db.Text
+  tools               Json
+  config              Json
+
+  // Change Tracking
+  changeReason        String?   @map("change_reason") @db.Text
+  changedBy           String?   @map("changed_by")
+  createdAt           DateTime  @default(now()) @map("created_at")
+
+  // Relations
+  agentDefinition     AgentDefinition @relation(fields: [agentDefinitionId], references: [id], onDelete: Cascade)
+
+  @@unique([agentDefinitionId, version])
+  @@map("agent_definition_versions")
+}
