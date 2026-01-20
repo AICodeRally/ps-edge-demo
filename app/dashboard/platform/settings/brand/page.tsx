@@ -53,19 +53,19 @@ export default function BrandPage() {
             </div>
           </div>
 
-          {/* 6 P's Color Distribution */}
+          {/* 6 Ps Color Distribution */}
           <div className="card p-6">
             <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-              6 P's Color Distribution
+              6 Ps Color Distribution
             </h2>
             <p className="text-gray-600 dark:text-gray-400 mb-6">
-              Colors automatically distributed from brand gradient across the 6 P's
+              Colors automatically distributed from brand gradient across the 6 Ps
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {sixPsColors.map(([key, config]) => (
                 <div key={key} className="border-2 border-gray-200 dark:border-dark-border-default rounded-lg p-4">
                   <div
-                    className={`h-24 rounded-lg mb-3 ${config.bgColor}`}
+                    className={`h-24 rounded-lg mb-3 ${config.bgClass}`}
                   />
                   <p className="text-sm font-bold text-gray-900 dark:text-gray-100 mb-1 capitalize">
                     {config.name}
@@ -86,7 +86,7 @@ export default function BrandPage() {
                 </p>
                 <ul className="text-sm text-blue-800 dark:text-blue-400 space-y-1">
                   <li>• Brand gradient flows from Purple → Fuchsia → Yellow</li>
-                  <li>• 6 P's colors automatically interpolate across the gradient</li>
+                  <li>• 6 Ps colors automatically interpolate across the gradient</li>
                   <li>• Changes update across entire application instantly</li>
                   <li>• Edit brand.config.ts to customize colors</li>
                 </ul>

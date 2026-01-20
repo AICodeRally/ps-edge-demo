@@ -13,7 +13,7 @@ export default function SettingsPage() {
     },
     {
       title: 'Brand Customization',
-      description: 'Configure 6 P's colors and gradient themes',
+      description: 'Configure 6 Ps colors and gradient themes',
       href: '/dashboard/platform/settings/brand',
       icon: MixerHorizontalIcon,
     },
