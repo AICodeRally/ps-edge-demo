@@ -34,12 +34,12 @@ export function contractToFrontmatter(contract: AgentContract): AgentFrontmatter
   return {
     name: contract.name,
     slug: contract.slug,
-    description: contract.description,
+    description: contract.description ?? undefined,
     agent_type: contract.agentType,
     model: modelShortName,
     tools: contract.tools,
     status: contract.status,
-    owner: contract.owner,
+    owner: contract.owner ?? undefined,
   };
 }
 
