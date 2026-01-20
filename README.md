@@ -1,9 +1,15 @@
 # PS-Edge Demo
 **Professional Services Edge for Phoenix Philanthropy Group (PPG)**
 
+> **Navigation:** 6 P's Framework (People, Process, Platform, Performance, Profit, Purpose)
+> **Pattern:** SGM (sticky navbar + fixed footer, no sidebar)
+> **Pages:** 29 pages organized by business dimension
+
 A dual-purpose platform combining:
 1. **Professional Services Business Operations** - Managing PPG's consulting business (clients, projects, proposals, time tracking, billing)
 2. **Multi-Tenant Channel Partner Portal** - Managing nonprofit clients using NP-Edge product (telemetry ingestion, benchmarking, health monitoring)
+
+**NEW:** All navigation organized through the **6 P's Framework** for holistic business management.
 
 ## Tech Stack
 
@@ -13,55 +19,75 @@ A dual-purpose platform combining:
 - **Charts**: Recharts 3.4
 - **Icons**: Radix UI Icons
 
-## Project Structure
+## Project Structure (6 P's Architecture)
 
 ```
 ps-edge-demo/
-├── app/                    # Next.js App Router
-│   ├── dashboard/          # Main application pages
-│   │   ├── sales/          # Sales department
-│   │   ├── delivery/       # Delivery department
-│   │   ├── client-success/ # Client Success department
-│   │   ├── finance/        # Finance department
-│   │   └── partner-portal/ # Partner Portal department
-│   └── api/                # API routes
-│       ├── telemetry/      # Telemetry ingestion endpoint
-│       ├── ps-edge/        # Business logic APIs
-│       └── channel/        # Channel partner APIs
+├── app/                        # Next.js App Router
+│   ├── dashboard/              # Main application
+│   │   ├── people/             # PEOPLE (3 pages): Team, Capacity, Onboarding
+│   │   ├── process/            # PROCESS (5 pages): Engagements, Deliverables, Support, Docs, Knowledge
+│   │   ├── platform/           # PLATFORM (6 pages): AI, Integrations, Data, Usage, Tenants, Settings
+│   │   ├── performance/        # PERFORMANCE (5 pages): KPIs, Health, Pipeline, Benchmarks, Signals
+│   │   ├── profit/             # PROFIT (5 pages): Revenue, Timesheets, Invoices, Commissions, Partner Revenue
+│   │   └── purpose/            # PURPOSE (5 pages): Mission, Success, Renewals, Proposals, Clients
+│   └── api/                    # API routes
+│       ├── telemetry/          # Telemetry ingestion endpoint
+│       ├── ps-edge/            # Business logic APIs
+│       └── channel/            # Channel partner APIs
 ├── src/
-│   ├── components/         # Reusable UI components
-│   ├── types/ps-edge/      # TypeScript type definitions
-│   ├── data/ps-edge/       # Mock data for development
-│   └── lib/                # Utilities and helpers
+│   ├── components/             # Reusable UI components
+│   │   ├── layout/             # Navbar, Footer, Breadcrumbs (SGM pattern)
+│   │   └── ps-edge/            # PLandingPage, 6Ps components
+│   ├── config/                 # Navigation and brand configuration
+│   │   ├── navigation.config.ts  # 6 P's route mapping
+│   │   └── brand.config.ts       # 6 P's colors and gradients
+│   ├── types/ps-edge/          # TypeScript type definitions
+│   ├── data/ps-edge/           # Mock data for development
+│   └── lib/                    # Utilities and helpers
 ├── prisma/
-│   └── schema.prisma       # Database schema (12 models)
-└── tailwind.config.js      # PS-Edge brand colors
+│   └── schema.prisma           # Database schema (12 models)
+├── docs/                       # Documentation
+│   ├── NAVIGATION.md           # Navigation guide
+│   └── 6PS_FRAMEWORK.md        # 6 P's philosophy and usage
+└── .claude/
+    └── plans/
+        └── MIGRATION_LOG.md    # Migration tracking
 ```
 
 ## 🌟 Key Highlights
 
-This demo serves as the **foundation for all future SPARCC demos** with:
+This demo serves as the **foundation for all future Edge demos** with:
 
-- **38 fully functional pages** across 6 departments
+- **29 fully functional pages** organized by the 6 P's Framework
+- **SGM navigation pattern**: Footer-based navigation, no sidebar, mobile-first
 - **Dual-purpose platform**: Internal business operations + channel partner management
 - **Advanced AI integration**: Two specialized AI orbs with distinct personalities and use cases
-- **Complete brand customization**: 3-color gradient system with real-time UI updates
+- **6 P's business framework**: Holistic view across People, Process, Platform, Performance, Profit, Purpose
+- **Complete brand customization**: Gradient color system with 6 P's color progression
 - **Production-ready design system**: Reusable components, dark mode, responsive layouts
 - **Comprehensive mock data**: 1000+ realistic records across 12 data models
 - **Social media optimized**: Beautiful link previews, custom favicon, OpenGraph support
+- **Legacy route support**: All old department routes redirect seamlessly
 
-## Department Structure
+## 6 P's Framework
 
-PS-Edge organizes around 6 core departments:
+PS-Edge organizes all functionality through the **6 P's Framework** - a holistic approach to professional services management:
 
-| Department | Color | Primary Functions |
-|------------|-------|-------------------|
-| **Sales** | Orange (#f97316) | Pipeline, Proposals, Client Onboarding |
-| **Delivery** | Blue (#3b82f6) | Projects, Engagements, Deliverables |
-| **Client Success** | Green (#10b981) | Client Health, Support, Renewals |
-| **Finance** | Purple (#9333ea) | Invoicing, Revenue, Time Tracking |
-| **Operations** | Gray (#6b7280) | Data, Integrations, AI, Documents, Knowledge |
-| **Partner Portal** | Teal (#14b8a6) | Tenant Monitoring, Benchmarks, Signals, Commissions |
+| P | Color | Focus | Pages |
+|---|-------|-------|-------|
+| **People** 👥 | Purple (#7c3aed) | Team capacity, utilization, workforce metrics | 3 |
+| **Process** ⚙️ | Violet (#8b5cf6) | Workflow efficiency, deliverables, timelines | 5 |
+| **Platform** 🔧 | Fuchsia (#c026d3) | Technology, tools, systems enablement | 6 |
+| **Performance** 📊 | Pink (#db2777) | KPIs, outcomes, operational metrics | 5 |
+| **Profit** 💰 | Orange (#f97316) | Revenue, margins, financial health | 5 |
+| **Purpose** 🎯 | Yellow (#facc15) | Mission alignment, client satisfaction, impact | 5 |
+
+**Total:** 29 pages across 6 P's
+
+**Navigation:** Click any P in the footer to access its landing page, then navigate to specific pages via quick links.
+
+See [docs/6PS_FRAMEWORK.md](docs/6PS_FRAMEWORK.md) for detailed philosophy and usage guide.
 
 ## Data Models
 
@@ -113,13 +139,13 @@ PS-Edge organizes around 6 core departments:
    npm run dev
    ```
 
-   Open [http://localhost:3010](http://localhost:3010) to view the application.
+   Open [http://localhost:3033](http://localhost:3033) to view the application.
 
 ## Development
 
 ### Available Scripts
 
-- `npm run dev` - Start development server on port 3010
+- `npm run dev` - Start development server on port 3033
 - `npm run build` - Build for production
 - `npm run start` - Start production server
 - `npm run lint` - Run ESLint
@@ -133,34 +159,63 @@ PS-Edge organizes around 6 core departments:
 
 ## Features
 
-### ✅ Phase 1: Complete (38 Pages)
+### ✅ 6 P's Navigation (29 Pages)
 
 **Core Infrastructure**
-- ✅ Next.js 16 project structure with App Router
-- ✅ Prisma schema with 12 models
-- ✅ TypeScript types for all entities
-- ✅ Tailwind design system with 5 department colors
+- ✅ Next.js 16 with App Router and TypeScript 5.9
+- ✅ Prisma ORM with 12 data models
+- ✅ SGM Pattern: Sticky navbar + fixed footer (no sidebar)
+- ✅ 6 P's-based navigation (footer links)
+- ✅ Tailwind CSS 4.1 with gradient design system
 - ✅ Dark mode support with theme persistence
-- ✅ Multi-department navigation layout
 - ✅ Breadcrumb navigation system
-- ✅ Responsive design (mobile-first)
+- ✅ Mobile-first responsive design
 
-**Professional Services Departments**
-- ✅ **Sales** (6 pages): Dashboard, Pipeline, Proposals, Proposal Detail, Clients, Client Detail
-- ✅ **Delivery** (7 pages): Dashboard, Engagements, Engagement Detail, Deliverables, Deliverable Detail, Team, Consultant Profile
-- ✅ **Client Success** (5 pages): Dashboard, Health Monitor, Renewals, Support, Onboarding
-- ✅ **Finance** (6 pages): Dashboard, Timesheets, Timesheet Detail, Invoices, Invoice Detail, Revenue
+**PEOPLE (3 pages)**
+- ✅ **Team** - Team member directory with utilization tracking
+- ✅ **Capacity** - Aggregated capacity and utilization metrics (NEW)
+- ✅ **Onboarding** - Client/employee onboarding workflows
 
-**Channel Partner Portal**
-- ✅ **Partner Portal** (8 pages): Dashboard, Client Tenants, Tenant Detail, Signals Inbox, Benchmarks, API Usage, Revenue, Commissions
-- ✅ Commission tracking (upstream/downstream)
-- ✅ MRR/ARR revenue analytics
-- ✅ Telemetry signal monitoring
-- ✅ Portfolio benchmark reporting
+**PROCESS (5 pages)**
+- ✅ **Engagements** - Active client engagements and projects
+- ✅ **Deliverables** - Project deliverable tracking
+- ✅ **Support** - Client support ticket management
+- ✅ **Documents** - Template and contract library
+- ✅ **Knowledge** - Methodologies and playbooks
 
-**Operations & Settings**
-- ✅ **Operations** (6 pages): Dashboard, Data Management, Integration Hub, AI Management, Document Library, Knowledge Library
-- ✅ **Settings**: Brand customization with 3-color gradient system
+**PLATFORM (6 pages)**
+- ✅ **AI Management** - AI tools and agents
+- ✅ **Integration Hub** - Third-party integrations
+- ✅ **Data Management** - Data sources and pipelines
+- ✅ **API Usage** - API monitoring and logs
+- ✅ **Tenant Management** - Multi-tenant client management
+- ✅ **Settings** - Platform configuration
+
+**PERFORMANCE (5 pages)**
+- ✅ **KPI Dashboard** - Aggregated 6 P's metrics (NEW)
+- ✅ **Client Health** - Health scores and monitoring
+- ✅ **Pipeline** - Sales pipeline Kanban view
+- ✅ **Benchmarks** - Industry comparisons
+- ✅ **Signals** - Real-time client alerts
+
+**PROFIT (5 pages)**
+- ✅ **Revenue Overview** - Revenue tracking and forecasting
+- ✅ **Timesheets** - Time tracking and billable hours
+- ✅ **Invoices** - Invoice management and payments
+- ✅ **Commissions** - Partner commissions and payouts
+- ✅ **Partner Revenue** - Revenue sharing tracking
+
+**PURPOSE (5 pages)**
+- ✅ **Mission Dashboard** - Mission alignment and impact (NEW)
+- ✅ **Client Success** - Success stories and testimonials
+- ✅ **Renewals** - Client renewal tracking
+- ✅ **Proposals** - Proposal creation and tracking
+- ✅ **Clients** - Client directory and relationships
+
+**Legacy Route Support**
+- ✅ All old department routes redirect to new P-based routes
+- ✅ Bookmarks and external links continue working
+- ✅ Smooth migration path for users
 
 **AI Features**
 - ✅ **OpsChief Orb**: Business health insights and operational analytics (dark purple gradient)
@@ -228,15 +283,43 @@ Client NP-Edge Deployments
 Partner Portal Dashboard
 ```
 
+## Navigation & UX
+
+### 6 P's Footer Navigation
+
+The application uses **footer-based navigation** following the SGM pattern:
+
+**How to Navigate:**
+1. Click any of the 6 P's links in the footer (People, Process, Platform, Performance, Profit, Purpose)
+2. View the P landing page with quick links to all sub-pages
+3. Click a quick link to navigate to the desired page
+4. Use breadcrumbs in navbar to navigate back
+
+**Active State:**
+- Current P highlighted in footer with color and background
+- Navbar shows active P indicator (on medium+ screens)
+- Breadcrumbs show full path: Dashboard → P → Page
+
+**Mobile Experience:**
+- Footer remains fixed at bottom
+- No hamburger menu needed
+- All P links accessible
+- Touch-friendly targets
+
+See [docs/NAVIGATION.md](docs/NAVIGATION.md) for complete navigation guide.
+
 ## Design System
 
-### Brand Colors
-- **Primary Brand**: Teal (#14b8a6)
-- **Sales**: Orange (#f97316)
-- **Delivery**: Blue (#3b82f6)
-- **Client Success**: Green (#10b981)
-- **Finance**: Purple (#9333ea)
-- **Partner Portal**: Teal (#14b8a6)
+### 6 P's Colors (Gradient Progression)
+
+The color system flows from purple to yellow, representing the journey from input to outcome:
+
+- **People**: Purple (#7c3aed) - Foundation
+- **Process**: Violet (#8b5cf6) - Execution
+- **Platform**: Fuchsia (#c026d3) - Enablement
+- **Performance**: Pink (#db2777) - Measurement
+- **Profit**: Orange (#f97316) - Sustainability
+- **Purpose**: Yellow (#facc15) - Impact
 
 ### Component Variants
 - Buttons: `.btn-primary`, `.btn-secondary`, `.btn-ghost`, `.btn-destructive`

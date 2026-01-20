@@ -29,7 +29,7 @@ export default function Dashboard() {
           <SixPsDashboard
             data={AGGREGATE_SIX_PS}
             title="Your live view of Purpose, People, Product, Process, Pipeline, Profit"
-            subtitle="Aggregated metrics across all departments - Select a department from the sidebar for detailed 6Ps"
+            subtitle="Aggregated metrics across all departments - Select a P from the footer navigation for detailed views"
           />
         </div>
       </div>

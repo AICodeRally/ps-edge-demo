@@ -1,7 +1,7 @@
 # PS-Edge Demo - AI Agent Instructions
 
 > **This file is auto-read by Claude Code at session start.**
-> Last updated: January 2026
+> Last updated: January 2026 (6 P's Navigation Migration Complete)
 
 ## What Is This?
 
@@ -20,16 +20,17 @@
 | **Charts** | Recharts 3.4 |
 | **Icons** | Radix UI Icons |
 
-## Project Structure
+## Project Structure (6 P's Navigation)
 
 ```
 app/
   dashboard/
-    sales/           # Pipeline, proposals, clients
-    delivery/        # Projects, engagements, deliverables
-    client-success/  # Health monitoring, renewals
-    finance/         # Timesheets, invoicing, revenue
-    partner-portal/  # Tenant monitoring, signals, commissions
+    people/          # Team, Capacity, Onboarding (3 pages)
+    process/         # Engagements, Deliverables, Support, Documents, Knowledge (5 pages)
+    platform/        # AI, Integrations, Data, Usage, Tenants, Settings (6 pages)
+    performance/     # KPIs, Health, Pipeline, Benchmarks, Signals (5 pages)
+    profit/          # Revenue, Timesheets, Invoices, Commissions, Partner Revenue (5 pages)
+    purpose/         # Mission, Success, Renewals, Proposals, Clients (5 pages)
   api/
     telemetry/       # Signal ingestion endpoint
     ps-edge/         # Business logic APIs
@@ -37,7 +38,10 @@ app/
 
 src/
   components/        # Reusable UI components
+    layout/          # Navbar, Footer, Breadcrumbs
+    ps-edge/         # PLandingPage, 6Ps components
   types/ps-edge/     # TypeScript definitions
+  config/            # navigation.config.ts, brand.config.ts
   data/ps-edge/      # Mock data
   lib/               # Utilities
 
@@ -45,16 +49,21 @@ prisma/
   schema.prisma      # 12 models (7 PS + 5 Channel)
 ```
 
-## Department Structure (6 Core)
+## 6 P's Framework (Primary Navigation)
 
-| Department | Color | Functions |
-|------------|-------|-----------|
-| **Sales** | Orange (#f97316) | Pipeline, Proposals, Onboarding |
-| **Delivery** | Blue (#3b82f6) | Projects, Engagements, Deliverables |
-| **Client Success** | Green (#10b981) | Health, Support, Renewals |
-| **Finance** | Purple (#9333ea) | Invoicing, Revenue, Time Tracking |
-| **Operations** | Gray (#6b7280) | Data, Integrations, AI, Docs |
-| **Partner Portal** | Teal (#14b8a6) | Tenant Monitoring, Benchmarks, Commissions |
+| P | Color | Gradient | Focus | Pages |
+|---|-------|----------|-------|-------|
+| **People** | Purple (#7c3aed) | Purple → Violet | Team capacity, utilization, workforce metrics | Team, Capacity, Onboarding |
+| **Process** | Violet (#8b5cf6) | Violet → Fuchsia | Workflow efficiency, deliverables, timelines | Engagements, Deliverables, Support, Documents, Knowledge |
+| **Platform** | Fuchsia (#c026d3) | Fuchsia gradient | Technology, tools, systems enablement | AI, Integrations, Data, Usage, Tenants, Settings |
+| **Performance** | Pink (#db2777) | Pink gradient | KPIs, outcomes, operational metrics | KPI Dashboard, Health, Pipeline, Benchmarks, Signals |
+| **Profit** | Orange (#f97316) | Orange gradient | Revenue, margins, financial health | Revenue, Timesheets, Invoices, Commissions, Partner Revenue |
+| **Purpose** | Yellow (#facc15) | Yellow gradient | Mission alignment, client satisfaction, impact | Mission Dashboard, Success, Renewals, Proposals, Clients |
+
+**Navigation Pattern:**
+- Footer: 6 P's links (always visible, mobile-friendly)
+- Each P: Dedicated landing page with quick links
+- 29 total pages organized by P category
 
 ## Data Models
 
@@ -65,7 +74,7 @@ prisma/
 ## Key Commands
 
 ```bash
-npm run dev         # Start on port 3010
+npm run dev         # Start on port 3033
 npm run build       # Build for production
 npx prisma studio   # Open Prisma Studio
 npx prisma db push  # Push schema changes
@@ -81,8 +90,10 @@ npx prisma db push  # Push schema changes
 
 - **Multi-Tenant**: PPG uses `tenantId: 'ppg-main'` for internal data
 - **Telemetry Flow**: Client deployments POST to `/api/telemetry/ingest`
-- **38 Pages** across 6 departments
+- **29 Pages** organized across 6 P's (People, Process, Platform, Performance, Profit, Purpose)
+- **Navigation**: Footer-based 6 P's links (SGM pattern, no sidebar)
 - **1000+ Mock Records** across 12 models
+- **Legacy Routes**: All old department routes redirect to new P-based routes
 
 ## Environment
 
@@ -104,5 +115,6 @@ See `.claude/agents/` for agent definitions and session starters.
 
 ---
 
-**Port:** 3010
-**Demo URL:** localhost:3010
+**Port:** 3033
+**Demo URL:** localhost:3033
+**Navigation:** Footer-based 6 P's (no sidebar)

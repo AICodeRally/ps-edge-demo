@@ -1,83 +1,10 @@
 /**
- * Client Success - Onboarding Tracker
- * Monitor client onboarding progress and milestones
+ * Legacy Route - Redirects to /dashboard/people/onboarding
+ * This page has been moved to the PEOPLE section
  */
 
-'use client';
+import { redirect } from 'next/navigation';
 
-const onboardingClients = [
-  { client: 'Lakeside Arts Foundation', daysActive: 12, progress: 65, stage: 'Training', milestones: '3/5', health: 'On Track' },
-  { client: 'Metro Food Bank', daysActive: 8, progress: 45, stage: 'Data Migration', milestones: '2/5', health: 'On Track' },
-  { client: 'Tech Education Alliance', daysActive: 5, progress: 30, stage: 'Initial Setup', milestones: '1/5', health: 'On Track' },
-  { client: 'Ocean Conservation Group', daysActive: 18, progress: 75, stage: 'Go-Live Prep', milestones: '4/5', health: 'On Track' },
-  { client: 'Urban Gardens Collective', daysActive: 22, progress: 55, stage: 'Training', milestones: '3/5', health: 'Delayed' },
-];
-
-export default function OnboardingPage() {
-  const avgProgress = Math.round(onboardingClients.reduce((sum, c) => sum + c.progress, 0) / onboardingClients.length);
-  const onTrack = onboardingClients.filter(c => c.health === 'On Track').length;
-  return (
-    <div className="h-full flex flex-col">
-      <div className="px-6 py-4 border-b border-gray-200 dark:border-dark-border-default bg-white dark:bg-dark-bg-secondary">
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Onboarding Tracker</h1>
-        <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">Monitor new client onboarding progress</p>
-      </div>
-      <div className="flex-1 overflow-auto p-6">
-        <div className="max-w-7xl mx-auto space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="card p-4">
-              <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">Active Onboarding</div>
-              <div className="text-3xl font-bold text-blue-600">{onboardingClients.length}</div>
-            </div>
-            <div className="card p-4">
-              <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">Avg Progress</div>
-              <div className="text-3xl font-bold text-green-600">{avgProgress}%</div>
-            </div>
-            <div className="card p-4">
-              <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">On Track</div>
-              <div className="text-3xl font-bold text-green-600">{onTrack}</div>
-            </div>
-          </div>
-          <div className="card p-6">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b border-gray-200 dark:border-dark-border-default">
-                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-900 dark:text-gray-100">Client</th>
-                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-900 dark:text-gray-100">Days Active</th>
-                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-900 dark:text-gray-100">Progress</th>
-                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-900 dark:text-gray-100">Current Stage</th>
-                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-900 dark:text-gray-100">Milestones</th>
-                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-900 dark:text-gray-100">Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {onboardingClients.map((client) => (
-                  <tr key={client.client} className="border-b border-gray-100 dark:border-dark-border-default hover:bg-gray-50 dark:hover:bg-dark-bg-tertiary">
-                    <td className="py-3 px-4 text-sm font-medium text-gray-900 dark:text-gray-100">{client.client}</td>
-                    <td className="py-3 px-4 text-sm text-gray-600 dark:text-gray-400">{client.daysActive}</td>
-                    <td className="py-3 px-4">
-                      <div className="flex items-center gap-2">
-                        <div className="flex-1 h-2 bg-gray-200 dark:bg-dark-bg-tertiary rounded-full overflow-hidden w-24">
-                          <div className="h-full bg-blue-500" style={{ width: `${client.progress}%` }} />
-                        </div>
-                        <span className="text-sm font-semibold text-gray-900 dark:text-gray-100">{client.progress}%</span>
-                      </div>
-                    </td>
-                    <td className="py-3 px-4 text-sm text-gray-600 dark:text-gray-400">{client.stage}</td>
-                    <td className="py-3 px-4 text-sm text-gray-900 dark:text-gray-100">{client.milestones}</td>
-                    <td className="py-3 px-4">
-                      <span className={`px-2 py-1 rounded-full text-xs ${
-                        client.health === 'On Track' ? 'bg-green-100 dark:bg-green-900/20 text-green-600 dark:text-green-400' :
-                        'bg-yellow-100 dark:bg-yellow-900/20 text-yellow-600 dark:text-yellow-400'
-                      }`}>{client.health}</span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+export default function LegacyOnboardingPage() {
+  redirect('/dashboard/people/onboarding');
 }
