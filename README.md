@@ -70,9 +70,15 @@ This demo serves as the **foundation for all future Edge demos** with:
 - **Social media optimized**: Beautiful link previews, custom favicon, OpenGraph support
 - **Legacy route support**: All old department routes redirect seamlessly
 
-## 6 P's Framework
+## 6 P's Framework - Functional Organization
 
-PS-Edge organizes all functionality through the **6 P's Framework** - a holistic approach to professional services management:
+PS-Edge organizes all functionality through the **6 P's Framework** - a holistic, cross-functional approach that eliminates departmental silos.
+
+**Philosophy:** Organize by FUNCTION (what you're trying to do), not DEPARTMENT (who owns it).
+- ✅ Promotes collaboration and shared ownership
+- ✅ Reduces territorial thinking and fiefdoms
+- ✅ Makes it easier to find what you need
+- ✅ Encourages inclusion over exclusion
 
 | P | Color | Focus | Pages |
 |---|-------|-------|-------|

@@ -3,7 +3,8 @@
     "allow": [
       "Bash(PORT=3035 npx next dev:*)",
       "mcp__plugin_playwright_playwright__browser_navigate",
-      "mcp__plugin_playwright_playwright__browser_take_screenshot"
+      "mcp__plugin_playwright_playwright__browser_take_screenshot",
+      "Bash(tail:*)"
     ]
   }
 }

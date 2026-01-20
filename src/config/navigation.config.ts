@@ -2,6 +2,11 @@
  * PS-Edge Navigation Configuration
  * Single source of truth for 6 P's-based navigation structure
  *
+ * PHILOSOPHY: Organize by FUNCTION, not DEPARTMENT
+ * - Eliminates departmental silos and promotes cross-functional collaboration
+ * - People find what they need by what they're trying to do (the P), not which team owns it
+ * - Encourages inclusion over exclusion, shared ownership over fiefdoms
+ *
  * Maps pages to their corresponding P (People, Process, Platform, Performance, Profit, Purpose)
  * Used by Footer, Navbar, Breadcrumbs, and routing logic
  */
