@@ -3,6 +3,7 @@ import './globals.css'
 import { ThemeProvider } from '@/src/context/ThemeContext'
 import { BrandProvider } from '@/src/context/BrandContext'
 import { SessionProvider } from '@/src/lib/auth/SessionProvider'
+import { AISettingsProvider } from '@/src/components/ai/AISettingsProvider'
 
 export const metadata: Metadata = {
   title: 'PS-Edge',
@@ -36,7 +37,9 @@ export default function RootLayout({
         <SessionProvider>
           <ThemeProvider>
             <BrandProvider>
-              {children}
+              <AISettingsProvider>
+                {children}
+              </AISettingsProvider>
             </BrandProvider>
           </ThemeProvider>
         </SessionProvider>

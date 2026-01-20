@@ -13,39 +13,6 @@ import { SIX_PS_DEFINITIONS, type SixPCategory } from '@/src/types/ps-edge/six-p
  * - Row 3: Branding tagline
  */
 
-/**
- * Mini AI Orb Component for footer
- */
-function MiniOrb({
-  name,
-  gradient
-}: {
-  name: string;
-  gradient: string;
-}) {
-  return (
-    <div
-      className="w-5 h-5 rounded-full animate-pulse cursor-pointer hover:scale-110 transition-transform"
-      style={{
-        background: gradient,
-        boxShadow: '0 0 6px rgba(147, 51, 234, 0.4)',
-      }}
-      title={name}
-    />
-  );
-}
-
-// 5 AI Chiefs - matching SGM
-const leftOrbs = [
-  { name: 'GovChief', gradient: 'linear-gradient(135deg, #6b21a8, #9333ea)' },
-  { name: 'OpsChief', gradient: 'linear-gradient(135deg, #7c3aed, #a855f7)' },
-  { name: 'TaskChief', gradient: 'linear-gradient(135deg, #8b5cf6, #c084fc)' },
-];
-
-const rightOrbs = [
-  { name: 'KBChief', gradient: 'linear-gradient(135deg, #a855f7, #d8b4fe)' },
-  { name: 'StrategyChief', gradient: 'linear-gradient(135deg, #c084fc, #e9d5ff)' },
-];
 
 export function Footer() {
   const pathname = usePathname();
@@ -84,15 +51,8 @@ export function Footer() {
       />
 
       <div className="px-4 py-3 space-y-2">
-        {/* Row 1: Orbs + 6 P's Links */}
+        {/* Row 1: 6 P's Links */}
         <div className="flex items-center justify-center gap-4 text-xs text-gray-500 dark:text-gray-400">
-          {/* Left Orbs */}
-          <div className="hidden sm:flex items-center gap-1.5">
-            {leftOrbs.map((orb) => (
-              <MiniOrb key={orb.name} name={orb.name} gradient={orb.gradient} />
-            ))}
-          </div>
-
           {/* 6 P's Navigation Links */}
           <div className="flex flex-wrap items-center justify-center gap-1">
             {sixPsOrder.map((pCategory, index) => {
@@ -119,13 +79,6 @@ export function Footer() {
                 </div>
               );
             })}
-          </div>
-
-          {/* Right Orbs */}
-          <div className="hidden sm:flex items-center gap-1.5">
-            {rightOrbs.map((orb) => (
-              <MiniOrb key={orb.name} name={orb.name} gradient={orb.gradient} />
-            ))}
           </div>
         </div>
 
