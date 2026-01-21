@@ -87,10 +87,10 @@ export function Navbar() {
                     backgroundImage: 'linear-gradient(90deg, #9333ea, #c026d3, #db2777, #facc15)',
                   }}
                 >
-                  PS-Edge Demo
+                  {title}
                 </h1>
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
-                  Professional Services Business Operations Platform
+                  {description}
                 </p>
               </div>
             </Link>

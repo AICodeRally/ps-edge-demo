@@ -7,6 +7,7 @@
 import { SixPsDashboard } from '@/src/components/ps-edge/SixPsDashboard';
 import { AGGREGATE_SIX_PS } from '@/src/data/ps-edge/six-ps.data';
 import { BRAND_CONFIG } from '@/src/config/brand.config';
+import { SetPageTitle } from '@/src/components/SetPageTitle';
 
 export default function Dashboard() {
   return (
