@@ -1,8 +1,10 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { SIX_PS_DEFINITIONS, type SixPCategory } from '@/src/types/ps-edge/six-ps.types';
+import { getSixPsOrder } from '@/src/lib/config/sixps-order';
 
 /**
  * Footer Component (SGM Pattern with 6 P's Navigation)
@@ -16,6 +18,17 @@ import { SIX_PS_DEFINITIONS, type SixPCategory } from '@/src/types/ps-edge/six-p
 
 export function Footer() {
   const pathname = usePathname();
+  const [sixPsOrder, setSixPsOrder] = useState<SixPCategory[]>(getSixPsOrder());
+
+  // Listen for order changes from settings
+  useEffect(() => {
+    const handleOrderChange = () => {
+      setSixPsOrder(getSixPsOrder());
+    };
+
+    window.addEventListener('sixps-order-changed', handleOrderChange);
+    return () => window.removeEventListener('sixps-order-changed', handleOrderChange);
+  }, []);
 
   // Determine active P from pathname
   const getActiveSixP = (): SixPCategory | null => {
@@ -36,9 +49,6 @@ export function Footer() {
   };
 
   const activeSixP = getActiveSixP();
-
-  // 6 P's in order
-  const sixPsOrder: SixPCategory[] = ['PEOPLE', 'PROCESS', 'PLATFORM', 'PERFORMANCE', 'PROFIT', 'PURPOSE'];
 
   return (
     <footer className="fixed bottom-0 left-0 right-0 z-40 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">

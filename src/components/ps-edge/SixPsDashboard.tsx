@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import {
   ArrowUpIcon,
@@ -13,8 +13,9 @@ import {
   TargetIcon,
   ArrowRightIcon,
 } from '@radix-ui/react-icons';
-import type { DepartmentSixPs, SixPSection } from '@/src/types/ps-edge/six-ps.types';
+import type { DepartmentSixPs, SixPSection, SixPCategory } from '@/src/types/ps-edge/six-ps.types';
 import { SIX_PS_DEFINITIONS } from '@/src/types/ps-edge/six-ps.types';
+import { getSixPsOrder } from '@/src/lib/config/sixps-order';
 
 // Icon mapping
 const ICON_MAP = {
@@ -33,14 +34,29 @@ interface SixPsDashboardProps {
 }
 
 export function SixPsDashboard({ data, title, subtitle }: SixPsDashboardProps) {
-  const sections = [
-    data.people,
-    data.process,
-    data.platform,
-    data.performance,
-    data.profit,
-    data.purpose
-  ];
+  const [pOrder, setPOrder] = useState<SixPCategory[]>(getSixPsOrder());
+
+  // Listen for order changes from settings
+  useEffect(() => {
+    const handleOrderChange = () => {
+      setPOrder(getSixPsOrder());
+    };
+
+    window.addEventListener('sixps-order-changed', handleOrderChange);
+    return () => window.removeEventListener('sixps-order-changed', handleOrderChange);
+  }, []);
+
+  // Map categories to sections using the configured order
+  const pMap: Record<SixPCategory, SixPSection> = {
+    PURPOSE: data.purpose,
+    PEOPLE: data.people,
+    PROCESS: data.process,
+    PLATFORM: data.platform,
+    PERFORMANCE: data.performance,
+    PROFIT: data.profit,
+  };
+
+  const sections = pOrder.map((category) => pMap[category]);
 
   return (
     <div className="space-y-2">

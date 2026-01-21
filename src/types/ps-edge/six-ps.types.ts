@@ -56,7 +56,7 @@ export const SIX_PS_DEFINITIONS: Record<SixPCategory, { title: string; descripti
     hoverShadow: BRAND_CONFIG.sixPs.process.hoverShadow,
   },
   PLATFORM: {
-    title: 'Platform',
+    title: 'Product',
     description: 'Technology, tools, and systems enablement',
     iconName: 'CubeIcon',
     color: BRAND_CONFIG.sixPs.platform.textClass,
@@ -65,7 +65,7 @@ export const SIX_PS_DEFINITIONS: Record<SixPCategory, { title: string; descripti
     hoverShadow: BRAND_CONFIG.sixPs.platform.hoverShadow,
   },
   PERFORMANCE: {
-    title: 'Performance',
+    title: 'Pipeline',
     description: 'KPIs, outcomes, and operational metrics',
     iconName: 'BarChartIcon',
     color: BRAND_CONFIG.sixPs.performance.textClass,
@@ -74,7 +74,7 @@ export const SIX_PS_DEFINITIONS: Record<SixPCategory, { title: string; descripti
     hoverShadow: BRAND_CONFIG.sixPs.performance.hoverShadow,
   },
   PROFIT: {
-    title: 'Profit',
+    title: 'Performance',
     description: 'Revenue, margins, and financial health',
     iconName: 'DashboardIcon',
     color: BRAND_CONFIG.sixPs.profit.textClass,
