@@ -1,126 +1,178 @@
 'use client';
 
+import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useTheme } from '@/src/context/ThemeContext';
-import { UserDropdown } from './UserDropdown';
-import { Breadcrumbs } from './Breadcrumbs';
-import { SIX_PS_DEFINITIONS, type SixPCategory } from '@/src/types/ps-edge/six-ps.types';
-import { MoonIcon, SunIcon } from '@radix-ui/react-icons';
+import { useSession, signOut } from 'next-auth/react';
+import { usePageTitle } from '@/src/context/PageTitleContext';
+import { PersonIcon, GearIcon, ExitIcon, ChevronDownIcon } from '@radix-ui/react-icons';
 
 /**
- * Navbar Component (SGM Pattern)
+ * Navbar Component (SGM Pattern for PS-Edge)
  *
- * Sticky top navigation with:
- * - PS logo + branding (left)
- * - Breadcrumbs showing current P (center)
- * - Theme toggle + User dropdown (right)
- * - Gradient border (bottom)
- *
- * Replaces MultiDepartmentLayout sidebar for mobile-first design.
+ * Structure matches SGM exactly:
+ * Left: [Product Name] [Module Logo PS] | [Module Title] [Subtitle]
+ * Right: [Demo Badge] | [User Name/Role + Avatar]
  */
-
 export function Navbar() {
-  const pathname = usePathname();
-  const { theme, setTheme } = useTheme();
+  const { title, description } = usePageTitle();
+  const { data: session } = useSession();
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Determine active P from pathname
-  const getActiveSixP = (): { category: SixPCategory; config: typeof SIX_PS_DEFINITIONS[SixPCategory] } | null => {
-    const pathSegments = pathname.split('/').filter(Boolean);
-    if (pathSegments.length < 2) return null; // Not in a P section
-
-    const pSegment = pathSegments[1]; // /dashboard/[p]/...
-    const pMap: Record<string, SixPCategory> = {
-      'people': 'PEOPLE',
-      'process': 'PROCESS',
-      'platform': 'PLATFORM',
-      'performance': 'PERFORMANCE',
-      'profit': 'PROFIT',
-      'purpose': 'PURPOSE',
-    };
-
-    const category = pMap[pSegment];
-    if (!category) return null;
-
-    return {
-      category,
-      config: SIX_PS_DEFINITIONS[category],
-    };
+  // Get user info from session
+  const user = {
+    name: session?.user?.name || 'User',
+    role: (session?.user as any)?.role || 'Demo',
+    email: session?.user?.email || '',
+    initials: session?.user?.name?.split(' ').map(n => n[0]).join('') || 'U'
   };
 
-  const activeSixP = getActiveSixP();
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
-  const toggleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark');
+  const handleSignOut = () => {
+    signOut({ callbackUrl: '/' });
   };
 
   return (
-    <nav className="sticky top-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
-      {/* Gradient Border (top) */}
-      <div
-        className="h-0.5 w-full"
-        style={{
-          background: 'linear-gradient(90deg, #9333ea, #c026d3, #db2777, #facc15)',
-        }}
-      />
-
-      <div className="px-4 h-14 flex items-center justify-between">
-        {/* Left: Logo + Branding */}
-        <div className="flex items-center gap-4">
-          <Link href="/dashboard" className="flex items-center gap-2">
-            <button
-              className="w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold hover:opacity-90 transition-opacity"
-              style={{
-                background: 'linear-gradient(135deg, #9333ea, #c026d3, #facc15)',
-              }}
-              title="PS-Edge"
-            >
-              PS
-            </button>
-            <div className="hidden sm:block">
-              <h1 className="text-lg font-bold text-gray-900 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
-                PS-Edge
-              </h1>
-              <p className="text-xs text-gray-500 dark:text-gray-400 -mt-1">
-                Professional Services
-              </p>
-            </div>
-          </Link>
-
-          {/* Active P Indicator */}
-          {activeSixP && (
-            <div className="hidden md:flex items-center gap-2 ml-4 pl-4 border-l border-gray-200 dark:border-gray-700">
-              <div className={`px-3 py-1 rounded-md ${activeSixP.config.bgColor} ${activeSixP.config.borderColor} border`}>
-                <span className={`text-sm font-semibold ${activeSixP.config.color}`}>
-                  {activeSixP.config.title}
+    <nav
+      className="bg-white dark:bg-gray-900 shadow-sm sticky top-0 z-50 border-b-4 border-transparent"
+      style={{
+        borderImage: 'linear-gradient(90deg, #9333ea, #c026d3, #db2777, #facc15) 1',
+      }}
+    >
+      <div className="w-full px-6">
+        <div className="flex items-center justify-between h-16">
+          {/* Left side: Product Name + PS Logo + Module Info */}
+          <div className="flex items-center gap-6">
+            <Link href="/dashboard" className="flex items-center gap-4 group">
+              {/* Product Name - Large like SPARCC */}
+              <div className="flex flex-col items-center">
+                <span
+                  className="text-3xl font-bold bg-clip-text text-transparent tracking-tight"
+                  style={{
+                    backgroundImage: 'linear-gradient(90deg, #9333ea, #c026d3, #db2777, #facc15)',
+                  }}
+                >
+                  EDGE
+                </span>
+                <span className="text-[8px] text-gray-500 dark:text-gray-400 tracking-widest -mt-1">
+                  for Nonprofits
                 </span>
               </div>
+
+              {/* PS Circle Logo */}
+              <div
+                className="w-14 h-14 rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow"
+                style={{
+                  backgroundImage: 'linear-gradient(135deg, #9333ea, #c026d3, #facc15)',
+                }}
+              >
+                <span className="text-white font-bold text-xl">PS</span>
+              </div>
+
+              {/* Module Info */}
+              <div className="border-l border-gray-300 dark:border-gray-700 pl-6">
+                <h1
+                  className="text-lg font-bold bg-clip-text text-transparent"
+                  style={{
+                    backgroundImage: 'linear-gradient(90deg, #9333ea, #c026d3, #db2777, #facc15)',
+                  }}
+                >
+                  PS-Edge Demo
+                </h1>
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+                  Professional Services Business Operations Platform
+                </p>
+              </div>
+            </Link>
+          </div>
+
+          {/* Right side: Demo Badge + User Dropdown */}
+          <div className="flex items-center gap-4">
+            {/* Demo Badge */}
+            <div className="flex items-center gap-4">
+              <span
+                className="px-3 py-1 text-sm font-bold uppercase tracking-wide rounded"
+                style={{
+                  background: 'linear-gradient(135deg, #FF6B35 0%, #F7931E 50%, #FDB813 100%)',
+                  color: 'white',
+                  boxShadow: '0 2px 4px rgba(255, 107, 53, 0.3)',
+                }}
+              >
+                Demo Data
+              </span>
+              <span className="text-gray-300 dark:text-gray-700">|</span>
             </div>
-          )}
-        </div>
 
-        {/* Center: Breadcrumbs */}
-        <div className="hidden lg:block flex-1 mx-8">
-          <Breadcrumbs />
-        </div>
+            {/* User Dropdown */}
+            <div className="relative" ref={dropdownRef}>
+              <button
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              >
+                <div className="text-right">
+                  <p className="text-sm font-semibold text-gray-900 dark:text-gray-100">{user.name}</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">{user.role}</p>
+                </div>
+                <div
+                  className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold shadow-md"
+                  style={{
+                    backgroundImage: 'linear-gradient(135deg, #9333ea, #c026d3, #facc15)',
+                  }}
+                >
+                  {user.initials}
+                </div>
+                <ChevronDownIcon className={`w-4 h-4 text-gray-500 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
+              </button>
 
-        {/* Right: Theme Toggle + User */}
-        <div className="flex items-center gap-3">
-          {/* Theme Toggle */}
-          <button
-            onClick={toggleTheme}
-            className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-            title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-          >
-            {theme === 'dark' ? (
-              <SunIcon className="w-5 h-5 text-gray-600 dark:text-gray-400" />
-            ) : (
-              <MoonIcon className="w-5 h-5 text-gray-600 dark:text-gray-400" />
-            )}
-          </button>
+              {/* Dropdown Menu */}
+              {isDropdownOpen && (
+                <div className="absolute right-0 mt-2 w-64 bg-white dark:bg-gray-900 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 py-2 z-50">
+                  {/* User Info Header */}
+                  <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
+                    <p className="text-sm font-semibold text-gray-900 dark:text-gray-100">{user.name}</p>
+                    <p className="text-[10px] text-gray-500 dark:text-gray-400 truncate">{user.email}</p>
+                  </div>
 
-          {/* User Dropdown */}
-          <UserDropdown />
+                  {/* Menu Items */}
+                  <div className="py-1">
+                    <Link
+                      href="/dashboard/platform/settings/profile"
+                      onClick={() => setIsDropdownOpen(false)}
+                      className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                    >
+                      <PersonIcon className="w-4 h-4" />
+                      Profile
+                    </Link>
+                    <Link
+                      href="/dashboard/platform/settings"
+                      onClick={() => setIsDropdownOpen(false)}
+                      className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                    >
+                      <GearIcon className="w-4 h-4" />
+                      Settings
+                    </Link>
+                    <button
+                      onClick={handleSignOut}
+                      className="w-full flex items-center gap-3 px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-gray-100 dark:hover:bg-gray-800"
+                    >
+                      <ExitIcon className="w-4 h-4" />
+                      Sign Out
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </nav>

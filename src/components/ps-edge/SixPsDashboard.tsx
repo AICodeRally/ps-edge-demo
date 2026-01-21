@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import {
   ArrowUpIcon,
   ArrowDownIcon,
@@ -10,6 +11,7 @@ import {
   BarChartIcon,
   DashboardIcon,
   TargetIcon,
+  ArrowRightIcon,
 } from '@radix-ui/react-icons';
 import type { DepartmentSixPs, SixPSection } from '@/src/types/ps-edge/six-ps.types';
 import { SIX_PS_DEFINITIONS } from '@/src/types/ps-edge/six-ps.types';
@@ -42,19 +44,12 @@ export function SixPsDashboard({ data, title, subtitle }: SixPsDashboardProps) {
 
   return (
     <div className="space-y-2">
-      {/* Header */}
-      {(title || subtitle) && (
+      {/* Title only (show before grid) */}
+      {title && (
         <div className="mb-2">
-          {title && (
-            <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-0.5">
-              {title}
-            </h2>
-          )}
-          {subtitle && (
-            <p className="text-xs text-gray-600 dark:text-gray-400">
-              {subtitle}
-            </p>
-          )}
+          <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-0.5">
+            {title}
+          </h2>
         </div>
       )}
 
@@ -64,6 +59,15 @@ export function SixPsDashboard({ data, title, subtitle }: SixPsDashboardProps) {
           <SixPCard key={section.category} section={section} />
         ))}
       </div>
+
+      {/* Subtitle after grid */}
+      {subtitle && (
+        <div className="mt-3 text-center">
+          <p className="text-sm text-gray-600 dark:text-gray-400">
+            {subtitle}
+          </p>
+        </div>
+      )}
     </div>
   );
 }
@@ -72,8 +76,11 @@ function SixPCard({ section }: { section: SixPSection }) {
   const definition = SIX_PS_DEFINITIONS[section.category];
   const Icon = ICON_MAP[definition.iconName as keyof typeof ICON_MAP];
 
+  // Get route for this P (category is like "PEOPLE", convert to "people")
+  const pRoute = `/dashboard/${section.category.toLowerCase()}`;
+
   return (
-    <div className={`relative p-3 rounded-lg border-2 ${definition.borderColor} ${definition.bgColor} transition-all duration-300 hover:shadow-lg ${definition.hoverShadow} hover:-translate-y-0.5 cursor-pointer group`}>
+    <div className={`relative p-3 rounded-lg border-2 ${definition.borderColor} ${definition.bgColor} transition-all duration-300 hover:shadow-lg ${definition.hoverShadow} group`}>
       {/* Header */}
       <div className="flex items-center gap-2 mb-2">
         <div className={`w-10 h-10 flex items-center justify-center ${definition.bgColor} ${definition.borderColor} border rounded-lg ${definition.color} group-hover:scale-110 transition-transform`}>
@@ -115,6 +122,15 @@ function SixPCard({ section }: { section: SixPSection }) {
           </div>
         ))}
       </div>
+
+      {/* View Button */}
+      <Link
+        href={pRoute}
+        className={`mt-3 flex items-center justify-center gap-2 px-3 py-1.5 rounded text-xs font-semibold ${definition.color} ${definition.bgColor} ${definition.borderColor} border hover:shadow-md transition-all`}
+      >
+        View
+        <ArrowRightIcon className="w-3 h-3" />
+      </Link>
     </div>
   );
 }

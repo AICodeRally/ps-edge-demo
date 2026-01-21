@@ -15,6 +15,9 @@ export interface AISettings {
   features: {
     opsChief: boolean;
     askPS: boolean;
+    pulse: boolean;
+    tasks: boolean;
+    pageKb: boolean;
   };
   /** Timestamp of last update */
   updatedAt: string;
@@ -27,6 +30,9 @@ const DEFAULT_AI_SETTINGS: AISettings = {
   features: {
     opsChief: true,
     askPS: true,
+    pulse: true,
+    tasks: true,
+    pageKb: true,
   },
   updatedAt: new Date().toISOString(),
 };

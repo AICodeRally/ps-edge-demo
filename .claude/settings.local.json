@@ -4,7 +4,10 @@
       "Bash(PORT=3035 npx next dev:*)",
       "mcp__plugin_playwright_playwright__browser_navigate",
       "mcp__plugin_playwright_playwright__browser_take_screenshot",
-      "Bash(tail:*)"
+      "Bash(tail:*)",
+      "Bash(PORT=3034 npm run dev:*)",
+      "Bash(for file in /Users/toddlebaron/dev/ps-edge-demo/app/dashboard/{people,process,profit}/**/page.tsx)",
+      "Bash(metric\" $file 2>/dev/null || echo 0\\)\" done)"
     ]
   }
 }

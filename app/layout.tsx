@@ -4,6 +4,8 @@ import { ThemeProvider } from '@/src/context/ThemeContext'
 import { BrandProvider } from '@/src/context/BrandContext'
 import { SessionProvider } from '@/src/lib/auth/SessionProvider'
 import { AISettingsProvider } from '@/src/components/ai/AISettingsProvider'
+import { PageTitleProvider } from '@/src/context/PageTitleContext'
+import { PageKbProvider } from '@/src/components/kb/PageKbProvider'
 
 export const metadata: Metadata = {
   title: 'PS-Edge',
@@ -38,7 +40,11 @@ export default function RootLayout({
           <ThemeProvider>
             <BrandProvider>
               <AISettingsProvider>
-                {children}
+                <PageTitleProvider>
+                  <PageKbProvider>
+                    {children}
+                  </PageKbProvider>
+                </PageTitleProvider>
               </AISettingsProvider>
             </BrandProvider>
           </ThemeProvider>

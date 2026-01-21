@@ -27,12 +27,18 @@ export function OpsChiefOrb({ appName = 'PS-Edge', enabled = true, position = 'f
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Fetch insights when panel opens
+  // Fetch insights when panel opens and auto-refresh hourly
   useEffect(() => {
+    if (!enabled) return;
+
     if (isOpen && insights.length === 0) {
       fetchInsights();
     }
-  }, [isOpen]);
+
+    // Auto-refresh every hour
+    const interval = setInterval(fetchInsights, 60 * 60 * 1000);
+    return () => clearInterval(interval);
+  }, [isOpen, enabled]);
 
   const fetchInsights = async () => {
     setIsLoading(true);

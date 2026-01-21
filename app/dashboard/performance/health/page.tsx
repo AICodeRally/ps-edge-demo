@@ -20,6 +20,18 @@ const clients = [
 export default function ClientHealthPage() {
   const avgHealth = Math.round(clients.reduce((sum, c) => sum + c.health, 0) / clients.length);
   const atRisk = clients.filter(c => c.health < 70).length;
+  const uptime = 99.8;
+  const responseTime = 142;
+  const errorRate = 0.02;
+
+  const metrics = [
+    { label: 'System Health', value: avgHealth, unit: '%', trend: '+2%', trendUp: true, color: 'bg-pink-500' },
+    { label: 'Uptime', value: uptime, unit: '%', trend: '99.9%', trendUp: true, color: 'bg-rose-500' },
+    { label: 'Response Time', value: responseTime, unit: 'ms', trend: '-12ms', trendUp: true, color: 'bg-orange-500' },
+    { label: 'Error Rate', value: errorRate, unit: '%', trend: '-0.01%', trendUp: true, color: 'bg-red-500' },
+    { label: 'Alerts', value: atRisk, unit: 'active', trend: '-1', trendUp: true, color: 'bg-gray-500' },
+  ];
+
   return (
     <div className="h-full flex flex-col">
       <div className="px-6 py-4 border-b border-gray-200 dark:border-dark-border-default bg-white dark:bg-dark-bg-secondary">
@@ -28,20 +40,26 @@ export default function ClientHealthPage() {
       </div>
       <div className="flex-1 overflow-auto p-6">
         <div className="max-w-7xl mx-auto space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="card p-4">
-              <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">Avg Health Score</div>
-              <div className="text-3xl font-bold text-green-600">{avgHealth}%</div>
-            </div>
-            <div className="card p-4">
-              <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">At Risk</div>
-              <div className="text-3xl font-bold text-red-600">{atRisk}</div>
-            </div>
-            <div className="card p-4">
-              <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">Healthy</div>
-              <div className="text-3xl font-bold text-green-600">{clients.length - atRisk}</div>
-            </div>
+          {/* Metric Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+            {metrics.map((metric) => (
+              <div key={metric.label} className="card p-4 hover:shadow-md transition-shadow">
+                <div className="flex items-start justify-between mb-2">
+                  <div className="text-sm font-medium text-gray-600 dark:text-gray-400">{metric.label}</div>
+                  <div className={`w-2 h-2 rounded-full ${metric.color}`} />
+                </div>
+                <div className="flex items-baseline gap-1 mb-1">
+                  <div className="text-3xl font-bold text-gray-900 dark:text-gray-100">{metric.value}</div>
+                  {metric.unit && <div className="text-sm text-gray-500 dark:text-gray-400">{metric.unit}</div>}
+                </div>
+                <div className={`text-xs font-medium ${metric.trendUp ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
+                  {metric.trend}
+                </div>
+              </div>
+            ))}
           </div>
+
+          {/* Client Health Table */}
           <div className="card p-6">
             <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Client Health Status</h2>
             <table className="w-full">

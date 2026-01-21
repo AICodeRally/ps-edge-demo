@@ -15,10 +15,10 @@ export default function Dashboard() {
       <div className="h-14 flex items-center px-6 border-b border-gray-200 dark:border-dark-border-default bg-white dark:bg-dark-bg-secondary">
         <div>
           <h1 className={`text-xl font-bold ${BRAND_CONFIG.gradient.textClass}`}>
-            Phoenix Philanthropy Group
+            6P Performance Dashboard
           </h1>
           <p className="text-xs text-gray-600 dark:text-gray-400">
-            6P Performance Dashboard
+            Your live view of Purpose, People, Product, Process, Pipeline, Profit
           </p>
         </div>
       </div>
@@ -28,8 +28,8 @@ export default function Dashboard() {
         <div className="max-w-7xl mx-auto space-y-6">
           <SixPsDashboard
             data={AGGREGATE_SIX_PS}
-            title="Your live view of Purpose, People, Product, Process, Pipeline, Profit"
-            subtitle="Aggregated metrics across all departments - Select a P from the footer navigation for detailed views"
+            title=""
+            subtitle="Aggregated metrics across all departments - Select 'View' from each panel to enter the P of your choice"
           />
         </div>
       </div>

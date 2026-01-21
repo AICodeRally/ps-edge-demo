@@ -11,6 +11,9 @@ import {
   InfoCircledIcon,
   ResetIcon,
   ExclamationTriangleIcon,
+  BellIcon,
+  QuestionMarkCircledIcon,
+  ActivityLogIcon,
 } from '@radix-ui/react-icons';
 
 interface FeatureToggleProps {
@@ -100,7 +103,7 @@ export default function AISettingsPage() {
       key: 'opsChief' as const,
       label: 'OpsChief Orb',
       description: 'Business health insights and operational analytics',
-      icon: LightningBoltIcon,
+      icon: ActivityLogIcon,
     },
     {
       id: 'askPS',
@@ -108,6 +111,27 @@ export default function AISettingsPage() {
       label: 'AskPS Orb',
       description: 'AI chat assistant for professional services questions',
       icon: ChatBubbleIcon,
+    },
+    {
+      id: 'pulse',
+      key: 'pulse' as const,
+      label: 'Pulse Orb',
+      description: 'AI-powered operational insights and notifications',
+      icon: BellIcon,
+    },
+    {
+      id: 'tasks',
+      key: 'tasks' as const,
+      label: 'Tasks Orb',
+      description: 'Task management synced with AICR platform',
+      icon: CheckCircledIcon,
+    },
+    {
+      id: 'pageKb',
+      key: 'pageKb' as const,
+      label: 'Page KB Panel',
+      description: 'Context-aware page documentation and help',
+      icon: QuestionMarkCircledIcon,
     },
   ];
 
