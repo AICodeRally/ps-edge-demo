@@ -14,12 +14,12 @@ Welcome to your PS-Edge command center! This is your starting point for managing
 
 The dashboard organizes everything around the **6 P's framework**:
 
-1. **People** - Team capacity, utilization, onboarding
-2. **Process** - Engagements, deliverables, support, knowledge
-3. **Platform** - AI tools, integrations, data management
-4. **Performance** - KPIs, health monitoring, benchmarks
-5. **Profit** - Revenue tracking, timesheets, invoicing
-6. **Purpose** - Mission alignment, client success, proposals
+1. **Purpose** - Mission alignment, client success, proposals
+2. **People** - Team capacity, utilization, onboarding
+3. **Process** - Engagements, deliverables, support, knowledge
+4. **Product** - AI tools, integrations, data management
+5. **Pipeline** - Sales pipeline, deals, revenue forecasting
+6. **Performance** - Revenue tracking, timesheets, financial performance
 
 ## Navigation
 

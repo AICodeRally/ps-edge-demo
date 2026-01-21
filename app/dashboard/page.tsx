@@ -1,7 +1,7 @@
 /**
  * PS-Edge Home Dashboard
  * Main dashboard showing aggregated 6Ps metrics across all departments
- * (People, Process, Platform, Performance, Profit, Purpose)
+ * (Purpose, People, Process, Product, Pipeline, Performance)
  */
 
 import { SixPsDashboard } from '@/src/components/ps-edge/SixPsDashboard';
@@ -19,7 +19,7 @@ export default function Dashboard() {
             6P Performance Dashboard
           </h1>
           <p className="text-xs text-gray-600 dark:text-gray-400">
-            Your live view of Purpose, People, Product, Process, Pipeline, Profit
+            Your live view of Purpose, People, Process, Product, Pipeline, Performance
           </p>
         </div>
       </div>
