@@ -33,41 +33,49 @@ export async function getPulseFeed(tenantId: string = 'ppg-main'): Promise<Pulse
 }
 
 /**
- * Mock pulse items for development/offline mode
+ * Mock pulse items for PS consulting with nonprofit clients
  */
 function getMockPulseItems(): PulseItem[] {
   return [
     {
       id: '1',
-      title: 'High Utilization Alert',
-      message: 'Senior consultants at 95% capacity this week. Consider resource reallocation.',
+      title: 'Grant Deadline Approaching',
+      message: 'Hopewell Foundation needs strategic plan completed before federal grant submission (Feb 15). Currently 72% complete.',
       urgency: 'critical',
       category: 'alert',
       timestamp: new Date().toISOString(),
     },
     {
       id: '2',
-      title: 'Engagement Milestone Due',
-      message: 'Phoenix Foundation deliverable due in 2 days. Review progress.',
+      title: 'Board Meeting Prep Needed',
+      message: 'Community Arts Center board presentation in 3 days. Draft fundraising plan needs executive review.',
       urgency: 'high',
       category: 'warning',
       timestamp: new Date().toISOString(),
     },
     {
       id: '3',
-      title: 'Revenue Opportunity',
-      message: 'Client satisfaction score increased. Good time for upsell discussion.',
-      urgency: 'low',
+      title: 'Capacity Building Opportunity',
+      message: 'Ocean Conservation Group expressed interest in leadership development workshop. High fit for Q1 2026.',
+      urgency: 'medium',
       category: 'info',
       timestamp: new Date().toISOString(),
     },
     {
       id: '4',
-      title: 'Team Member Available',
-      message: 'Alex Rivera has 12 hours available this week for new assignments.',
-      urgency: 'medium',
+      title: 'Client Milestone Achieved',
+      message: 'Phoenix Foundation completed their strategic planning phase. NPS score: 9/10. Good time for follow-on engagement discussion.',
+      urgency: 'low',
       category: 'info',
       timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
+    },
+    {
+      id: '5',
+      title: 'Senior Consultant Available',
+      message: 'Sarah Chen completed Lakeside Arts engagement early. 16 billable hours available this week for nonprofit strategic planning.',
+      urgency: 'medium',
+      category: 'info',
+      timestamp: new Date(Date.now() - 4 * 60 * 60 * 1000).toISOString(),
     },
   ];
 }

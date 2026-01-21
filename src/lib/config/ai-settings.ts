@@ -11,6 +11,8 @@ const AI_SETTINGS_KEY = 'ps-edge-ai-settings';
 export interface AISettings {
   /** Master toggle for all AI orbs/widgets */
   aiOrbsEnabled: boolean;
+  /** Use demo data instead of live AICR connection */
+  useDemoData: boolean;
   /** Individual toggles for specific features */
   features: {
     opsChief: boolean;
@@ -27,6 +29,7 @@ export interface AISettings {
 
 const DEFAULT_AI_SETTINGS: AISettings = {
   aiOrbsEnabled: true,
+  useDemoData: true, // Default to demo data until AICR connected
   features: {
     opsChief: true,
     askPS: true,
@@ -127,4 +130,12 @@ export function resetAISettings(): AISettings {
 export function isAIFeatureEnabled(feature: keyof AISettings['features']): boolean {
   const settings = getAISettings();
   return settings.aiOrbsEnabled && settings.features[feature];
+}
+
+/**
+ * Check if demo data mode is enabled
+ */
+export function isAIDemoDataEnabled(): boolean {
+  const settings = getAISettings();
+  return settings.useDemoData;
 }

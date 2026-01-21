@@ -76,7 +76,7 @@ function FeatureToggle({ id, label, description, icon: Icon, enabled, disabled, 
 export default function AISettingsPage() {
   const { data: session, status } = useSession();
   const router = useRouter();
-  const { settings, aiEnabled, setAIEnabled, setFeatureEnabled, reset } = useAISettings();
+  const { settings, aiEnabled, setAIEnabled, setFeatureEnabled, updateSettings, reset } = useAISettings();
   const [showResetConfirm, setShowResetConfirm] = useState(false);
 
   // Note: Removed access control for demo purposes
@@ -86,6 +86,10 @@ export default function AISettingsPage() {
 
   const handleMasterToggle = (enabled: boolean) => {
     setAIEnabled(enabled, userEmail);
+  };
+
+  const handleDemoDataToggle = (enabled: boolean) => {
+    updateSettings({ useDemoData: enabled, updatedBy: userEmail });
   };
 
   const handleFeatureToggle = (feature: keyof typeof settings.features, enabled: boolean) => {
@@ -198,6 +202,57 @@ export default function AISettingsPage() {
                 />
               </button>
             </div>
+          </div>
+
+          {/* Demo Data Mode Toggle */}
+          <div className="p-6 rounded-xl bg-white dark:bg-dark-bg-secondary border-2 border-gray-200 dark:border-dark-border-default">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className={`flex h-14 w-14 items-center justify-center rounded-xl ${
+                  settings.useDemoData
+                    ? 'bg-gradient-to-br from-orange-500 to-amber-500 text-white'
+                    : 'bg-gray-100 dark:bg-dark-bg-tertiary text-gray-500 dark:text-gray-400'
+                }`}>
+                  <InfoCircledIcon className="h-7 w-7" />
+                </div>
+                <div>
+                  <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                    Demo Data Mode
+                  </h2>
+                  <p className="text-gray-600 dark:text-gray-400">
+                    {settings.useDemoData
+                      ? 'Using nonprofit consulting demo data - realistic scenarios for Phoenix Philanthropy Group'
+                      : 'Connected to live AICR platform for real-time insights'}
+                  </p>
+                </div>
+              </div>
+              <button
+                type="button"
+                role="switch"
+                aria-checked={settings.useDemoData}
+                onClick={() => handleDemoDataToggle(!settings.useDemoData)}
+                disabled={!aiEnabled}
+                className={`relative inline-flex h-8 w-14 items-center rounded-full transition-colors ${
+                  !aiEnabled
+                    ? 'cursor-not-allowed bg-gray-200 dark:bg-gray-700'
+                    : settings.useDemoData
+                      ? 'bg-orange-600'
+                      : 'bg-gray-300 dark:bg-gray-600'
+                }`}
+              >
+                <span
+                  className={`inline-block h-6 w-6 transform rounded-full bg-white shadow-md transition-transform ${
+                    settings.useDemoData ? 'translate-x-7' : 'translate-x-1'
+                  }`}
+                />
+              </button>
+            </div>
+            {!aiEnabled && (
+              <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 flex items-center gap-2">
+                <InfoCircledIcon className="h-4 w-4" />
+                Enable AI Assistants to configure demo data mode
+              </p>
+            )}
           </div>
 
           {/* Individual Feature Toggles */}

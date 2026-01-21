@@ -243,37 +243,46 @@ export function TaskOrb({ enabled = true }: TaskOrbProps) {
   );
 }
 
-// Mock data for offline mode
+// Mock data for offline mode - nonprofit consulting tasks
 function getMockTasks(): Task[] {
   return [
     {
       id: '1',
-      title: 'Complete Phoenix Foundation deliverable',
-      description: 'Finalize impact report and schedule review meeting',
+      title: 'Strategic Plan: Hopewell Foundation',
+      description: 'Complete 3-year strategic plan for federal grant submission. Sections: program expansion, capacity building, fundraising strategy.',
       status: 'in_progress',
-      priority: 'high',
+      priority: 'critical',
       assignee: 'Sarah Chen',
       dueDate: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000).toISOString(),
       context: 'deliverable',
     },
     {
       id: '2',
-      title: 'Resolve Hopewell support ticket #234',
-      description: 'Dashboard showing incorrect KPIs - investigate data source',
+      title: 'Board Development: Ocean Conservation',
+      description: 'Prepare governance training materials for new board members. Blocked - awaiting client approval on curriculum.',
       status: 'blocked',
-      priority: 'critical',
+      priority: 'high',
       assignee: 'Mike Johnson',
-      context: 'support',
+      context: 'engagement',
     },
     {
       id: '3',
-      title: 'Review Q1 capacity planning',
-      description: 'Analyze utilization trends and prepare recommendations',
+      title: 'Fundraising Workshop: Community Arts Center',
+      description: 'Design and deliver 2-day donor cultivation workshop for development team (8 attendees).',
       status: 'in_progress',
-      priority: 'low',
+      priority: 'high',
       assignee: 'Alex Rivera',
-      dueDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
-      context: 'admin',
+      dueDate: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString(),
+      context: 'engagement',
+    },
+    {
+      id: '4',
+      title: 'Impact Assessment: Phoenix Foundation',
+      description: 'Completed program evaluation report delivered. Client requested follow-on capacity building engagement.',
+      status: 'done',
+      priority: 'low',
+      assignee: 'Jordan Lee',
+      context: 'deliverable',
     },
   ];
 }
