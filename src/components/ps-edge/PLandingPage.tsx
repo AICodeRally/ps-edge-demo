@@ -5,7 +5,7 @@
  */
 
 import Link from 'next/link';
-import { SIX_PS_DEFINITIONS, type SixPCategory } from '@/src/types/ps-edge/six-ps.types';
+import { SIX_PS_DEFINITIONS, type SixPCategory, type SixPMetric } from '@/src/types/ps-edge/six-ps.types';
 import { getPNavigation } from '@/src/config/navigation.config';
 import { AGGREGATE_SIX_PS } from '@/src/data/ps-edge/six-ps.data';
 import * as RadixIcons from '@radix-ui/react-icons';
@@ -70,7 +70,7 @@ export function PLandingPage({ category }: PLandingPageProps) {
               Key Metrics
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              {metrics.map((metric: any, idx: number) => (
+              {metrics.map((metric: SixPMetric, idx: number) => (
                 <div
                   key={idx}
                   className={`p-4 rounded-lg border-2 ${pConfig.borderColor} ${pConfig.bgColor} hover:shadow-md transition-all`}
