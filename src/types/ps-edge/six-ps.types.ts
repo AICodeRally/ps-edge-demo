@@ -58,7 +58,7 @@ export const SIX_PS_DEFINITIONS: Record<SixPCategory, { title: string; descripti
   PLATFORM: {
     title: 'Product',
     description: 'Technology, tools, and systems enablement',
-    iconName: 'CubeIcon',
+    iconName: 'CubeIcon', // Product/technology icon
     color: BRAND_CONFIG.sixPs.platform.textClass,
     bgColor: BRAND_CONFIG.sixPs.platform.bgClass,
     borderColor: BRAND_CONFIG.sixPs.platform.borderClass,
@@ -66,8 +66,8 @@ export const SIX_PS_DEFINITIONS: Record<SixPCategory, { title: string; descripti
   },
   PERFORMANCE: {
     title: 'Pipeline',
-    description: 'KPIs, outcomes, and operational metrics',
-    iconName: 'BarChartIcon',
+    description: 'Sales pipeline, deals, and revenue forecasting',
+    iconName: 'LayersIcon', // Pipeline/stages icon
     color: BRAND_CONFIG.sixPs.performance.textClass,
     bgColor: BRAND_CONFIG.sixPs.performance.bgClass,
     borderColor: BRAND_CONFIG.sixPs.performance.borderClass,
@@ -75,8 +75,8 @@ export const SIX_PS_DEFINITIONS: Record<SixPCategory, { title: string; descripti
   },
   PROFIT: {
     title: 'Performance',
-    description: 'Revenue, margins, and financial health',
-    iconName: 'DashboardIcon',
+    description: 'Revenue, margins, and financial performance',
+    iconName: 'BarChartIcon', // Performance/metrics icon
     color: BRAND_CONFIG.sixPs.profit.textClass,
     bgColor: BRAND_CONFIG.sixPs.profit.bgClass,
     borderColor: BRAND_CONFIG.sixPs.profit.borderClass,

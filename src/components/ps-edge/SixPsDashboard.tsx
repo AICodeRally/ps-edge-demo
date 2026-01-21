@@ -12,6 +12,7 @@ import {
   DashboardIcon,
   TargetIcon,
   ArrowRightIcon,
+  LayersIcon,
 } from '@radix-ui/react-icons';
 import type { DepartmentSixPs, SixPSection, SixPCategory } from '@/src/types/ps-edge/six-ps.types';
 import { SIX_PS_DEFINITIONS } from '@/src/types/ps-edge/six-ps.types';
@@ -25,6 +26,7 @@ const ICON_MAP = {
   BarChartIcon,
   DashboardIcon,
   TargetIcon,
+  LayersIcon,
 };
 
 interface SixPsDashboardProps {
