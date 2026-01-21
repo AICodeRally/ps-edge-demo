@@ -3,21 +3,46 @@
 
 > **Navigation:** 6 P's Framework (People, Process, Platform, Performance, Profit, Purpose)
 > **Pattern:** SGM (sticky navbar + fixed footer, no sidebar)
-> **Pages:** 29 pages organized by business dimension
+> **Pages:** 29 pages with nested metric dashboards
+> **AI Orbs:** 5 intelligent assistants (OpsChief, Pulse, Tasks, AskPS, PageKB)
 
 A dual-purpose platform combining:
 1. **Professional Services Business Operations** - Managing PPG's consulting business (clients, projects, proposals, time tracking, billing)
 2. **Multi-Tenant Channel Partner Portal** - Managing nonprofit clients using NP-Edge product (telemetry ingestion, benchmarking, health monitoring)
 
-**NEW:** All navigation organized through the **6 P's Framework** for holistic business management.
+**Latest:** Complete AICR Platform Migration with 5 AI orbs, nested dashboards across all pages, and SGM-pattern navbar.
+
+## ✨ Key Features
+
+### 5 AI Orbs
+- **OpsChief** - Business health insights and analytics
+- **Pulse** - Real-time operational notifications
+- **Tasks** - AICR-synced task management
+- **AskPS** - AI chat assistant for questions
+- **PageKB** - Context-aware page documentation
+
+### Nested Dashboard Pattern
+- **Level 1:** Main dashboard with 6P aggregate metrics
+- **Level 2:** P landing pages with key metrics
+- **Level 3:** All 29 sub-pages with detailed stat cards
+
+### SGM Pattern
+- Client-centric navbar (shows "EDGE for Nonprofits")
+- Footer-based 6 P's navigation
+- Demo data badge (orange gradient)
+- Full user dropdown with settings access
+- CommandPalette (Cmd+K) for quick navigation
 
 ## Tech Stack
 
 - **Framework**: Next.js 16 (App Router)
-- **Database**: PostgreSQL + Prisma ORM
+- **Database**: Neon (Vercel Postgres) + Prisma ORM
+- **Deployment**: Vercel + GitHub
+- **AI**: Vercel AI SDK Gateway → AICR Platform
 - **UI**: React 19.2, TypeScript 5.9, Tailwind CSS 4.1
 - **Charts**: Recharts 3.4
 - **Icons**: Radix UI Icons
+- **Markdown**: react-markdown + gray-matter
 
 ## Project Structure (6 P's Architecture)
 
@@ -128,10 +153,15 @@ See [docs/6PS_FRAMEWORK.md](docs/6PS_FRAMEWORK.md) for detailed philosophy and u
    ```
 
 2. **Set up environment variables**:
-   Copy `.env.local` and update with your database URL:
+   Copy `.env.example` to `.env.local` and update:
+   ```bash
+   cp .env.example .env.local
    ```
-   DATABASE_URL="postgresql://user:password@localhost:5432/ps_edge_demo?schema=ppg-main"
-   TELEMETRY_API_KEY="your-api-key-here"
+   Then configure:
+   ```
+   DATABASE_URL="your-neon-connection-string"
+   NEXTAUTH_SECRET="generate-with-openssl-rand-base64-32"
+   NEXTAUTH_URL="http://localhost:3033"
    ```
 
 3. **Initialize database**:
@@ -146,6 +176,12 @@ See [docs/6PS_FRAMEWORK.md](docs/6PS_FRAMEWORK.md) for detailed philosophy and u
    ```
 
    Open [http://localhost:3033](http://localhost:3033) to view the application.
+
+5. **Explore AI features**:
+   - Click AI orbs in bottom corners (5 total)
+   - Press `Cmd+K` to open command palette
+   - Go to Platform → Settings → AI Features to toggle orbs
+   - Click PageKB orb on any page for context help
 
 ## Development
 
@@ -163,19 +199,43 @@ See [docs/6PS_FRAMEWORK.md](docs/6PS_FRAMEWORK.md) for detailed philosophy and u
 - `npx prisma db push` - Push schema changes to database
 - `npx prisma migrate dev` - Create a new migration
 
+### Keyboard Shortcuts
+
+- `Cmd+K` (Mac) / `Ctrl+K` (Windows) - Open command palette
+- `Esc` - Close any panel, modal, or dropdown
+- `↑↓` - Navigate command palette results
+- `Enter` - Select command palette item
+
 ## Features
 
 ### ✅ 6 P's Navigation (29 Pages)
 
 **Core Infrastructure**
 - ✅ Next.js 16 with App Router and TypeScript 5.9
-- ✅ Prisma ORM with 12 data models
+- ✅ Neon database (Vercel Postgres) with Prisma ORM
 - ✅ SGM Pattern: Sticky navbar + fixed footer (no sidebar)
 - ✅ 6 P's-based navigation (footer links)
 - ✅ Tailwind CSS 4.1 with gradient design system
 - ✅ Dark mode support with theme persistence
-- ✅ Breadcrumb navigation system
 - ✅ Mobile-first responsive design
+- ✅ Vercel deployment ready
+
+**AI Features (AICR Platform Integration)**
+- ✅ 5 AI Orbs with individual toggles
+- ✅ OpsChief - Business health analytics
+- ✅ Pulse - Real-time notifications
+- ✅ Tasks - AICR-synced task management
+- ✅ AskPS - AI chat assistant
+- ✅ PageKB - Context-aware documentation
+- ✅ Settings control for client AI policies
+- ✅ Offline detection with graceful fallbacks
+
+**Nested Dashboard System**
+- ✅ All 29 pages have metric stat cards
+- ✅ 3-level drill-down (aggregate → P-level → detail)
+- ✅ Color-coded by P category
+- ✅ Trend indicators on all metrics
+- ✅ Responsive grid layouts
 
 **PEOPLE (3 pages)**
 - ✅ **Team** - Team member directory with utilization tracking
