@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { SIX_PS_DEFINITIONS, type SixPCategory, type SixPMetric } from '@/src/types/ps-edge/six-ps.types';
 import { getPNavigation } from '@/src/config/navigation.config';
 import { AGGREGATE_SIX_PS } from '@/src/data/ps-edge/six-ps.data';
+import { SetPageTitle } from '@/src/components/SetPageTitle';
 import * as RadixIcons from '@radix-ui/react-icons';
 import { ArrowUpIcon, ArrowDownIcon, ArrowRightIcon } from '@radix-ui/react-icons';
 
@@ -44,6 +45,12 @@ export function PLandingPage({ category }: PLandingPageProps) {
 
   return (
     <div className="h-full flex flex-col">
+      {/* Update navbar title */}
+      <SetPageTitle
+        title={pConfig.title}
+        description={pConfig.description}
+      />
+
       {/* Header Bar */}
       <div className="h-14 flex items-center px-6 border-b border-gray-200 dark:border-dark-border-default bg-white dark:bg-dark-bg-secondary">
         <div className="flex items-center gap-3">
