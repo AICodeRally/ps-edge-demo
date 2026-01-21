@@ -1,18 +1,25 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { z } from 'zod';
+import { validateRequestBody, errorResponse, successResponse } from '@/src/lib/api/validation';
 
-interface Message {
-  role: 'user' | 'assistant';
-  content: string;
-}
+/**
+ * Request validation schema
+ */
+const AskPSRequestSchema = z.object({
+  messages: z.array(
+    z.object({
+      role: z.enum(['user', 'assistant']),
+      content: z.string().min(1),
+    })
+  ).min(1, 'At least one message is required'),
+  tenantId: z.string().min(1).max(50).default('ppg-main'),
+  department: z.string().max(100).optional(),
+  context: z.object({
+    currentPage: z.string().max(200).optional(),
+  }).optional(),
+});
 
-interface AskPSRequest {
-  messages: Message[];
-  tenantId?: string;
-  department?: string;
-  context?: {
-    currentPage?: string;
-  };
-}
+type AskPSRequest = z.infer<typeof AskPSRequestSchema>;
 
 /**
  * POST /api/ai/askps
@@ -32,15 +39,13 @@ interface AskPSRequest {
  */
 export async function POST(request: NextRequest) {
   try {
-    const body: AskPSRequest = await request.json();
-    const { messages, tenantId = 'ppg-main', department, context } = body;
-
-    if (!messages || messages.length === 0) {
-      return NextResponse.json(
-        { error: 'Messages array is required' },
-        { status: 400 }
-      );
+    // Validate request body
+    const validation = await validateRequestBody(request, AskPSRequestSchema);
+    if (!validation.success) {
+      return validation.error;
     }
+
+    const { messages, tenantId, department, context } = validation.data;
 
     const userMessage = messages[messages.length - 1];
     const userQuery = userMessage.content.toLowerCase();
@@ -194,7 +199,7 @@ What would you like to know more about?`;
       page: context?.currentPage,
     });
 
-    return NextResponse.json({
+    return successResponse({
       text: response,
       metadata: {
         tenantId,

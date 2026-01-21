@@ -1,0 +1,75 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+        env:
+          DATABASE_URL: ''
+
+      - name: Type check
+        run: npx tsc --noEmit
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+        env:
+          DATABASE_URL: ''
+          BINDING_MODE: synthetic
+          ENABLE_DEMO_DATA: 'true'
+
+      - name: Start server and run smoke test
+        run: |
+          # Start the production server in background
+          npm run start &
+          SERVER_PID=$!
+
+          # Wait for server to be ready
+          echo "Waiting for server to start on port 3033..."
+          for i in {1..30}; do
+            if curl -s http://localhost:3033 > /dev/null 2>&1; then
+              echo "Server is ready!"
+              break
+            fi
+            sleep 1
+          done
+
+          # Basic smoke test - check if homepage loads
+          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:3033)
+          if [ "$HTTP_CODE" -eq 200 ] || [ "$HTTP_CODE" -eq 302 ]; then
+            echo "✓ Server responded with HTTP $HTTP_CODE"
+            TEST_EXIT_CODE=0
+          else
+            echo "✗ Server responded with HTTP $HTTP_CODE (expected 200 or 302)"
+            TEST_EXIT_CODE=1
+          fi
+
+          # Cleanup
+          kill $SERVER_PID 2>/dev/null || true
+
+          exit $TEST_EXIT_CODE
+        env:
+          BINDING_MODE: synthetic
+          ENABLE_DEMO_DATA: 'true'
+          NEXTAUTH_SECRET: ci-test-secret-ps-edge-demo
+          NEXTAUTH_URL: http://localhost:3033

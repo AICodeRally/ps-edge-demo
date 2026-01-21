@@ -1,4 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { z } from 'zod';
+import { validateQueryParams, successResponse } from '@/src/lib/api/validation';
+
+/**
+ * Query parameters validation schema
+ */
+const OpsChiefQuerySchema = z.object({
+  tenantId: z.string().min(1).max(50).default('ppg-main'),
+  department: z.string().max(100).optional(),
+});
 
 interface OpsChiefInsight {
   id: string;
@@ -28,9 +38,13 @@ interface OpsChiefInsight {
  */
 export async function GET(request: NextRequest) {
   try {
-    const searchParams = request.nextUrl.searchParams;
-    const tenantId = searchParams.get('tenantId') || 'ppg-main';
-    const department = searchParams.get('department');
+    // Validate query parameters
+    const validation = validateQueryParams(request, OpsChiefQuerySchema);
+    if (!validation.success) {
+      return validation.error;
+    }
+
+    const { tenantId, department } = validation.data;
 
     // TODO: Replace with actual business logic analysis
     // For now, return mock insights based on the 6Ps data
