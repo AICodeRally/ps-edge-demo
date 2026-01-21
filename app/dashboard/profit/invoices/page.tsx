@@ -5,6 +5,17 @@
 'use client';
 
 export default function InvoicesPage() {
+  const invoices = [
+    { invoiceId: 'INV-2026-0012', client: 'Global Giving Foundation', amount: 47500, issued: 'Jan 15, 2026', due: 'Feb 14, 2026', status: 'Outstanding', daysOpen: 5 },
+    { invoiceId: 'INV-2026-0011', client: 'Community Impact Network', amount: 32800, issued: 'Jan 10, 2026', due: 'Feb 9, 2026', status: 'Outstanding', daysOpen: 10 },
+    { invoiceId: 'INV-2026-0010', client: 'Youth Development Alliance', amount: 28400, issued: 'Jan 8, 2026', due: 'Feb 7, 2026', status: 'Paid', daysOpen: 8 },
+    { invoiceId: 'INV-2026-0009', client: 'Education First Collaborative', amount: 51200, issued: 'Jan 5, 2026', due: 'Feb 4, 2026', status: 'Outstanding', daysOpen: 15 },
+    { invoiceId: 'INV-2026-0008', client: 'Health Access Partners', amount: 38900, issued: 'Dec 28, 2025', due: 'Jan 27, 2026', status: 'Paid', daysOpen: 12 },
+    { invoiceId: 'INV-2025-0247', client: 'Arts & Culture Initiative', amount: 19750, issued: 'Dec 20, 2025', due: 'Jan 19, 2026', status: 'Outstanding', daysOpen: 31 },
+    { invoiceId: 'INV-2025-0246', client: 'Global Giving Foundation', amount: 43200, issued: 'Dec 15, 2025', due: 'Jan 14, 2026', status: 'Paid', daysOpen: 18 },
+    { invoiceId: 'INV-2025-0245', client: 'Environmental Action Group', amount: 23100, issued: 'Nov 30, 2025', due: 'Dec 30, 2025', status: 'Overdue', daysOpen: 51 },
+  ];
+
   return (
     <div className="h-full flex flex-col">
       <div className="px-6 py-4 border-b border-gray-200 dark:border-dark-border-default bg-white dark:bg-dark-bg-secondary">
@@ -37,9 +48,49 @@ export default function InvoicesPage() {
       </div>
       <div className="flex-1 overflow-auto p-6">
         <div className="max-w-7xl mx-auto">
-          <div className="card p-8 text-center">
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4">🚧 Migrated to PROFIT</h2>
-            <p className="text-gray-600 dark:text-gray-400">Invoices now under PROFIT section</p>
+          <div className="card">
+            <div className="p-4 border-b border-gray-200 dark:border-dark-border-default">
+              <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Invoice List</h2>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">All invoices and payment tracking</p>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead className="bg-gray-50 dark:bg-dark-bg-tertiary border-b border-gray-200 dark:border-dark-border-default">
+                  <tr>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 dark:text-gray-400 uppercase tracking-wider">Invoice ID</th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 dark:text-gray-400 uppercase tracking-wider">Client</th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 dark:text-gray-400 uppercase tracking-wider">Amount</th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 dark:text-gray-400 uppercase tracking-wider">Issued</th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 dark:text-gray-400 uppercase tracking-wider">Due Date</th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 dark:text-gray-400 uppercase tracking-wider">Status</th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 dark:text-gray-400 uppercase tracking-wider">Days</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200 dark:divide-dark-border-default">
+                  {invoices.map((invoice, idx) => (
+                    <tr key={idx} className="hover:bg-gray-50 dark:hover:bg-dark-bg-tertiary">
+                      <td className="px-4 py-3 text-sm font-mono text-gray-900 dark:text-gray-100">{invoice.invoiceId}</td>
+                      <td className="px-4 py-3 text-sm text-gray-900 dark:text-gray-100">{invoice.client}</td>
+                      <td className="px-4 py-3 text-sm font-medium text-gray-900 dark:text-gray-100">${invoice.amount.toLocaleString()}</td>
+                      <td className="px-4 py-3 text-sm text-gray-600 dark:text-gray-400">{invoice.issued}</td>
+                      <td className="px-4 py-3 text-sm text-gray-600 dark:text-gray-400">{invoice.due}</td>
+                      <td className="px-4 py-3">
+                        <span className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${
+                          invoice.status === 'Paid' 
+                            ? 'bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300' 
+                            : invoice.status === 'Overdue'
+                            ? 'bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-300'
+                            : 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300'
+                        }`}>
+                          {invoice.status}
+                        </span>
+                      </td>
+                      <td className="px-4 py-3 text-sm text-gray-600 dark:text-gray-400">{invoice.daysOpen}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
