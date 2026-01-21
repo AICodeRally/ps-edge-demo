@@ -38,15 +38,65 @@ export default function KnowledgeLibraryPage() {
         </div>
       </div>
       <div className="flex-1 overflow-auto p-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="card p-8 text-center">
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4">🚧 Page Migration in Progress</h2>
-            <p className="text-gray-600 dark:text-gray-400 mb-4">
-              This page is being migrated to the PROCESS section.
-            </p>
-            <p className="text-sm text-gray-500">
-              Full content from operations/knowledge will be available soon.
-            </p>
+        <div className="max-w-7xl mx-auto space-y-4">
+          {/* Knowledge Base Categories */}
+          <div className="card p-6">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Knowledge Base Categories</h2>
+              <button className="btn-primary text-sm">+ New Article</button>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {[
+                { name: 'Methodologies', count: 34, color: 'violet' },
+                { name: 'Playbooks', count: 28, color: 'purple' },
+                { name: 'Best Practices', count: 56, color: 'fuchsia' },
+                { name: 'Templates', count: 42, color: 'pink' },
+                { name: 'Onboarding', count: 23, color: 'violet' },
+                { name: 'Training', count: 31, color: 'purple' },
+                { name: 'Case Studies', count: 19, color: 'fuchsia' },
+                { name: 'FAQs', count: 14, color: 'pink' },
+              ].map((category) => (
+                <div
+                  key={category.name}
+                  className={`p-4 rounded-lg border-2 border-${category.color}-200 dark:border-${category.color}-800 bg-${category.color}-50 dark:bg-${category.color}-900/20 hover:shadow-md transition-all cursor-pointer`}
+                >
+                  <h3 className={`font-semibold text-${category.color}-900 dark:text-${category.color}-100 mb-1`}>
+                    {category.name}
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">{category.count} articles</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Recent Articles */}
+          <div className="card p-6">
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Recent Articles</h2>
+            <div className="space-y-3">
+              {[
+                { title: 'Strategic Planning Framework 2026', category: 'Methodologies', views: 342, updated: '2 days ago' },
+                { title: 'Client Onboarding Playbook', category: 'Playbooks', views: 287, updated: '5 days ago' },
+                { title: 'Effective Donor Engagement', category: 'Best Practices', views: 234, updated: '1 week ago' },
+                { title: 'Proposal Template - Strategic', category: 'Templates', views: 198, updated: '1 week ago' },
+                { title: 'New Consultant Orientation', category: 'Onboarding', views: 156, updated: '2 weeks ago' },
+              ].map((article, idx) => (
+                <div
+                  key={idx}
+                  className="flex items-center justify-between p-3 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-dark-bg-tertiary cursor-pointer"
+                >
+                  <div className="flex-1">
+                    <h3 className="font-medium text-gray-900 dark:text-gray-100">{article.title}</h3>
+                    <div className="flex items-center gap-3 mt-1">
+                      <span className="px-2 py-0.5 rounded text-xs bg-violet-100 dark:bg-violet-900/20 text-violet-700 dark:text-violet-400">
+                        {article.category}
+                      </span>
+                      <span className="text-xs text-gray-500">{article.views} views</span>
+                      <span className="text-xs text-gray-500">Updated {article.updated}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
