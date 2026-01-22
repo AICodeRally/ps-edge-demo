@@ -20,7 +20,7 @@ export function ModulesProvider({ children }: { children: ReactNode }) {
 
   // Load from localStorage after mount
   useEffect(() => {
-    const stored = localStorage.getItem('ps-edge:modules:partners-enabled');
+    const stored = localStorage.getItem('ps-edge:modules:channel-portal-enabled');
     if (stored !== null) {
       setChannelPortalEnabled(stored === 'true');
     }
@@ -30,7 +30,7 @@ export function ModulesProvider({ children }: { children: ReactNode }) {
   // Save to localStorage when changed
   useEffect(() => {
     if (mounted) {
-      localStorage.setItem('ps-edge:modules:partners-enabled', String(partnersEnabled));
+      localStorage.setItem('ps-edge:modules:channel-portal-enabled', String(partnersEnabled));
     }
   }, [partnersEnabled, mounted]);
 
