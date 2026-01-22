@@ -49,12 +49,12 @@ export function Navbar() {
     <nav
       className="bg-white dark:bg-gray-900 shadow-sm sticky top-0 z-50 border-b-4 border-transparent"
       style={{
-        borderImage: 'linear-gradient(90deg, #22c55e, #14b8a6) 1',
+        borderImage: 'linear-gradient(90deg, #9333ea, #c026d3, #db2777, #facc15) 1',
       }}
     >
       <div className="w-full px-6">
         <div className="flex items-center justify-between h-16">
-          {/* Left side: Product Name + AF Logo + Module Info */}
+          {/* Left side: Product Name + PS Logo + Module Info */}
           <div className="flex items-center gap-6">
             <Link href="/dashboard" className="flex items-center gap-4 group">
               {/* Product Name - Large like SPARCC */}
@@ -62,7 +62,7 @@ export function Navbar() {
                 <span
                   className="text-3xl font-bold bg-clip-text text-transparent tracking-tight"
                   style={{
-                    backgroundImage: 'linear-gradient(90deg, #22c55e, #14b8a6)',
+                    backgroundImage: 'linear-gradient(90deg, #9333ea, #c026d3, #db2777, #facc15)',
                   }}
                 >
                   EDGE
@@ -72,14 +72,14 @@ export function Navbar() {
                 </span>
               </div>
 
-              {/* NP Circle Logo */}
+              {/* PS Circle Logo */}
               <div
                 className="w-14 h-14 rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow"
                 style={{
-                  backgroundImage: 'linear-gradient(135deg, #22c55e, #14b8a6)',
+                  backgroundImage: 'linear-gradient(135deg, #9333ea, #c026d3, #facc15)',
                 }}
               >
-                <span className="text-white font-bold text-xl">NP</span>
+                <span className="text-white font-bold text-xl">PS</span>
               </div>
 
               {/* Module Info */}
@@ -87,7 +87,7 @@ export function Navbar() {
                 <h1
                   className="text-lg font-bold bg-clip-text text-transparent"
                   style={{
-                    backgroundImage: 'linear-gradient(90deg, #22c55e, #14b8a6)',
+                    backgroundImage: 'linear-gradient(90deg, #9333ea, #c026d3, #db2777, #facc15)',
                   }}
                 >
                   {title}
@@ -129,7 +129,7 @@ export function Navbar() {
                 <div
                   className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold shadow-md"
                   style={{
-                    backgroundImage: 'linear-gradient(135deg, #22c55e, #14b8a6)',
+                    backgroundImage: 'linear-gradient(135deg, #9333ea, #c026d3, #facc15)',
                   }}
                 >
                   {user.initials}

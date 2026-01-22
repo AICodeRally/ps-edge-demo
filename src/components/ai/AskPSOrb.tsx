@@ -118,10 +118,10 @@ export function AskPSOrb({ appName = 'PS-Edge', enabled = true, position = 'fixe
   if (!enabled) return null;
 
   const quickQuestions = [
-    'Show me current beneficiary enrollment',
-    'What grants are due soon?',
-    'How are our fundraising campaigns doing?',
-    'Tell me about volunteer hours this month',
+    'How do I track billable hours?',
+    'What is our current team utilization?',
+    'Show me active engagement status',
+    'How do I create a proposal?',
   ];
 
   const hasActivity = isLoading || messages.length > 0;
@@ -131,10 +131,11 @@ export function AskPSOrb({ appName = 'PS-Edge', enabled = true, position = 'fixe
     ? `fixed bottom-4 right-4 z-40 flex h-14 w-14 items-center justify-center rounded-full text-white shadow-lg transition-all hover:scale-110 hover:shadow-xl ${pulseClass} ${className}`
     : `flex h-12 w-12 items-center justify-center rounded-full text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl ${pulseClass} ${className}`;
 
-  // NP-Edge: AI orbs use green/teal gradient theme
+  // AI orbs always use purple - don't change with brand settings
+  // AskPS uses lighter, brighter purple/violet
   const buttonStyle = {
-    background: 'linear-gradient(135deg, #22c55e, #10b981, #14b8a6)', // green → emerald → teal
-    boxShadow: '0 0 20px rgba(34, 197, 94, 0.4)',
+    background: 'linear-gradient(135deg, #7c3aed, #a855f7)', // purple-600 to purple-500
+    boxShadow: '0 0 20px rgba(168, 85, 247, 0.4)',
   };
 
   return (
@@ -145,8 +146,8 @@ export function AskPSOrb({ appName = 'PS-Edge', enabled = true, position = 'fixe
           onClick={() => setIsOpen(!isOpen)}
           className={buttonBaseClasses}
           style={buttonStyle}
-          aria-label={isOpen ? "Close AskNP AI Assistant" : "Open AskNP AI Assistant"}
-          title="AskNP - Foster Care Operations AI Assistant"
+          aria-label={isOpen ? "Close AskPS AI Assistant" : "Open AskPS AI Assistant"}
+          title="AskPS - Professional Services AI Assistant"
         >
           <ChatBubbleIcon className={position === 'fixed' ? 'h-6 w-6' : 'h-5 w-5'} />
         </button>
@@ -161,12 +162,12 @@ export function AskPSOrb({ appName = 'PS-Edge', enabled = true, position = 'fixe
       {isOpen && !isMinimized && (
         <div className="fixed bottom-4 right-4 z-40 flex h-[750px] w-[600px] flex-col rounded-lg bg-white dark:bg-dark-bg-secondary shadow-2xl border border-gray-200 dark:border-dark-border-default">
           {/* Header */}
-          <div className="flex items-center justify-between border-b border-gray-200 dark:border-dark-border-default bg-gradient-to-r from-green-500 to-teal-500 p-4 text-white rounded-t-lg">
+          <div className="flex items-center justify-between border-b border-gray-200 dark:border-dark-border-default bg-gradient-to-r from-teal-500 to-cyan-500 p-4 text-white rounded-t-lg">
             <div className="flex items-center gap-2">
               <ChatBubbleIcon className="h-6 w-6" />
               <div>
-                <h3 className="font-semibold text-lg">AskNP</h3>
-                <p className="text-sm text-green-100">Foster Care Operations AI Assistant</p>
+                <h3 className="font-semibold text-lg">AskPS</h3>
+                <p className="text-sm text-teal-100">Professional Services AI Assistant</p>
               </div>
             </div>
             <div className="flex items-center gap-2">

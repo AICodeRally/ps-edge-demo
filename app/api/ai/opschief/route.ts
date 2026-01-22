@@ -47,93 +47,97 @@ export async function GET(request: NextRequest) {
     const { tenantId, department } = validation.data;
 
     // TODO: Replace with actual business logic analysis
-    // Mock insights for AFFCF (Arizona Friends of Foster Children Foundation)
+    // For now, return mock insights based on the 6Ps data + 2026 AI Line of Service
     const insights: OpsChiefInsight[] = [
-      // Foster Care Program Operations
+      // Core Operations Insights
       {
         id: 'insight_1',
-        type: 'warning',
-        title: 'Keys to Success Program at 94% Capacity',
-        description: '142 of 150 youth enrolled in after-school tutoring. Waitlist of 23 students. Spring semester registration opens Feb 1st - expect to hit capacity within 2 weeks.',
-        timestamp: new Date(),
-        severity: 'high',
-        actionable: true,
-        suggestedAction: 'Options: (1) Open additional tutoring section (requires 2 tutors, $12K budget), (2) Extend current sessions by 30 mins, (3) Partner with school district for space/volunteers.',
-      },
-      {
-        id: 'insight_2',
         type: 'alert',
-        title: 'Grant Report Deadline Approaching',
-        description: 'ABC Foundation grant report due Feb 28th (36 days). Report requires updated beneficiary outcomes, program metrics, and financial reconciliation. Data collection not yet started.',
+        title: 'Capacity Constraint in Strategic Planning',
+        description: 'All 3 senior consultants fully booked through Q1 2026. Two new nonprofit strategic planning requests (Ocean Conservation, Urban Gardens) cannot be staffed.',
         timestamp: new Date(),
         severity: 'critical',
         actionable: true,
-        suggestedAction: 'Immediate action: (1) Assign Program Director to compile outcomes data by Feb 10, (2) Request financial report from Accounting by Feb 15, (3) Schedule review with Executive Director Feb 20.',
+        suggestedAction: 'Options: (1) Hire senior consultant with nonprofit strategy experience, (2) Upskill mid-level consultant to take one engagement, (3) Defer one engagement to Q2.',
+      },
+      {
+        id: 'insight_2',
+        type: 'warning',
+        title: 'Grant Cycle Creating Deadline Pressure',
+        description: 'Federal grant cycle (Feb 15) has 3 clients rushing strategic plans simultaneously. Risk of quality issues or missed deadlines.',
+        timestamp: new Date(),
+        severity: 'high',
+        actionable: true,
+        suggestedAction: 'Prioritize Hopewell Foundation (largest engagement). Consider weekend hours or temp contractor for Metro Food Bank grant writing.',
       },
       {
         id: 'insight_3',
         type: 'info',
-        title: 'Foster Youth Outcomes Exceeding Targets',
-        description: 'Education programs showing strong results: 89% of students improved 2+ grade levels (target: 75%). College enrollment rate 68% (target: 60%). Satisfaction score 93%.',
+        title: 'Nonprofit Sector Revenue Up 18%',
+        description: 'Nonprofit consulting revenue $487K this month (+12% MoM, +18% YoY). Average engagement value $87K. Capacity building workshops showing strong demand.',
         timestamp: new Date(),
         severity: 'low',
-        actionable: true,
-        suggestedAction: 'Leverage these outcomes for fundraising: Include in annual appeal, share with major donors, use in grant proposals for program expansion.',
+        actionable: false,
       },
-
-      // Fundraising & Development
       {
         id: 'insight_4',
         type: 'warning',
-        title: 'Year-End Giving Campaign Below Target',
-        description: 'Annual campaign raised $387K of $500K goal (77%). Dec 31st deadline approaching. 245 donors contributed vs 350 target. Average gift $1,580.',
+        title: 'Board Development Proposal Win Rate Low',
+        description: 'Only 2 of 6 board development proposals accepted (33% win rate vs 45% target). Losing to competitors on governance experience positioning.',
         timestamp: new Date(),
         severity: 'medium',
         actionable: true,
-        suggestedAction: 'Final push strategies: (1) Personal outreach to lapsed major donors (14 prospects), (2) Email blast to non-donors highlighting impact stories, (3) Social media campaign week of Dec 15-22.',
+        suggestedAction: 'Strengthen board development credentials: (1) Feature completed board projects in proposals, (2) Add governance certification to consultant bios, (3) Create board development case study library.',
       },
       {
         id: 'insight_5',
         type: 'info',
-        title: 'Donor Retention Strong at 87%',
-        description: 'Donor retention rate 87% (national avg: 43%). Major gift retention 94%. Monthly donor program grew 12% this year. Strong relationship-building efforts paying off.',
+        title: 'Client Retention Outstanding',
+        description: 'Nonprofit client retention at 96% (industry avg: 78%). NPS score 72. Strong referral network - 23 new leads from existing clients this quarter.',
         timestamp: new Date(),
         severity: 'low',
         actionable: false,
       },
 
-      // Compliance & Governance
-      {
-        id: 'insight_6',
-        type: 'warning',
-        title: 'Form 990 Preparation Should Begin',
-        description: 'IRS Form 990 due May 15, 2025 (4 months). Finance team typically needs 6-8 weeks for preparation. Starting late January recommended to avoid rush.',
-        timestamp: new Date(),
-        severity: 'medium',
-        actionable: true,
-        suggestedAction: 'Schedule Form 990 kickoff meeting with Finance Director, Program Directors, and ED by Jan 30. Gather program outcome data, financial statements, and governance docs.',
-      },
-
-      // AI-Enhanced Operations
+      // 2026 AI Line of Service Insights
       {
         id: 'insight_ai_1',
         type: 'info',
-        title: 'AI Could Enhance Donor Engagement',
-        description: 'Analysis of donor database (2,847 donors, 8-year history) shows patterns: major donors prefer quarterly updates, monthly donors engage via social media, lapsed donors respond to impact stories.',
+        title: 'AI Readiness Assessment Demand Growing',
+        description: '5 nonprofit clients inquiring about AI strategy (donor analytics, chatbots, automation). Phase 1 framework validated through Hopewell assessment. 85% of sector exploring AI but only 24% have formal plans.',
         timestamp: new Date(),
         severity: 'low',
         actionable: true,
-        suggestedAction: 'AI opportunities: (1) Predictive modeling to identify major gift prospects, (2) Automated donor segmentation for personalized outreach, (3) Chatbot for donor FAQs on website.',
+        suggestedAction: 'Schedule 2 additional AI readiness assessments in Q1. Focus on clients with strong donor databases (>5K donors). Use Phase 1 template: data audit, quick-win identification, ethical governance roadmap.',
       },
       {
         id: 'insight_ai_2',
+        type: 'warning',
+        title: 'Donor Analytics Pilot Ready to Launch',
+        description: 'Safe Harbor Housing approved AI donor analytics pilot ($22K Phase 2 project). Donor database audit complete (12K donors, 8-year history). Predictive model could identify 50-75 high-propensity major donors.',
+        timestamp: new Date(),
+        severity: 'medium',
+        actionable: true,
+        suggestedAction: 'Finalize vendor selection (2 analytics platforms evaluated). Ensure ethical AI policy compliance. Set pilot success metrics: identify 50+ prospects, track conversion rate over 6 months.',
+      },
+      {
+        id: 'insight_ai_3',
         type: 'info',
-        title: 'Student Progress Tracking Could Be Automated',
-        description: 'Program staff spend 12 hours/week manually tracking student progress across 142 beneficiaries. AI could automate data collection, flag at-risk youth, generate progress reports.',
+        title: 'Advancement Academy AI Workshop High Interest',
+        description: 'AI in Fundraising 101 workshop (Feb 15) has 47 registrations from 18 nonprofit organizations. Interest exceeds capacity. Could expand to series.',
+        timestamp: new Date(),
+        severity: 'low',
+        actionable: false,
+      },
+      {
+        id: 'insight_ai_4',
+        type: 'info',
+        title: 'AI Governance Framework Reusable Asset',
+        description: 'Internal AI Use Policy finalized and tested with 3 Phase 1 clients. 76% of nonprofits lack AI governance policy (benchmark data). This framework is becoming reusable consulting deliverable.',
         timestamp: new Date(),
         severity: 'low',
         actionable: true,
-        suggestedAction: 'Pilot AI-powered case management system: (1) Automate attendance tracking, (2) Flag students with declining performance, (3) Generate monthly outcome reports for funders.',
+        suggestedAction: 'Package AI governance framework as standalone deliverable ($8-12K). Market to clients exploring AI but not ready for full implementation.',
       },
     ];
 

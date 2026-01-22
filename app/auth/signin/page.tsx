@@ -19,7 +19,7 @@ function SignInForm() {
 
   // Load last used email from localStorage on mount
   useEffect(() => {
-    const lastEmail = localStorage.getItem('np-edge-last-email');
+    const lastEmail = localStorage.getItem('ps-edge-last-email');
     if (lastEmail) {
       setEmail(lastEmail);
     }
@@ -30,7 +30,7 @@ function SignInForm() {
     setIsLoading(true);
 
     // Save email for next time
-    localStorage.setItem('np-edge-last-email', email);
+    localStorage.setItem('ps-edge-last-email', email);
 
     await signIn('passkey', {
       passkey: email,
@@ -39,7 +39,7 @@ function SignInForm() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 via-white to-teal-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 via-white to-yellow-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       <div className="max-w-md w-full mx-4">
         {/* Card */}
         <div className="bg-white/70 dark:bg-gray-900/70 backdrop-blur-sm rounded-2xl shadow-2xl p-8 border border-gray-200/50 dark:border-gray-700/50">
@@ -48,20 +48,20 @@ function SignInForm() {
             <div
               className="w-16 h-16 rounded-xl mx-auto mb-4 flex items-center justify-center shadow-lg"
               style={{
-                backgroundImage: 'linear-gradient(135deg, #22c55e, #14b8a6)',
+                backgroundImage: 'linear-gradient(135deg, #9333ea, #c026d3, #facc15)',
               }}
             >
-              <span className="text-white font-bold text-2xl">AF</span>
+              <span className="text-white font-bold text-2xl">PS</span>
             </div>
             <h1
               className="text-3xl font-bold bg-clip-text text-transparent"
               style={{
-                backgroundImage: 'linear-gradient(90deg, #22c55e, #14b8a6)',
+                backgroundImage: 'linear-gradient(90deg, #9333ea, #c026d3, #db2777, #facc15)',
               }}
             >
-              NP-Edge
+              PS-Edge
             </h1>
-            <p className="text-gray-600 dark:text-gray-400 mt-2">Nonprofit Operations Platform</p>
+            <p className="text-gray-600 dark:text-gray-400 mt-2">Professional Services Platform</p>
           </div>
 
           {/* Error Message */}
@@ -94,7 +94,7 @@ function SignInForm() {
                 placeholder="you@company.com"
                 disabled={isLoading}
                 autoComplete="email"
-                className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-lg focus:border-green-500 dark:focus:border-green-400 focus:outline-none disabled:opacity-50 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-lg focus:border-purple-500 dark:focus:border-purple-400 focus:outline-none disabled:opacity-50 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
               />
             </div>
             <button
@@ -102,7 +102,7 @@ function SignInForm() {
               disabled={isLoading || !email}
               className="w-full px-4 py-3 text-white font-medium rounded-lg hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg"
               style={{
-                backgroundImage: 'linear-gradient(90deg, #22c55e, #14b8a6)',
+                backgroundImage: 'linear-gradient(90deg, #9333ea, #c026d3, #db2777, #facc15)',
               }}
             >
               {isLoading ? 'Signing in...' : 'Sign In'}
@@ -114,20 +114,20 @@ function SignInForm() {
             <p>Powered by AICR Platform</p>
             <p className="mt-2">
               By signing in, you agree to our{' '}
-              <a href="/terms" className="text-green-600 dark:text-green-400 hover:underline">
+              <a href="/terms" className="text-purple-600 dark:text-purple-400 hover:underline">
                 Terms
               </a>{' '}
               and{' '}
-              <a href="/privacy" className="text-green-600 dark:text-green-400 hover:underline">
+              <a href="/privacy" className="text-purple-600 dark:text-purple-400 hover:underline">
                 Privacy Policy
               </a>
             </p>
           </div>
 
           {/* Demo Info */}
-          <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
+          <div className="mt-6 p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg border border-purple-200 dark:border-purple-800">
             <p className="text-xs text-gray-600 dark:text-gray-400 text-center">
-              <strong className="text-green-700 dark:text-green-300">Demo Mode:</strong> Enter any email to sign in
+              <strong className="text-purple-700 dark:text-purple-300">Demo Mode:</strong> Enter any email to sign in
             </p>
           </div>
         </div>
@@ -137,14 +137,14 @@ function SignInForm() {
 }
 
 /**
- * Sign In Page for NP-Edge
- * Nonprofit operations platform for AFFCF
+ * Sign In Page for PS-Edge
+ * Matches SGM-SPARCC signin pattern
  */
 export default function SignInPage() {
   return (
     <Suspense
       fallback={
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 via-white to-teal-50">
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 via-white to-yellow-50">
           <div className="text-gray-500">Loading...</div>
         </div>
       }

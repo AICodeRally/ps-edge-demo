@@ -1,26 +1,38 @@
 'use client';
 
 /**
- * What's New Modal (NP-Edge)
+ * What's New Modal (PS-Edge)
  *
- * Introduces users to nonprofit operations modules
+ * Introduces users to the 6 P's organizational framework
  * Shows on first visit, dismissable with "Don't show again"
+ * Matches SGM-SPARCC gold standard onboarding pattern
  */
 
 import { useState, useEffect } from 'react';
+import { SIX_PS_DEFINITIONS, type SixPCategory } from '@/src/types/ps-edge/six-ps.types';
 import {
   CheckCircledIcon,
   Cross2Icon,
   PersonIcon,
-  HeartIcon,
+  GearIcon,
   RocketIcon,
-  TargetIcon,
-  FileTextIcon,
-  CalendarIcon,
+  BarChartIcon,
+  PieChartIcon,
+  StarIcon,
 } from '@radix-ui/react-icons';
 
-const WELCOME_KEY = 'np-edge-welcome-modal-seen';
-const MODAL_VERSION = '3.0'; // Nonprofit version
+// Map 6 P's to icon components
+const iconMap: Record<SixPCategory, React.ComponentType<{ className?: string }>> = {
+  PEOPLE: PersonIcon,
+  PROCESS: GearIcon,
+  PRACTICE: RocketIcon,
+  PERFORMANCE: BarChartIcon,
+  PIPELINE: BarChartIcon, // Using BarChartIcon for sales pipeline visual
+  PURPOSE: StarIcon,
+};
+
+const WELCOME_KEY = 'ps-edge-welcome-modal-seen';
+const MODAL_VERSION = '2.0'; // Increment to show modal again for updates
 
 interface WhatsNewModalProps {
   onClose?: () => void;
@@ -51,48 +63,36 @@ export function WhatsNewModal({ onClose }: WhatsNewModalProps) {
     return null;
   }
 
-  const modules = [
+  const sixPs = [
     {
-      name: 'Programs',
-      icon: RocketIcon,
-      color: '#22c55e',
-      description: 'Manage foster care programs and track beneficiaries',
-      features: ['Keys to Success', 'Educational Support', 'Scholarships', 'Transition Services'],
+      category: 'PURPOSE' as SixPCategory,
+      description: 'Mission alignment and client impact',
+      features: ['Mission', 'Success', 'Renewals', 'Proposals', 'Clients'],
     },
     {
-      name: 'Fundraising',
-      icon: HeartIcon,
-      color: '#14b8a6',
-      description: 'Donor management and campaign tracking',
-      features: ['Donor Database', 'Campaigns', 'Grant Management', 'Gift Processing'],
+      category: 'PEOPLE' as SixPCategory,
+      description: 'Team capacity and workforce management',
+      features: ['Team Dashboard', 'Capacity Planning', 'Onboarding'],
     },
     {
-      name: 'Volunteers',
-      icon: PersonIcon,
-      color: '#3b82f6',
-      description: 'Volunteer roster and engagement tracking',
-      features: ['Volunteer Directory', 'Hours Tracking', 'Skills Inventory', 'Assignments'],
+      category: 'PROCESS' as SixPCategory,
+      description: 'Workflow efficiency and deliverables',
+      features: ['Engagements', 'Deliverables', 'Support', 'Knowledge'],
     },
     {
-      name: 'Beneficiaries',
-      icon: TargetIcon,
-      color: '#a855f7',
-      description: 'Foster children served and impact outcomes',
-      features: ['Youth Directory', 'Program Enrollment', 'Case Notes', 'Outcomes Tracking'],
+      category: 'PRACTICE' as SixPCategory,
+      description: 'Methodologies, tools, and delivery excellence',
+      features: ['AI Tools', 'Integrations', 'Data', 'Tenants'],
     },
     {
-      name: 'Compliance',
-      icon: FileTextIcon,
-      color: '#6b7280',
-      description: 'Form 990, filings, and regulatory requirements',
-      features: ['IRS Form 990', 'State Reports', 'Board Minutes', 'Grant Reporting'],
+      category: 'PIPELINE' as SixPCategory,
+      description: 'Sales pipeline, proposals, and revenue forecasting',
+      features: ['Sales Pipeline', 'Proposals', 'Forecasting', 'Commissions', 'Channel Revenue'],
     },
     {
-      name: 'Events',
-      icon: CalendarIcon,
-      color: '#f97316',
-      description: 'Fundraising galas and community events',
-      features: ['Event Calendar', 'Registration Management', 'Fundraising Goals', 'Attendance'],
+      category: 'PERFORMANCE' as SixPCategory,
+      description: 'KPIs and operational metrics',
+      features: ['KPI Dashboard', 'Health', 'Benchmarks', 'Signals'],
     },
   ];
 
@@ -103,7 +103,7 @@ export function WhatsNewModal({ onClose }: WhatsNewModalProps) {
         <div
           className="px-6 py-5 text-white relative"
           style={{
-            background: 'linear-gradient(90deg, #22c55e, #14b8a6)',
+            background: 'linear-gradient(90deg, #9333ea, #c026d3, #db2777, #facc15)',
           }}
         >
           <button
@@ -113,9 +113,9 @@ export function WhatsNewModal({ onClose }: WhatsNewModalProps) {
           >
             <Cross2Icon className="w-5 h-5" />
           </button>
-          <h2 className="text-3xl font-bold">Welcome to NP-Edge!</h2>
+          <h2 className="text-3xl font-bold">Welcome to PS-Edge!</h2>
           <p className="text-white/90 text-sm mt-1">
-            Complete operations platform for Arizona Friends of Foster Children Foundation
+            Organized by the 6 P's Framework for nonprofit consulting excellence
           </p>
         </div>
 
@@ -124,46 +124,47 @@ export function WhatsNewModal({ onClose }: WhatsNewModalProps) {
           <div className="mb-5">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-bold text-gray-900 dark:text-white">
-                Nonprofit Operations Modules
+                Navigate by the 6 P's
               </h3>
               <p className="text-xs text-gray-500 dark:text-gray-400">
-                6 modules for complete nonprofit management
+                29 pages organized by business function
               </p>
             </div>
 
-            {/* Modules Grid - 2 rows of 3 */}
+            {/* 6 P's Grid - 2 rows of 3 */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {modules.map((module) => {
-                const IconComponent = module.icon;
+              {sixPs.map(({ category, description, features }) => {
+                const config = SIX_PS_DEFINITIONS[category];
+                const IconComponent = iconMap[category];
                 return (
                   <div
-                    key={module.name}
+                    key={category}
                     className="border-2 rounded-xl p-4 hover:shadow-lg transition-all cursor-default"
                     style={{
-                      borderColor: `${module.color}40`,
-                      backgroundColor: `${module.color}08`,
+                      borderColor: `${config.colorHex}40`,
+                      backgroundColor: `${config.colorHex}08`,
                     }}
                   >
                     <div className="flex items-center gap-2 mb-2">
                       <div
                         className="w-10 h-10 rounded-lg flex items-center justify-center"
-                        style={{ backgroundColor: `${module.color}20`, color: module.color }}
+                        style={{ backgroundColor: `${config.colorHex}20`, color: config.colorHex }}
                       >
                         <IconComponent className="w-5 h-5" />
                       </div>
-                      <h4 className="font-bold text-base" style={{ color: module.color }}>
-                        {module.name}
+                      <h4 className="font-bold text-base" style={{ color: config.colorHex }}>
+                        {config.title}
                       </h4>
                     </div>
                     <p className="text-xs text-gray-700 dark:text-gray-300 mb-3 leading-tight">
-                      {module.description}
+                      {description}
                     </p>
                     <div className="flex flex-wrap gap-1.5">
-                      {module.features.map((feature) => (
+                      {features.map((feature) => (
                         <span
                           key={feature}
                           className="text-[11px] px-2 py-1 rounded-full font-medium"
-                          style={{ backgroundColor: `${module.color}18`, color: module.color }}
+                          style={{ backgroundColor: `${config.colorHex}18`, color: config.colorHex }}
                         >
                           {feature}
                         </span>
@@ -175,27 +176,27 @@ export function WhatsNewModal({ onClose }: WhatsNewModalProps) {
             </div>
           </div>
 
-          {/* Bottom row: How to Navigate + About AFFCF */}
+          {/* Bottom row: How to Navigate + Key Features */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
-            <div className="bg-green-50 dark:bg-green-900/20 border-2 border-green-200 dark:border-green-800 rounded-xl p-4">
-              <h3 className="text-sm font-bold text-green-700 dark:text-green-300 mb-3">
+            <div className="bg-purple-50 dark:bg-purple-900/20 border-2 border-purple-200 dark:border-purple-800 rounded-xl p-4">
+              <h3 className="text-sm font-bold text-purple-700 dark:text-purple-300 mb-3">
                 🧭 How to Navigate
               </h3>
-              <div className="grid grid-cols-2 gap-y-2 text-xs text-green-600 dark:text-green-400">
-                <p><strong>1.</strong> Use left sidebar</p>
-                <p><strong>2.</strong> Command Palette (<kbd className="px-1.5 py-0.5 bg-white dark:bg-gray-800 border border-green-300 dark:border-green-700 rounded text-[10px]">Cmd+K</kbd>)</p>
-                <p><strong>3.</strong> Footer quick links</p>
-                <p><strong>4.</strong> AI orbs (bottom corners)</p>
+              <div className="grid grid-cols-2 gap-y-2 text-xs text-purple-600 dark:text-purple-400">
+                <p><strong>1.</strong> Click P's in footer</p>
+                <p><strong>2.</strong> Use Command Palette (<kbd className="px-1.5 py-0.5 bg-white dark:bg-gray-800 border border-purple-300 dark:border-purple-700 rounded text-[10px]">Cmd+K</kbd>)</p>
+                <p><strong>3.</strong> Dashboard landing pages</p>
+                <p><strong>4.</strong> Direct URLs: /dashboard/people</p>
               </div>
             </div>
 
             <div className="bg-teal-50 dark:bg-teal-900/20 border-2 border-teal-200 dark:border-teal-800 rounded-xl p-4">
               <h3 className="text-sm font-bold text-teal-700 dark:text-teal-300 mb-1 inline-flex items-center gap-1.5">
                 <CheckCircledIcon className="w-4 h-4" />
-                About AFFCF
+                Nonprofit Consulting Pack
               </h3>
               <p className="text-xs text-teal-600 dark:text-teal-400 leading-relaxed">
-                Arizona Friends of Foster Children Foundation has enriched the lives of children in Arizona's foster care system for over 40 years. We serve 2,500+ foster youth annually through 6 core programs, 342 active volunteers, and $2.1M in annual support.
+                This deployment includes the Nonprofit Consulting Pack with 11 specialized service lines: campaign fundraising, strategic planning, board development, grant writing, executive coaching, and more. Now featuring 2026 AI Line of Service for ethical AI adoption.
               </p>
             </div>
           </div>
@@ -209,7 +210,7 @@ export function WhatsNewModal({ onClose }: WhatsNewModalProps) {
                 type="checkbox"
                 checked={dontShowAgain}
                 onChange={(e) => setDontShowAgain(e.target.checked)}
-                className="w-4 h-4 text-green-600 border-gray-300 dark:border-gray-600 rounded focus:ring-green-500 focus:ring-2"
+                className="w-4 h-4 text-purple-600 border-gray-300 dark:border-gray-600 rounded focus:ring-purple-500 focus:ring-2"
               />
               <span className="text-sm text-gray-700 dark:text-gray-300">Don't show this again</span>
             </label>
@@ -217,7 +218,7 @@ export function WhatsNewModal({ onClose }: WhatsNewModalProps) {
               onClick={handleClose}
               className="px-6 py-2.5 font-semibold text-white rounded-lg hover:opacity-90 transition-all shadow-md hover:shadow-lg"
               style={{
-                background: 'linear-gradient(90deg, #22c55e, #14b8a6)',
+                background: 'linear-gradient(90deg, #9333ea, #c026d3, #db2777, #facc15)',
               }}
             >
               Got it, Let's Go!

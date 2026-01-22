@@ -106,14 +106,13 @@ export function PulseOrb({ enabled = true }: PulseOrbProps) {
         onClick={() => setIsOpen(!isOpen)}
         className="fixed bottom-4 left-20 z-40 w-14 h-14 rounded-full shadow-lg hover:scale-110 transition-transform flex items-center justify-center text-white"
         style={{
-          background: 'linear-gradient(135deg, #22c55e, #10b981, #14b8a6)',
-          boxShadow: '0 0 20px rgba(34, 197, 94, 0.4)',
+          background: 'linear-gradient(135deg, #a855f7, #ec4899)',
         }}
-        title="Pulse - Curated Foster Care Content"
+        title="Pulse - Curated Content"
       >
         <ReaderIcon className="w-6 h-6" />
         {newCount > 0 && (
-          <span className="absolute -top-1 -right-1 w-6 h-6 bg-green-600 rounded-full flex items-center justify-center text-xs font-bold">
+          <span className="absolute -top-1 -right-1 w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center text-xs font-bold">
             {newCount}
           </span>
         )}

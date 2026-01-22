@@ -50,164 +50,146 @@ export async function POST(request: NextRequest) {
     const userMessage = messages[messages.length - 1];
     const userQuery = userMessage.content.toLowerCase();
 
-    // TODO: Replace with actual LLM integration
-    // Mock responses for AFFCF (Arizona Friends of Foster Children Foundation)
+    // TODO: Replace with actual LLM integration (Rally LLM or Claude API)
+    // For now, return intelligent mock responses based on keywords
     let response = '';
 
-    if (userQuery.includes('beneficiar') || userQuery.includes('youth') || userQuery.includes('student')) {
-      response = `## Foster Youth Program Information
+    if (userQuery.includes('billable') || userQuery.includes('hours') || userQuery.includes('time')) {
+      response = `## Time Tracking & Billable Hours
 
-**Current Enrollment:** 1,760 beneficiaries across all programs
+To track billable hours in PS-Edge:
 
-**Active Programs:**
-- After-School Tutoring: 142 students
-- Life Skills Training: 89 youth
-- Scholarship Program: 34 students
-- Transition Services: 58 young adults (ages 18-21)
+1. **Navigate to Finance > Timesheets**
+2. Click "Add Time Entry"
+3. Select the engagement, date, and hours worked
+4. Mark as "Billable" if client-facing work
+5. Submit for approval
 
-**Recent Outcomes:**
-- 89% improved 2+ grade levels in reading
-- 92% attendance rate
-- 68% college enrollment for graduates
-- 93% beneficiary satisfaction
+**Current Stats:**
+- Team avg billable hours: 78%
+- Delivery team: 82% billable (above target)
+- Sales team: 68% billable (below target)
 
-**Quick Actions:**
-- View beneficiaries: Dashboard > Beneficiaries
-- Track outcomes: Programs > Impact
-- Add new beneficiary: Programs > Programs > Enroll
+**Best Practices:**
+- Log time daily for accuracy
+- Use activity codes (Meeting, Development, Documentation)
+- Mark internal work as non-billable
+- Review weekly utilization reports`;
+    } else if (userQuery.includes('utilization') || userQuery.includes('team')) {
+      response = `## Current Team Utilization
 
-Need help with case management, enrollment, or outcome tracking?`;
-    } else if (userQuery.includes('donor') || userQuery.includes('fundraising') || userQuery.includes('campaign')) {
-      response = `## Fundraising & Donor Management
+**Overall:** 84% (+3% from last month)
 
-**Current Campaign:** Annual Giving 2024
-- Goal: $500K
-- Raised: $387K (77%)
-- Days remaining: 9
-- Donors: 245 contributors
+**By Department:**
+- **Delivery Team:** 92% (⚠️ Above 85% target - burnout risk)
+- **Sales Team:** 68% (Below 75% target - capacity available)
+- **Client Success:** 81% (On target)
 
-**Donor Base:**
-- Total donors: 2,847
-- Active this year: 87%
-- Major donors ($5K+): 42
-- Monthly sustainers: 156
+**Recommendations:**
+1. Consider hiring 1-2 delivery consultants
+2. Redistribute 2-3 sales opportunities to improve coverage
+3. Monitor delivery team for burnout indicators
 
-**Grant Pipeline:**
-- Applied: 4 grants ($215K total)
-- Under review: 3 grants
-- Awarded YTD: $125K
+Would you like me to pull up specific team member utilization or capacity planning tools?`;
+    } else if (userQuery.includes('engagement') || userQuery.includes('project') || userQuery.includes('active')) {
+      response = `## Active Engagements Overview
 
-**Quick Actions:**
-- View donors: Dashboard > Fundraising
-- Track campaigns: Fundraising > Campaigns
-- Manage grants: Fundraising > Grants
+**Total Active Engagements:** 12
 
-How can I help with donor outreach or campaign planning?`;
-    } else if (userQuery.includes('volunteer') || userQuery.includes('shift') || userQuery.includes('hours')) {
-      response = `## Volunteer Management
+**By Type:**
+- Strategic Planning: 4
+- Capital Campaigns: 3
+- Board Development: 2
+- Grant Writing: 2
+- Feasibility Study: 1
 
-**Active Volunteers:** 148
-- Active status: 112 volunteers
-- Total hours this year: 12,450 hours
-- Average hours/volunteer: 84 hours
+**Status Breakdown:**
+- In Progress: 8 (67%)
+- Planning: 3 (25%)
+- At Risk: 1 (8%)
 
-**This Week's Shifts:**
-- Open shifts: 8
-- Fully staffed: 12
-- Fill rate: 89%
+**Key Metrics:**
+- On-time delivery: 96%
+- Avg project duration: 8.4 weeks
+- Client satisfaction: 4.7/5
 
-**Top Programs (by volunteer hours):**
-- After-School Tutoring: 3,200 hours
-- Life Skills Workshops: 2,100 hours
-- Summer Camp: 1,850 hours
+Navigate to **Delivery > Engagements** to see the full engagement list with detailed status.`;
+    } else if (userQuery.includes('proposal') || userQuery.includes('create')) {
+      response = `## Creating a Proposal
 
-**Quick Actions:**
-- View volunteers: Dashboard > Volunteers
-- Track hours: Volunteers > Hours
-- Manage schedule: Volunteers > Schedule
+**Step-by-Step:**
 
-Need help with volunteer scheduling or recognition programs?`;
-    } else if (userQuery.includes('compliance') || userQuery.includes('filing') || userQuery.includes('990')) {
-      response = `## Compliance & Regulatory Filings
+1. **Navigate to Sales > Proposals**
+2. Click "New Proposal"
+3. Fill in:
+   - Client selection
+   - Engagement type (Strategic Planning, Capital Campaign, etc.)
+   - Proposed scope and deliverables
+   - Timeline and milestones
+   - Pricing (fixed fee or hourly)
+4. Attach any supporting documents
+5. Submit for review
 
-**Upcoming Deadlines:**
-- Grant Report (ABC Foundation): Feb 28, 2025
-- State Registration Renewal: Mar 1, 2025
-- IRS Form 990: May 15, 2025
+**Proposal Best Practices:**
+- Start with executive summary highlighting client impact
+- Include 3-5 relevant case studies
+- Clear pricing breakdown
+- Visual timeline
+- Team credentials section
 
-**Compliance Status:**
-- Board meeting minutes: Current (Q4 2024)
-- Financial audits: Complete
-- Background checks: 94% current (6 volunteers need renewal)
+**Current Win Rate:** 42% (target: 45%)
 
-**Form 990 Preparation:**
-- Fiscal year: Jan 1 - Dec 31, 2024
-- Estimated gross receipts: $2.8M
-- Form type: 990 (full form)
-- Preparation time needed: 6-8 weeks
+**Tip:** Use proposal templates in the Knowledge Base for faster turnaround!`;
+    } else if (userQuery.includes('client') || userQuery.includes('health')) {
+      response = `## Client Health Overview
 
-**Quick Actions:**
-- View filings: Dashboard > Compliance
-- Track deadlines: Compliance > Calendar
-- Review reports: Compliance > Reports
+**Total Clients:** 28
 
-Need help with filing preparation or compliance tracking?`;
-    } else if (userQuery.includes('program') || userQuery.includes('budget') || userQuery.includes('impact')) {
-      response = `## Program Operations & Budget
+**Health Distribution:**
+- Excellent (90+): 12 clients (43%)
+- Good (75-89): 9 clients (32%)
+- Fair (60-74): 5 clients (18%)
+- At Risk (<60): 2 clients (7%)
 
-**Active Programs:** 8
-- Education focus: 4 programs
-- Youth services: 2 programs
-- Transition support: 2 programs
+**Client Retention Rate:** 94% (+2% YoY)
 
-**Budget Overview:**
-- Total budget FY2024: $845K
-- Spent: $651K (77%)
-- Remaining: $194K
-- Budget health: Good
+**Top Performing Clients:**
+- Hopewell Community Foundation
+- Youth Alliance Network
+- Regional Arts Council
 
-**Program Highlights:**
-- Keys to Success (After-School): $125K budget, 142 students
-- Scholarship Fund: $95K awarded to 34 students
-- Life Skills Training: $68K budget, 89 participants
+**Clients Requiring Attention:**
+- Review engagement health scores in **Client Success > Health**
+- Focus on clients with declining NPS or reduced engagement
 
-**Quick Actions:**
-- View programs: Dashboard > Programs
-- Track projects: Programs > Projects
-- Monitor budget: Programs > Budget
-- Measure impact: Programs > Impact
-
-What program information do you need?`;
+Would you like me to show specific client metrics or renewal pipeline?`;
     } else {
-      response = `I'm your AI assistant for Arizona Friends of Foster Children Foundation! I can help with:
+      response = `I can help you with Professional Services operations! I specialize in:
 
-**Foster Care Programs:**
-- Beneficiary enrollment & tracking
-- Program outcomes & impact measurement
-- Case management support
+**Operations:**
+- Client engagement tracking
+- Proposal development & win rates
+- Team utilization & capacity planning
+- Project delivery metrics
 
-**Fundraising:**
-- Donor management & campaigns
-- Grant tracking & reporting
-- Major gift strategies
+**Finance:**
+- Time tracking & billable hours
+- Invoice generation
+- Revenue analytics
+- AR management
 
-**Volunteers:**
-- Shift scheduling & coordination
-- Hour tracking & reporting
-- Volunteer recognition
-
-**Compliance:**
-- Form 990 preparation
-- Grant reporting deadlines
-- State registration tracking
+**Client Success:**
+- Client health monitoring
+- Renewal pipeline
+- Satisfaction tracking
 
 **Quick Stats:**
-- 1,760 youth served
-- 2,847 active donors
-- 148 volunteers
-- 8 active programs
+- 28 active clients
+- 12 active engagements
+- $487K monthly revenue
+- 84% team utilization
 
-Ask me anything about foster care operations, fundraising, program management, or how AI can support AFFCF!`;
+What would you like to know more about?`;
     }
 
     console.log('AskPS query processed:', {

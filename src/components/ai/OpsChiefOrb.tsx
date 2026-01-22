@@ -21,7 +21,7 @@ interface OpsChiefOrbProps {
   className?: string;
 }
 
-export function OpsChiefOrb({ appName = 'NP-Edge', enabled = true, position = 'fixed', className = '' }: OpsChiefOrbProps) {
+export function OpsChiefOrb({ appName = 'PS-Edge', enabled = true, position = 'fixed', className = '' }: OpsChiefOrbProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [insights, setInsights] = useState<Insight[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -111,10 +111,11 @@ export function OpsChiefOrb({ appName = 'NP-Edge', enabled = true, position = 'f
     ? `fixed bottom-4 left-4 z-40 flex h-14 w-14 items-center justify-center rounded-full text-white shadow-lg transition-all hover:scale-110 hover:shadow-xl group ${pulseClass} ${className}`
     : `flex h-12 w-12 items-center justify-center rounded-full text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl group ${pulseClass} ${className}`;
 
-  // NP-Edge: AI orbs use green gradient theme
+  // AI orbs always use purple - don't change with brand settings
+  // OpsChief uses darker, richer purple
   const buttonStyle = {
-    background: 'linear-gradient(135deg, #22c55e, #10b981, #14b8a6)', // green → emerald → teal
-    boxShadow: '0 0 20px rgba(34, 197, 94, 0.4)',
+    background: 'linear-gradient(135deg, #581c87, #7c3aed)', // purple-900 to purple-600
+    boxShadow: '0 0 20px rgba(124, 58, 237, 0.4)',
   };
 
   return (
@@ -129,7 +130,7 @@ export function OpsChiefOrb({ appName = 'NP-Edge', enabled = true, position = 'f
       >
         <ActivityLogIcon className={position === 'fixed' ? 'h-6 w-6' : 'h-5 w-5'} />
         {/* Pulse glow on hover */}
-        <div className="absolute inset-0 rounded-full bg-green-500 opacity-0 group-hover:opacity-30 transition-opacity blur-lg -z-10" />
+        <div className="absolute inset-0 rounded-full bg-purple-500 opacity-0 group-hover:opacity-30 transition-opacity blur-lg -z-10" />
         {/* Alert badge */}
         {alertCount > 0 && (
           <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs font-bold">
@@ -145,12 +146,12 @@ export function OpsChiefOrb({ appName = 'NP-Edge', enabled = true, position = 'f
             {/* Header */}
             <div className="flex items-center justify-between border-b border-gray-200 dark:border-dark-border-default p-4">
               <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-600">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-purple-600">
                   <ActivityLogIcon className="h-5 w-5 text-white" />
                 </div>
                 <div>
                   <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">OpsChief</h2>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">Nonprofit Health & Operations Insights</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">Business Health & Operations Insights</p>
                 </div>
               </div>
               <div className="flex items-center gap-2">

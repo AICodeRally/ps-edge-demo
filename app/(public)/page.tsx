@@ -63,172 +63,133 @@ export default function LandingPage() {
   const sixPs: SixPCategory[] = ['PURPOSE', 'PEOPLE', 'PROCESS', 'PRACTICE', 'PIPELINE', 'PERFORMANCE'];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-teal-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-yellow-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       {/* Hero Section */}
       <section className="pt-24 pb-8 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="flex items-center gap-8">
-            {/* Left: AF Logo */}
+            {/* Left: PS Logo */}
             <div
               className="w-32 h-32 rounded-2xl flex items-center justify-center shadow-2xl flex-shrink-0"
               style={{
-                backgroundImage: 'linear-gradient(135deg, #22c55e, #14b8a6)',
+                backgroundImage: 'linear-gradient(135deg, #9333ea, #c026d3, #facc15)',
               }}
             >
-              <span className="text-white font-bold text-5xl">AF</span>
+              <span className="text-white font-bold text-5xl">PS</span>
             </div>
 
             {/* Right: Text Content */}
             <div>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-3">
-                Nonprofit{' '}
+                Professional Services{' '}
                 <span
                   className="bg-clip-text text-transparent"
                   style={{
-                    backgroundImage: 'linear-gradient(90deg, #22c55e, #14b8a6)',
+                    backgroundImage: 'linear-gradient(90deg, #9333ea, #c026d3, #db2777, #facc15)',
                   }}
                 >
                   Edge
                 </span>
               </h1>
               <p className="text-base text-gray-600 dark:text-gray-300 mb-2">
-                Complete operations platform for foster care organizations.
+                Complete operations platform for nonprofit consulting firms.
               </p>
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                Manage programs, fundraising, volunteers, beneficiaries, compliance, and events—built for Arizona Friends of Foster Children Foundation.
+                Manage clients, projects, team utilization, billing, and channel partnerships—organized by the 6 P's framework.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Nonprofit Modules Section */}
+      {/* 6 P's Framework Section */}
       <section className="py-8 px-6">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
-            Nonprofit Operations Modules
+            The 6 P's Framework
           </h2>
           <p className="text-sm text-gray-600 dark:text-gray-400 mb-6">
-            Everything you need to run a foster care nonprofit—programs, fundraising, volunteers, and compliance.
+            Every aspect of your consulting business organized by function—29 pages of powerful tools.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-            <div className="bg-white dark:bg-gray-800 rounded-lg p-3 shadow border-2 border-green-200 transition-all hover:shadow-md">
-              <div className="flex items-center gap-2 mb-1">
-                <div className="w-8 h-8 rounded-md flex items-center justify-center flex-shrink-0 bg-green-100 text-green-600">
-                  <RocketIcon className="w-4 h-4" />
-                </div>
-                <h3 className="text-base font-bold text-green-600">Programs</h3>
-              </div>
-              <p className="text-xs text-gray-600 dark:text-gray-400 pl-10">
-                Foster care programs, beneficiaries served, and impact tracking
-              </p>
-            </div>
+            {sixPs.map((pCategory) => {
+              const config = SIX_PS_DEFINITIONS[pCategory];
+              const IconComponent = iconMap[pCategory];
 
-            <div className="bg-white dark:bg-gray-800 rounded-lg p-3 shadow border-2 border-teal-200 transition-all hover:shadow-md">
-              <div className="flex items-center gap-2 mb-1">
-                <div className="w-8 h-8 rounded-md flex items-center justify-center flex-shrink-0 bg-teal-100 text-teal-600">
-                  <HeartIcon className="w-4 h-4" />
+              return (
+                <div
+                  key={pCategory}
+                  className="bg-white dark:bg-gray-800 rounded-lg p-3 shadow border-2 transition-all hover:shadow-md"
+                  style={{
+                    borderColor: `${config.colorHex}40`,
+                  }}
+                >
+                  <div className="flex items-center gap-2 mb-1">
+                    <div
+                      className="w-8 h-8 rounded-md flex items-center justify-center flex-shrink-0"
+                      style={{
+                        backgroundColor: `${config.colorHex}20`,
+                        color: config.colorHex,
+                      }}
+                    >
+                      <IconComponent className="w-4 h-4" />
+                    </div>
+                    <h3 className="text-base font-bold" style={{ color: config.colorHex }}>
+                      {config.title}
+                    </h3>
+                  </div>
+                  <p className="text-xs text-gray-600 dark:text-gray-400 pl-10">
+                    {sixPsDescriptions[pCategory]}
+                  </p>
                 </div>
-                <h3 className="text-base font-bold text-teal-600">Fundraising</h3>
-              </div>
-              <p className="text-xs text-gray-600 dark:text-gray-400 pl-10">
-                Donor management, campaigns, and gift tracking
-              </p>
-            </div>
-
-            <div className="bg-white dark:bg-gray-800 rounded-lg p-3 shadow border-2 border-blue-200 transition-all hover:shadow-md">
-              <div className="flex items-center gap-2 mb-1">
-                <div className="w-8 h-8 rounded-md flex items-center justify-center flex-shrink-0 bg-blue-100 text-blue-600">
-                  <PersonIcon className="w-4 h-4" />
-                </div>
-                <h3 className="text-base font-bold text-blue-600">Volunteers</h3>
-              </div>
-              <p className="text-xs text-gray-600 dark:text-gray-400 pl-10">
-                Volunteer roster, hours tracking, and engagement
-              </p>
-            </div>
-
-            <div className="bg-white dark:bg-gray-800 rounded-lg p-3 shadow border-2 border-purple-200 transition-all hover:shadow-md">
-              <div className="flex items-center gap-2 mb-1">
-                <div className="w-8 h-8 rounded-md flex items-center justify-center flex-shrink-0 bg-purple-100 text-purple-600">
-                  <TargetIcon className="w-4 h-4" />
-                </div>
-                <h3 className="text-base font-bold text-purple-600">Beneficiaries</h3>
-              </div>
-              <p className="text-xs text-gray-600 dark:text-gray-400 pl-10">
-                Foster children served, caseworkers, and program enrollment
-              </p>
-            </div>
-
-            <div className="bg-white dark:bg-gray-800 rounded-lg p-3 shadow border-2 border-gray-200 transition-all hover:shadow-md">
-              <div className="flex items-center gap-2 mb-1">
-                <div className="w-8 h-8 rounded-md flex items-center justify-center flex-shrink-0 bg-gray-100 text-gray-600">
-                  <GearIcon className="w-4 h-4" />
-                </div>
-                <h3 className="text-base font-bold text-gray-600">Compliance</h3>
-              </div>
-              <p className="text-xs text-gray-600 dark:text-gray-400 pl-10">
-                Form 990, board minutes, and Arizona reporting
-              </p>
-            </div>
-
-            <div className="bg-white dark:bg-gray-800 rounded-lg p-3 shadow border-2 border-orange-200 transition-all hover:shadow-md">
-              <div className="flex items-center gap-2 mb-1">
-                <div className="w-8 h-8 rounded-md flex items-center justify-center flex-shrink-0 bg-orange-100 text-orange-600">
-                  <StarIcon className="w-4 h-4" />
-                </div>
-                <h3 className="text-base font-bold text-orange-600">Events</h3>
-              </div>
-              <p className="text-xs text-gray-600 dark:text-gray-400 pl-10">
-                Fundraising galas, volunteer days, and community engagement
-              </p>
-            </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* AFFCF Programs Section */}
+      {/* Domain Pack Section */}
       <section className="py-8 px-6">
         <div className="max-w-6xl mx-auto">
-          <div className="bg-gradient-to-r from-green-50 to-teal-50 dark:from-green-900/20 dark:to-teal-900/20 rounded-xl p-6 border border-green-200 dark:border-green-800">
+          <div className="bg-gradient-to-r from-purple-50 to-teal-50 dark:from-purple-900/20 dark:to-teal-900/20 rounded-xl p-6 border border-purple-200 dark:border-purple-800">
             <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
-              Arizona Friends of Foster Children Foundation
+              Nonprofit Consulting Pack
             </h2>
             <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
-              Enriching the lives of children in Arizona's foster care system through mentorship, education, and support services. Serving 2,500+ foster youth annually with 6 core programs and 342 active volunteers.
+              Specialized capabilities for capital campaigns, strategic planning, board development, grant writing, executive coaching, and the full spectrum of nonprofit advancement services. Includes 2026 AI Line of Service: readiness assessments, ethical governance frameworks, and pilot implementations.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-green-500 to-teal-500 flex items-center justify-center flex-shrink-0">
-                  <TargetIcon className="w-5 w-5 text-white" />
+                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-fuchsia-500 flex items-center justify-center flex-shrink-0">
+                  <TargetIcon className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-gray-900 dark:text-white text-sm mb-0.5">Mentorship & Education</h3>
+                  <h3 className="font-bold text-gray-900 dark:text-white text-sm mb-0.5">Strategic Services</h3>
                   <p className="text-xs text-gray-600 dark:text-gray-400">
-                    Keys to Success mentoring, Educational Support tutoring, Scholarship Program for college/vocational training
+                    Campaign fundraising, strategic planning, board development, grant writing, feasibility studies, alumni relations
                   </p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-pink-500 to-orange-500 flex items-center justify-center flex-shrink-0">
                   <LightningBoltIcon className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-gray-900 dark:text-white text-sm mb-0.5">Transition Services</h3>
+                  <h3 className="font-bold text-gray-900 dark:text-white text-sm mb-0.5">AI Advisory</h3>
                   <p className="text-xs text-gray-600 dark:text-gray-400">
-                    Support for youth aging out of foster care (18-21), including housing assistance, job readiness, life skills training
+                    AI readiness assessments, ethical governance policy development, donor analytics pilots, chatbot implementations, training workshops
                   </p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-orange-500 to-pink-500 flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-orange-500 to-yellow-500 flex items-center justify-center flex-shrink-0">
                   <HeartIcon className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-gray-900 dark:text-white text-sm mb-0.5">Activity & Enrichment</h3>
+                  <h3 className="font-bold text-gray-900 dark:text-white text-sm mb-0.5">Capacity Building</h3>
                   <p className="text-xs text-gray-600 dark:text-gray-400">
-                    Extracurricular activities funding, sports programs, arts participation, field trips, and community events
+                    Executive coaching, interim management, Advancement Academy workshops, relationship management, operational fundraising
                   </p>
                 </div>
               </div>
@@ -244,14 +205,14 @@ export default function LandingPage() {
             href="/auth/signin"
             className="inline-flex items-center gap-2 px-8 py-3.5 text-base font-semibold text-white rounded-xl shadow-lg transition-all hover:opacity-90 hover:shadow-2xl"
             style={{
-              backgroundImage: 'linear-gradient(90deg, #22c55e, #14b8a6)',
+              backgroundImage: 'linear-gradient(90deg, #9333ea, #c026d3, #db2777, #facc15)',
             }}
           >
             Get Started
             <ArrowRightIcon className="w-5 h-5" />
           </Link>
           <p className="text-xs text-gray-500 dark:text-gray-400 mt-3">
-            Demo mode: Enter <span className="font-mono text-green-600 dark:text-green-400">admin@affcf.org</span> to explore
+            Demo mode: Enter <span className="font-mono text-purple-600 dark:text-purple-400">admin@ppg.com</span> to explore
           </p>
         </div>
       </section>

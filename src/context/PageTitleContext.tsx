@@ -11,8 +11,8 @@ interface PageTitleContextType {
 const PageTitleContext = createContext<PageTitleContextType | undefined>(undefined);
 
 export function PageTitleProvider({ children }: { children: React.ReactNode }) {
-  const [title, setTitle] = useState('NP-Edge');
-  const [description, setDescription] = useState('Nonprofit Operations Platform');
+  const [title, setTitle] = useState('DEMO Edge');
+  const [description, setDescription] = useState('Professional Services Operations Platform');
 
   const setPageTitle = useCallback((newTitle: string, newDescription?: string) => {
     setTitle(newTitle);

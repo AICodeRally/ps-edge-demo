@@ -1,55 +1,87 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { SIX_PS_DEFINITIONS, type SixPCategory } from '@/src/types/ps-edge/six-ps.types';
+import { getSixPsOrder } from '@/src/lib/config/sixps-order';
 
 /**
- * Footer Component (NP-Edge - Nonprofit Modules Navigation)
+ * Footer Component (SGM Pattern with 6 P's Navigation)
  *
- * Simplified footer with nonprofit modules navigation
+ * 3 centered rows:
+ * - Row 1: AI orbs (3 left, 2 right) + 6 P's navigation links
+ * - Row 2: Copyright + legal links
+ * - Row 3: Branding tagline
  */
 
-const NONPROFIT_MODULES = [
-  { name: 'Programs', path: '/dashboard/programs', color: '#22c55e' },
-  { name: 'Fundraising', path: '/dashboard/fundraising', color: '#14b8a6' },
-  { name: 'Volunteers', path: '/dashboard/volunteers', color: '#3b82f6' },
-  { name: 'Beneficiaries', path: '/dashboard/beneficiaries', color: '#a855f7' },
-  { name: 'Compliance', path: '/dashboard/compliance', color: '#6b7280' },
-  { name: 'Events', path: '/dashboard/events', color: '#f97316' },
-];
 
 export function Footer() {
   const pathname = usePathname();
+  const [sixPsOrder, setSixPsOrder] = useState<SixPCategory[]>(getSixPsOrder());
+
+  // Listen for order changes from settings
+  useEffect(() => {
+    const handleOrderChange = () => {
+      setSixPsOrder(getSixPsOrder());
+    };
+
+    window.addEventListener('sixps-order-changed', handleOrderChange);
+    return () => window.removeEventListener('sixps-order-changed', handleOrderChange);
+  }, []);
+
+  // Determine active P from pathname
+  const getActiveSixP = (): SixPCategory | null => {
+    const pathSegments = pathname.split('/').filter(Boolean);
+    if (pathSegments.length < 2) return null;
+
+    const pSegment = pathSegments[1]; // /dashboard/[p]/...
+    const pMap: Record<string, SixPCategory> = {
+      'people': 'PEOPLE',
+      'process': 'PROCESS',
+      'practice': 'PRACTICE',
+      'performance': 'PERFORMANCE',
+      'pipeline': 'PIPELINE',
+      'purpose': 'PURPOSE',
+    };
+
+    return pMap[pSegment] || null;
+  };
+
+  const activeSixP = getActiveSixP();
 
   return (
     <footer
       className="bg-white dark:bg-gray-900 shadow-sm border-t-4 border-transparent fixed bottom-0 left-0 right-0 z-40"
       style={{
-        borderImage: 'linear-gradient(to right, #22c55e, #14b8a6) 1',
+        borderImage: 'linear-gradient(to right, #9333ea, #c026d3, #db2777, #facc15) 1',
       }}
     >
       <div className="w-full px-6 py-4">
         <div className="text-center space-y-2">
-          {/* Row 1: Nonprofit Modules Quick Links */}
+          {/* Row 1: 6 P's Quick Links */}
           <div className="flex items-center justify-center gap-6 mb-2">
-            {NONPROFIT_MODULES.map((module) => {
-              const isActive = pathname === module.path;
+            {sixPsOrder.map((pCategory) => {
+              const pConfig = SIX_PS_DEFINITIONS[pCategory];
+              const isActive = activeSixP === pCategory;
+              const pSlug = pCategory.toLowerCase();
 
               return (
                 <Link
-                  key={module.path}
-                  href={module.path}
+                  key={pCategory}
+                  href={`/dashboard/${pSlug}`}
                   className={`text-base transition-all font-bold px-3 py-1 rounded ${
                     isActive
                       ? 'underline scale-110'
-                      : 'hover:underline hover:bg-green-50 dark:hover:bg-green-900/20'
+                      : 'hover:underline hover:bg-purple-50 dark:hover:bg-purple-900/20'
                   }`}
                   style={{
-                    color: module.color,
-                    backgroundColor: isActive ? `${module.color}20` : 'transparent',
+                    color: pConfig.colorHex,
+                    backgroundColor: isActive ? `${pConfig.colorHex}20` : 'transparent',
                   }}
+                  title={pConfig.description}
                 >
-                  {module.name}
+                  {pConfig.title}
                 </Link>
               );
             })}
@@ -59,18 +91,30 @@ export function Footer() {
           <div className="flex items-center justify-center gap-6 text-xs text-gray-500 dark:text-gray-400">
             <span>© 2026 AICodeRally</span>
             <span>•</span>
-            <Link href="/legal" className="hover:text-green-600 dark:hover:text-green-400 transition-colors">
+            <Link href="/legal" className="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
               Privacy
             </Link>
             <span>•</span>
-            <Link href="/legal" className="hover:text-green-600 dark:hover:text-green-400 transition-colors">
+            <Link href="/legal" className="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
               Terms
+            </Link>
+            <span>•</span>
+            <Link href="/legal" className="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
+              Support
             </Link>
           </div>
 
-          {/* Row 3: Branding Tagline */}
-          <div className="text-[10px] text-gray-400 dark:text-gray-600 tracking-widest uppercase">
-            An Edge Biz Ops Solution • Powered by AICR
+          {/* Row 3: Branding */}
+          <div className="text-xs text-gray-500 dark:text-gray-400">
+            <span>An Edge Biz Ops Solution • Powered by </span>
+            <span
+              className="font-bold bg-clip-text text-transparent"
+              style={{
+                backgroundImage: 'linear-gradient(90deg, #9333ea, #c026d3, #db2777, #facc15)',
+              }}
+            >
+              AICR
+            </span>
           </div>
         </div>
       </div>

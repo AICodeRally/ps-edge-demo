@@ -101,12 +101,8 @@ export function TaskOrb({ enabled = true }: TaskOrbProps) {
 
   const getContextBadge = (context: string) => {
     const colors = {
-      program: 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300',
-      fundraising: 'bg-teal-100 text-teal-700 dark:bg-teal-900 dark:text-teal-300',
-      compliance: 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300',
-      operations: 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300',
-      engagement: 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300',
-      deliverable: 'bg-teal-100 text-teal-700 dark:bg-teal-900 dark:text-teal-300',
+      engagement: 'bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-300',
+      deliverable: 'bg-fuchsia-100 text-fuchsia-700 dark:bg-fuchsia-900 dark:text-fuchsia-300',
       support: 'bg-orange-100 text-orange-700 dark:bg-orange-900 dark:text-orange-300',
       admin: 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300',
     };
@@ -120,10 +116,9 @@ export function TaskOrb({ enabled = true }: TaskOrbProps) {
         onClick={() => setIsOpen(!isOpen)}
         className="fixed bottom-4 right-20 z-40 w-14 h-14 rounded-full shadow-lg hover:scale-110 transition-transform flex items-center justify-center text-white"
         style={{
-          background: 'linear-gradient(135deg, #22c55e, #10b981, #14b8a6)',
-          boxShadow: '0 0 20px rgba(34, 197, 94, 0.4)',
+          background: 'linear-gradient(135deg, #f97316, #facc15)',
         }}
-        title="Tasks - AFFCF Operations"
+        title="Tasks - AICR Synced"
       >
         <CheckCircledIcon className="w-6 h-6" />
         {blockedCount > 0 && (

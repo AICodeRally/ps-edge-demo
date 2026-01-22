@@ -1,50 +1,50 @@
-export default function HomePage() {
+/**
+ * PS-Edge Home Dashboard
+ * Main dashboard showing aggregated 6Ps metrics across all departments
+ * (Purpose, People, Process, Practice, Pipeline, Profit)
+ * + Optional 7th P: Partners (Channel Partner Module - toggleable)
+ */
+
+'use client';
+
+import { SixPsDashboard } from '@/src/components/ps-edge/SixPsDashboard';
+import { PartnersModule } from '@/src/components/ps-edge/PartnersModule';
+import { AGGREGATE_SIX_PS } from '@/src/data/ps-edge/six-ps.data';
+import { BRAND_CONFIG } from '@/src/config/brand.config';
+import { SetPageTitle } from '@/src/components/SetPageTitle';
+import { useChannelPortalEnabled } from '@/src/contexts/ModulesContext';
+
+export default function Dashboard() {
+  const channelPortalEnabled = useChannelPortalEnabled();
+
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-6xl mx-auto p-8">
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            NP Edge Demo
+    <div className="h-full flex flex-col">
+      {/* Header */}
+      <div className="h-14 flex items-center px-6 border-b border-gray-200 dark:border-dark-border-default bg-white dark:bg-dark-bg-secondary">
+        <div>
+          <h1 className={`text-xl font-bold ${BRAND_CONFIG.gradient.textClass}`}>
+            {channelPortalEnabled ? '6P + Channel Portal Dashboard' : '6P Performance Dashboard'}
           </h1>
-          <p className="text-xl text-gray-600">
-            Nonprofit Management Platform for Arizona Friends of Foster Children Foundation
+          <p className="text-xs text-gray-600 dark:text-gray-400">
+            {channelPortalEnabled
+              ? 'Purpose, People, Process, Practice, Pipeline, Profit + Channel Portal - Nonprofit Tenant Management'
+              : 'Purpose, People, Process, Practice, Pipeline, Profit'
+            }
           </p>
         </div>
+      </div>
 
-        <div className="bg-white rounded-lg shadow-lg p-8">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4 text-center">
-            Core Modules
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-left">
-            <div className="p-4 border border-gray-200 rounded">
-              <h3 className="font-semibold text-gray-900">Programs</h3>
-              <p className="text-sm text-gray-600">Manage programs & projects</p>
-            </div>
-            <div className="p-4 border border-gray-200 rounded">
-              <h3 className="font-semibold text-gray-900">Fundraising</h3>
-              <p className="text-sm text-gray-600">Donors & campaigns</p>
-            </div>
-            <div className="p-4 border border-gray-200 rounded">
-              <h3 className="font-semibold text-gray-900">Volunteers</h3>
-              <p className="text-sm text-gray-600">Volunteer management</p>
-            </div>
-            <div className="p-4 border border-gray-200 rounded">
-              <h3 className="font-semibold text-gray-900">Beneficiaries</h3>
-              <p className="text-sm text-gray-600">Track impact & outcomes</p>
-            </div>
-            <div className="p-4 border border-gray-200 rounded">
-              <h3 className="font-semibold text-gray-900">Compliance</h3>
-              <p className="text-sm text-gray-600">990 forms & filings</p>
-            </div>
-            <div className="p-4 border border-gray-200 rounded">
-              <h3 className="font-semibold text-gray-900">Events</h3>
-              <p className="text-sm text-gray-600">Events & registrations</p>
-            </div>
-          </div>
-        </div>
-        <div className="mt-8 text-sm text-gray-500 text-center">
-          <p>NP-Edge Demo - Port 3034</p>
-          <p>Arizona Friends of Foster Children Foundation</p>
+      {/* 6Ps Dashboard - Aggregated View */}
+      <div className="flex-1 overflow-auto p-4">
+        <div className="max-w-7xl mx-auto space-y-6">
+          <SixPsDashboard
+            data={AGGREGATE_SIX_PS}
+            title=""
+            subtitle="Aggregated metrics across all departments - Select 'View' from each panel to enter the P of your choice"
+          />
+
+          {/* 7th P: NP-EDGE CLIENTS - Horizontal Module (Toggleable) */}
+          {channelPortalEnabled && <PartnersModule />}
         </div>
       </div>
     </div>
