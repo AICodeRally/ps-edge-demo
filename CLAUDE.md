@@ -1,24 +1,25 @@
 # PS-Edge Demo - AI Agent Instructions
 
 > **This file is auto-read by Claude Code at session start.**
-> Last updated: January 2026 (6 P's Navigation Migration Complete)
+> Last updated: January 2026 (7th P Partners Module + Nonprofit Focus Complete)
 
 ## What Is This?
 
 **PS-Edge Demo** (Professional Services Edge) is a dual-purpose platform for **Phoenix Philanthropy Group (PPG)**:
 
 1. **Consulting Operations (Primary)** - PPG's nonprofit consulting business
-   - 11 service lines: Campaign fundraising, strategic planning, board development, grant writing, executive coaching, M&A advisory, operational fundraising, relationship management, interim management, philanthropy advisory, alumni relations
-   - 2026 AI Line of Service: AI readiness assessments, ethical governance advisory, pilot implementations
-   - Advancement Academy training programs
+   - **11 PPG Service Lines:** Campaign fundraising, volunteer leadership (board development), executive coaching, M&A advisory, operational fundraising, relationship management, interim management, philanthropy advisory, strategic planning, alumni relations, Advancement Academy
+   - **2026 AI Line of Service:** AI readiness assessments, ethical governance advisory, AI pilot implementations for nonprofits
+   - **Client Focus:** Universities, museums, foundations, arts organizations, community nonprofits
 
-2. **Channel Partner Portal (Secondary)** - NP-Edge software sales
-   - Multi-tenant nonprofit client management
+2. **Channel Partner Portal (Secondary - Toggleable 7th P)** - NP-Edge software sales
+   - Multi-tenant nonprofit client management (47 active)
    - Telemetry ingestion and health monitoring
-   - Performance benchmarking across nonprofit clients
-   - Revenue tracking for channel sales
+   - Performance benchmarking across nonprofit portfolio
+   - Channel revenue tracking (MRR: $14,784)
+   - **Toggle:** Can be hidden for pure consulting demos
 
-**Current Demo:** Nonprofit Consulting Pack deployed
+**Current Demo:** Full nonprofit consulting platform with optional channel partner module
 
 ## Tech Stack
 
@@ -62,19 +63,23 @@ prisma/
 
 ## 6 P's Framework (Primary Navigation)
 
-| P | Color | Gradient | Focus | Pages |
-|---|-------|----------|-------|-------|
-| **People** | Purple (#7c3aed) | Purple → Violet | Team capacity, utilization, workforce metrics | Team, Capacity, Onboarding |
-| **Process** | Violet (#8b5cf6) | Violet → Fuchsia | Workflow efficiency, deliverables, timelines | Engagements, Deliverables, Support, Documents, Knowledge |
-| **Platform** | Fuchsia (#c026d3) | Fuchsia gradient | Technology, tools, systems enablement | AI, Integrations, Data, Usage, Tenants, Settings |
-| **Performance** | Pink (#db2777) | Pink gradient | KPIs, outcomes, operational metrics | KPI Dashboard, Health, Pipeline, Benchmarks, Signals |
-| **Profit** | Orange (#f97316) | Orange gradient | Revenue, margins, financial health | Revenue, Timesheets, Invoices, Commissions, Partner Revenue |
-| **Purpose** | Yellow (#facc15) | Yellow gradient | Mission alignment, client satisfaction, impact | Mission Dashboard, Success, Renewals, Proposals, Clients |
+**Order:** PURPOSE → PEOPLE → PROCESS → PRACTICE → PIPELINE → PERFORMANCE (+ PARTNERS as toggleable 7th P)
+
+| P | Color | Focus | Pages | Nonprofit Context |
+|---|-------|-------|-------|-------------------|
+| **PURPOSE** 🎯 | Yellow (#facc15) | Mission & nonprofit sector impact | Mission, Client Success, Renewals, Proposals, Clients | Dollars raised for nonprofits, campaign outcomes |
+| **PEOPLE** 👥 | Purple (#7c3aed) | Consultant expertise | Team, Capacity, Onboarding | Nonprofit specialists, CFRE credentials, sector expertise |
+| **PROCESS** ⚙️ | Violet (#8b5cf6) | Service delivery | Engagements, Deliverables, Support, Documents, Knowledge, Timesheets, Invoices | Campaign execution, case statements, donor pyramids |
+| **PRACTICE** 🎓 | Fuchsia (#c026d3) | Service lines & methodologies | Service Lines (11), Methodologies, Advancement Academy, Thought Leadership | PPG's consulting offerings for nonprofits |
+| **PIPELINE** 📈 | Pink (#db2777) | Sales & business development | Sales Pipeline, Proposals, Forecasting | Future nonprofit client acquisition (RFPs, proposals) |
+| **PERFORMANCE** 📊 | Orange (#f97316) | Business outcomes | KPIs, Client Health, Benchmarks, Signals | Operational & financial metrics |
+| **PARTNERS** 🤝 | Blue (#3b82f6) | Channel partner management (toggleable) | Tenants, Signals, Benchmarks, Usage, Commissions, Revenue | NP-Edge nonprofit customer monitoring |
 
 **Navigation Pattern:**
 - Footer: 6 P's links (always visible, mobile-friendly)
 - Each P: Dedicated landing page with quick links
-- 29 total pages organized by P category
+- 7th P (Partners): Horizontal module below 6 P grid (toggleable in Settings → Business Modules)
+- Total: 35+ pages organized by P category
 
 ## Data Models
 
@@ -91,20 +96,24 @@ npx prisma studio   # Open Prisma Studio
 npx prisma db push  # Push schema changes
 ```
 
-## AI Features
+## AI Features (5 Orbs)
 
-- **OpsChief Orb** - Business health insights and operational alerts (dark purple gradient)
-- **AskPS Orb** - Conversational assistant (light purple gradient)
-- **Pulse Orb** - AI-curated content feed with nonprofit sector articles, best practices, and trends (purple gradient)
+- **OpsChief Orb** - Business health insights for nonprofit consulting operations
+- **AskPS Orb** - Conversational assistant for nonprofit sector questions
+- **Pulse Orb** - AI-curated nonprofit sector articles, best practices, and trends
+- **Task Orb** - AICR-synced task management
+- **PageKB Orb** - Context-aware help for each page
 - Purple = AI (consistent visual language)
 
 ## Critical Notes
 
-- **Multi-Tenant**: PPG uses `tenantId: 'ppg-main'` for internal data
-- **Telemetry Flow**: Client deployments POST to `/api/telemetry/ingest`
-- **29 Pages** organized across 6 P's (People, Process, Platform, Performance, Profit, Purpose)
+- **Multi-Tenant**: PPG uses `tenantId: 'ppg-main'` for internal consulting data
+- **Telemetry Flow**: Nonprofit NP-Edge client deployments POST to `/api/telemetry/ingest`
+- **35+ Pages** organized across 6 P's + Partners (toggleable 7th P)
 - **Navigation**: Footer-based 6 P's links (SGM pattern, no sidebar)
-- **1000+ Mock Records** across 12 models
+- **Nonprofit Focus**: All clients are nonprofits (universities, museums, foundations, arts orgs)
+- **11 Service Lines**: Engagement types match Phoenix Philanthropy's actual services
+- **7th P Toggle**: Partners module can be hidden in Settings → Business Modules
 - **Legacy Routes**: All old department routes redirect to new P-based routes
 
 ## Environment
