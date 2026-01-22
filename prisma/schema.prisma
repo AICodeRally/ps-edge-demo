@@ -1,5 +1,5 @@
-// PS-Edge Prisma Schema
-// Professional Services Edge for Phoenix Philanthropy Group
+// NP-Edge Prisma Schema
+// Nonprofit Management Platform for Arizona Friends of Foster Children Foundation (AFFCF)
 
 datasource db {
   provider = "postgresql"
@@ -11,579 +11,455 @@ generator client {
 }
 
 // ============================================================================
-// PROFESSIONAL SERVICES MODELS
+// PROGRAM MANAGEMENT
 // ============================================================================
 
-model Client {
-  id           String   @id @default(cuid())
-  tenantId     String   @map("tenant_id")
-
-  // Basic Info
-  name         String   @db.VarChar(200)
-  clientType   String   @map("client_type") @db.VarChar(20) // NONPROFIT, FOUNDATION, GOVERNMENT, CORPORATE
-  status       String   @db.VarChar(20) // PROSPECT, ACTIVE, INACTIVE, CHURNED
-  taxId        String?  @map("tax_id") @db.VarChar(50)
-  website      String?  @db.VarChar(200)
-
-  // Business Context
-  annualRevenue Float?   @map("annual_revenue")
-  staffSize     Int?     @map("staff_size")
-  focusAreas    String[] @map("focus_areas") // e.g., ['Education', 'Healthcare']
-
-  // Relationship
-  primaryContactId String  @map("primary_contact_id")
-  accountOwnerId   String  @map("account_owner_id")
-  acquisitionDate  DateTime? @map("acquisition_date")
-  firstEngagementDate DateTime? @map("first_engagement_date")
-
-  // Channel Partner Flag
-  isNPEdgeClient Boolean @default(false) @map("is_np_edge_client")
-  npEdgeTenantId String? @unique @map("np_edge_tenant_id") @db.VarChar(100)
-  npEdgeGoLiveDate DateTime? @map("np_edge_go_live_date")
-
-  // Metadata
-  tags         String[]
-  customFields Json?    @map("custom_fields") @db.JsonB
-
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
-  createdBy String   @map("created_by")
-
-  // Relations
-  engagements Engagement[]
-  proposals   Proposal[]
-  invoices    Invoice[]
-
-  @@index([tenantId])
-  @@index([status])
-  @@index([isNPEdgeClient])
-  @@map("clients")
-}
-
-model Engagement {
-  id              String   @id @default(cuid())
-  tenantId        String   @map("tenant_id")
-
-  // Basics
-  engagementName  String   @map("engagement_name") @db.VarChar(200)
-  engagementType  String   @map("engagement_type") @db.VarChar(50) // CAPITAL_CAMPAIGN, STRATEGIC_PLANNING, BOARD_DEVELOPMENT, GRANT_WRITING, FEASIBILITY_STUDY, FUNDRAISING_STRATEGY, TRAINING_WORKSHOP, NPEDGE_IMPLEMENTATION
-  status          String   @db.VarChar(20) // PLANNING, IN_PROGRESS, ON_HOLD, COMPLETED, CANCELLED
-  description     String   @db.Text
-  objectives      String[] // Array of objectives
-
-  // Client Relationship
-  clientId        String   @map("client_id")
-  client          Client   @relation(fields: [clientId], references: [id])
-  contractId      String?  @map("contract_id")
-
-  // Timeline
-  startDate       DateTime @map("start_date")
-  endDate         DateTime? @map("end_date")
-  estimatedHours  Float    @map("estimated_hours")
-  actualHours     Float?   @map("actual_hours")
-
-  // Team
-  projectManagerId String  @map("project_manager_id")
-  teamMemberIds    String[] @map("team_member_ids")
-
-  // Financials
-  contractValue   Float    @map("contract_value")
-  billingType     String   @map("billing_type") @db.VarChar(20) // FIXED_FEE, HOURLY, RETAINER
-  hourlyRate      Float?   @map("hourly_rate")
-
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
-
-  // Relations
-  timeEntries  TimeEntry[]
-  deliverables Deliverable[]
-
-  @@index([tenantId])
-  @@index([clientId])
-  @@index([status])
-  @@index([projectManagerId])
-  @@map("engagements")
-}
-
-model Proposal {
-  id              String   @id @default(cuid())
-  tenantId        String   @map("tenant_id")
-
-  // Basics
-  proposalNumber  String   @unique @map("proposal_number") @db.VarChar(50)
-  title           String   @db.VarChar(200)
-  clientId        String   @map("client_id")
-  client          Client   @relation(fields: [clientId], references: [id])
-
-  // Scope
-  engagementType  String   @map("engagement_type") @db.VarChar(50)
-  scopeOfWork     String   @map("scope_of_work") @db.Text
-  assumptions     String[] // Array of assumptions
-  exclusions      String[] // Array of exclusions
-
-  // Pricing
-  proposedValue   Float    @map("proposed_value")
-  billingType     String   @map("billing_type") @db.VarChar(20) // FIXED_FEE, HOURLY, RETAINER
-  estimatedHours  Float    @map("estimated_hours")
-  hourlyRate      Float?   @map("hourly_rate")
-
-  // Timeline
-  proposedStartDate DateTime @map("proposed_start_date")
-  proposedDuration  Int     @map("proposed_duration") // weeks
-
-  // Lifecycle
-  status          String   @db.VarChar(20) // DRAFT, SUBMITTED, NEGOTIATING, WON, LOST
-  submittedDate   DateTime? @map("submitted_date")
-  decisionDate    DateTime? @map("decision_date")
-  lostReason      String?  @map("lost_reason") @db.Text
-
-  // Documents
-  documentUrl     String?  @map("document_url") @db.VarChar(500)
-
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
-  createdBy String   @map("created_by")
-
-  @@index([tenantId])
-  @@index([clientId])
-  @@index([status])
-  @@map("proposals")
-}
-
-model TimeEntry {
-  id           String   @id @default(cuid())
-  tenantId     String   @map("tenant_id")
-
-  // Who/What/When
-  consultantId String   @map("consultant_id")
-  engagementId String   @map("engagement_id")
-  engagement   Engagement @relation(fields: [engagementId], references: [id])
-  clientId     String   @map("client_id")
-
-  // Time
-  date         DateTime
-  hours        Float
-
-  // Activity
-  activityType String   @map("activity_type") @db.VarChar(50) // CLIENT_MEETING, RESEARCH, DELIVERABLE_PREP, TRAVEL, ADMIN, TRAINING
-  description  String   @db.Text
-
-  // Billing
-  isBillable   Boolean  @default(true) @map("is_billable")
-  billingRate  Float?   @map("billing_rate")
-  invoiceId    String?  @map("invoice_id")
-
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
-
-  @@index([tenantId])
-  @@index([engagementId])
-  @@index([consultantId])
-  @@index([date])
-  @@index([invoiceId])
-  @@map("time_entries")
-}
-
-model Invoice {
-  id            String   @id @default(cuid())
-  tenantId      String   @map("tenant_id")
-
-  // Invoice Details
-  invoiceNumber String   @unique @map("invoice_number") @db.VarChar(50)
-  clientId      String   @map("client_id")
-  client        Client   @relation(fields: [clientId], references: [id])
-  engagementId  String?  @map("engagement_id")
-
-  // Amounts
-  subtotal      Float
-  taxAmount     Float?   @map("tax_amount")
-  totalAmount   Float    @map("total_amount")
-  amountPaid    Float    @default(0) @map("amount_paid")
-
-  // Dates
-  invoiceDate   DateTime @map("invoice_date")
-  dueDate       DateTime @map("due_date")
-  paidDate      DateTime? @map("paid_date")
-
-  // Line Items
-  timeEntryIds  String[] @map("time_entry_ids")
-  expenses      Json?    @db.JsonB // Array of {description, amount}
-
-  // Status
-  status        String   @db.VarChar(20) // DRAFT, SENT, PAID, OVERDUE, CANCELLED
-
-  // Payment
-  paymentMethod String?  @map("payment_method") @db.VarChar(50)
-  notes         String?  @db.Text
-
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
-
-  @@index([tenantId])
-  @@index([clientId])
-  @@index([status])
-  @@index([dueDate])
-  @@map("invoices")
-}
-
-model Deliverable {
-  id              String   @id @default(cuid())
-  tenantId        String   @map("tenant_id")
-
-  // Basics
-  name            String   @db.VarChar(200)
-  deliverableType String   @map("deliverable_type") @db.VarChar(50) // STRATEGY_DOCUMENT, FEASIBILITY_REPORT, TRAINING_MATERIALS, CAMPAIGN_PLAN, BOARD_MATERIALS, PROGRESS_REPORT
-  engagementId    String   @map("engagement_id")
-  engagement      Engagement @relation(fields: [engagementId], references: [id])
-
-  // Timeline
-  dueDate         DateTime @map("due_date")
-  deliveredDate   DateTime? @map("delivered_date")
-  approvedDate    DateTime? @map("approved_date")
-
-  // Status
-  status          String   @db.VarChar(20) // PLANNED, IN_PROGRESS, REVIEW, DELIVERED, APPROVED
-  completionPercentage Int @default(0) @map("completion_percentage")
-
-  // Content
-  description     String?  @db.Text
-  documentUrl     String?  @map("document_url") @db.VarChar(500)
-
-  // Ownership
-  ownerIds        String[] @map("owner_ids")
-  reviewerId      String?  @map("reviewer_id")
-
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
-
-  @@index([tenantId])
-  @@index([engagementId])
-  @@index([status])
-  @@index([dueDate])
-  @@map("deliverables")
-}
-
-model Consultant {
-  id           String   @id @default(cuid())
-  tenantId     String   @map("tenant_id")
-  personId     String   @map("person_id") // Links to Person type (to be created)
-
-  // Professional Info
-  role         String   @db.VarChar(50) // MANAGING_DIRECTOR, SENIOR_CONSULTANT, CONSULTANT, ASSOCIATE_CONSULTANT, GRANT_WRITER, TRAINER
-  title        String   @db.VarChar(100)
-  department   String   @db.VarChar(50)
-
-  // Expertise
-  specializations String[] // e.g., ['Capital Campaigns', 'Strategic Planning']
-  certifications  String[]
-
-  // Capacity
-  weeklyCapacityHours Float @map("weekly_capacity_hours")
-  currentUtilization  Float @default(0) @map("current_utilization") // Percentage
-
-  // Billing
-  defaultBillingRate Float @map("default_billing_rate")
-
-  // Status
-  isActive    Boolean  @default(true) @map("is_active")
-  hireDate    DateTime @map("hire_date")
-
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
-
-  @@index([tenantId])
-  @@index([personId])
-  @@index([isActive])
-  @@map("consultants")
-}
-
-// ============================================================================
-// CHANNEL PARTNER MODELS
-// ============================================================================
-
-model ClientTenant {
-  id              String   @id @default(cuid())
-  tenantId        String   @map("tenant_id") // PPG's tenant ID
-
-  // NP-Edge Tenant Info
-  npEdgeTenantId  String   @unique @map("np_edge_tenant_id") @db.VarChar(100)
-  organizationName String  @map("organization_name") @db.VarChar(200)
-
-  // Subscription
-  tier            String   @db.VarChar(20) // STARTER, GROWTH, ENTERPRISE
-  monthlyFee      Float    @map("monthly_fee")
-  goLiveDate      DateTime @map("go_live_date")
-  renewalDate     DateTime? @map("renewal_date")
-
-  // PPG Relationship
-  managingClientId String  @map("managing_client_id") // Links to Client model
-  accountOwnerId   String  @map("account_owner_id") // PPG staff
-
-  // Health Metrics (from telemetry)
-  healthScore     Int?     @map("health_score") // 0-100
-  healthLevel     String?  @map("health_level") @db.VarChar(20) // CRITICAL, POOR, FAIR, GOOD, EXCELLENT
-  lastHealthCheck DateTime? @map("last_health_check")
-
-  // Usage Metrics
-  activeUsers     Int?     @map("active_users")
-  storageUsedGB   Float?   @map("storage_used_gb")
-  apiCallsThisMonth Int?   @map("api_calls_this_month")
-
-  // Status
-  isActive        Boolean  @default(true) @map("is_active")
-
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
-
-  // Relations
-  signals ClientSignal[]
-
-  @@index([tenantId])
-  @@index([npEdgeTenantId])
-  @@index([managingClientId])
-  @@index([healthLevel])
-  @@map("client_tenants")
-}
-
-model ClientSignal {
-  id              String   @id @default(cuid())
-  tenantId        String   @map("tenant_id") // PPG's tenant ID
-
-  // Source
-  clientTenantId  String   @map("client_tenant_id")
-  clientTenant    ClientTenant @relation(fields: [clientTenantId], references: [id])
-  npEdgeTenantId  String   @map("np_edge_tenant_id") @db.VarChar(100)
-
-  // Signal Details
-  category        String   @db.VarChar(50) // CLIENT_HEALTH, FEATURE_ADOPTION, USER_ENGAGEMENT, DATA_QUALITY, COMPLIANCE_RISK, REVENUE_OPPORTUNITY, CHURN_RISK
-  severity        String   @db.VarChar(20) // CRITICAL, HIGH, MEDIUM, LOW
-  title           String   @db.VarChar(200)
-  description     String   @db.Text
-
-  // Context
-  affectedModule  String?  @map("affected_module") @db.VarChar(50) // e.g., 'Fundraising', 'Volunteers'
-  detectedValue   Float?   @map("detected_value")
-  thresholdValue  Float?   @map("threshold_value")
-
-  // Action
-  suggestedAction String?  @map("suggested_action") @db.Text
-  isResolved      Boolean  @default(false) @map("is_resolved")
-  resolvedAt      DateTime? @map("resolved_at")
-  resolvedBy      String?  @map("resolved_by")
-
-  // Metadata
-  metadata        Json?    @db.JsonB
-
-  emittedAt       DateTime @map("emitted_at")
-  expiresAt       DateTime? @map("expires_at")
-
-  @@index([tenantId])
-  @@index([clientTenantId])
-  @@index([category])
-  @@index([severity])
-  @@index([isResolved])
-  @@index([emittedAt])
-  @@map("client_signals")
-}
-
-model ClientBenchmark {
-  id              String   @id @default(cuid())
-  tenantId        String   @map("tenant_id") // PPG's tenant ID
-
-  // Metric
-  metric          String   @db.VarChar(50) // AVG_DONATION_AMOUNT, DONOR_RETENTION_RATE, VOLUNTEER_HOURS_PER_MONTH, GRANT_APPROVAL_RATE, PROGRAM_CAPACITY_UTILIZATION, USER_ADOPTION_RATE
-  periodStart     DateTime @map("period_start")
-  periodEnd       DateTime @map("period_end")
-
-  // Aggregated Data
-  portfolioAverage Float   @map("portfolio_average")
-  portfolioMedian  Float   @map("portfolio_median")
-  portfolioP25     Float   @map("portfolio_p25") // 25th percentile
-  portfolioP75     Float   @map("portfolio_p75") // 75th percentile
-
-  // Sample Size
-  clientCount     Int      @map("client_count")
-
-  // Breakdown by Tier (optional)
-  byTierData      Json?    @map("by_tier_data") @db.JsonB // {starter: number, growth: number, enterprise: number}
-
-  calculatedAt    DateTime @map("calculated_at")
-
-  @@index([tenantId])
-  @@index([metric])
-  @@index([periodStart])
-  @@map("client_benchmarks")
-}
-
-model PartnerRevenue {
-  id              String   @id @default(cuid())
-  tenantId        String   @map("tenant_id") // PPG's tenant ID
-
-  // Source
-  clientTenantId  String   @map("client_tenant_id")
-
-  // Revenue Details
-  revenueType     String   @db.VarChar(50) // SUBSCRIPTION_FEE, IMPLEMENTATION_FEE, SUPPORT_FEE, TRAINING_FEE, COMMISSION
-  amount          Float
-  currency        String   @default("USD") @db.VarChar(3)
-
-  // Period
-  periodStart     DateTime @map("period_start")
-  periodEnd       DateTime @map("period_end")
-
-  // Recognition
-  recognizedDate  DateTime @map("recognized_date")
-  invoiceId       String?  @map("invoice_id")
-
-  createdAt DateTime @default(now()) @map("created_at")
-
-  @@index([tenantId])
-  @@index([clientTenantId])
-  @@index([revenueType])
-  @@index([recognizedDate])
-  @@map("partner_revenue")
-}
-
-model ApiUsageLog {
-  id              String   @id @default(cuid())
-  tenantId        String   @map("tenant_id") // PPG's tenant ID
-
-  // Source
-  clientTenantId  String   @map("client_tenant_id")
-  npEdgeTenantId  String   @map("np_edge_tenant_id") @db.VarChar(100)
-
-  // Usage
-  endpoint        String   @db.VarChar(200)
-  method          String   @db.VarChar(10)
-  statusCode      Int      @map("status_code")
-
-  // Timing
-  timestamp       DateTime
-  responseTimeMs  Int      @map("response_time_ms")
-
-  // Volume
-  requestCount    Int      @default(1) @map("request_count") // Aggregated count if batched
-
-  @@index([tenantId])
-  @@index([clientTenantId])
-  @@index([timestamp])
-  @@map("api_usage_logs")
-}
-
-// ============================================================================
-// AGENT CONTROL CENTER (ACC) MODELS
-// ============================================================================
-
-model AppRegistry {
-  id              String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  slug            String    @unique @db.VarChar(100)  // "spot", "sgm-summit-demo"
-  name            String    @db.VarChar(255)
-  description     String?
-
-  // Repository Info
-  repoPath        String?   @map("repo_path")         // "/Users/toddlebaron/dev/spot"
-  repoUrl         String?   @map("repo_url")          // GitHub URL
-  port            Int?
-  hostname        String?   @db.VarChar(100)          // "spot.local"
-
-  // Classification
-  tier            String    @default("demo")          // core, demo, external
-  status          String    @default("active")        // active, inactive, archived
-
-  // Sync Status
-  lastSyncAt      DateTime? @map("last_sync_at")
-  lastSyncStatus  String?   @map("last_sync_status")  // success, failed, pending
-
-  // Extensibility
-  config          Json      @default("{}")
-
-  createdAt       DateTime  @default(now()) @map("created_at")
-  updatedAt       DateTime  @updatedAt @map("updated_at")
-
-  // Relations
-  agents          AgentDefinition[]
-
-  @@index([tier])
-  @@index([status])
-  @@map("app_registry")
-}
-
-model AgentDefinition {
-  id              String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  slug            String    @db.VarChar(100)        // "spot-dev", "sgm-dev"
-  name            String    @db.VarChar(255)
-  description     String?
-
-  // Universal Fields
-  agentType       String    @map("agent_type")      // plan_execute, multi_agent, rag, etc.
-  provider        String    @default("claude")      // claude, openai, anthropic, ollama, custom
-  modelId         String?   @map("model_id")        // specific model (gpt-4, claude-3, llama3)
-
-  // Scope
-  scope           String    @default("app")         // platform, domain, tenant, app
-  appRegistryId   String?   @map("app_registry_id") @db.Uuid
-  tenantId        String?   @map("tenant_id")
-
-  // Configuration
-  systemPrompt    String?   @map("system_prompt")   @db.Text
-  tools           Json      @default("[]")
-  config          Json      @default("{}")          // provider-specific config
-  memoryConfig    Json      @default("{}") @map("memory_config")
-
-  // Session Management
-  sessionStartProcedure  String? @map("session_start_procedure") @db.Text
-  sessionEndProcedure    String? @map("session_end_procedure") @db.Text
-  progressTemplate       String? @map("progress_template") @db.Text
-
-  // File Sync
-  filePath        String?   @map("file_path")       // ".claude/agents/spot-dev.md"
-  fileHash        String?   @map("file_hash")       // For change detection
-  lastFileSync    DateTime? @map("last_file_sync")
-
-  // Governance
-  status          String    @default("draft")       // draft, active, deprecated, archived
-  version         Int       @default(1)
-  approvedBy      String?   @map("approved_by")
-  approvedAt      DateTime? @map("approved_at")
-
-  // Timestamps
-  createdBy       String?   @map("created_by")
-  createdAt       DateTime  @default(now()) @map("created_at")
-  updatedAt       DateTime  @updatedAt @map("updated_at")
-
-  // Relations
-  app             AppRegistry? @relation(fields: [appRegistryId], references: [id])
-  versions        AgentDefinitionVersion[]
-
-  @@unique([slug, appRegistryId])
-  @@index([provider])
-  @@index([status])
-  @@index([scope])
-  @@map("agent_definitions")
-}
-
-model AgentDefinitionVersion {
-  id                  String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  agentDefinitionId   String    @map("agent_definition_id") @db.Uuid
-  version             Int
-
-  // Snapshot of Fields
-  name                String    @db.VarChar(255)
+model Program {
+  id                  String               @id @default(cuid())
+  name                String
+  category            ProgramCategory
+  status              ProgramStatus
   description         String?
-  agentType           String    @map("agent_type")
-  provider            String
-  systemPrompt        String?   @map("system_prompt") @db.Text
-  tools               Json
-  config              Json
+  budget              Float
+  spent               Float                @default(0)
+  beneficiaries       Int                  @default(0)
+  targetBeneficiaries Int
+  startDate           DateTime             @map("start_date")
+  endDate             DateTime?            @map("end_date")
+  manager             String
+  impact              Json
+  createdAt           DateTime             @default(now()) @map("created_at")
+  updatedAt           DateTime             @updatedAt @map("updated_at")
+  beneficiaryLinks    BeneficiaryProgram[]
+  projects            ProgramProject[]
 
-  // Change Tracking
-  changeReason        String?   @map("change_reason") @db.Text
-  changedBy           String?   @map("changed_by")
-  createdAt           DateTime  @default(now()) @map("created_at")
+  @@index([status])
+  @@index([category])
+  @@index([manager])
+  @@map("programs")
+}
 
-  // Relations
-  agentDefinition     AgentDefinition @relation(fields: [agentDefinitionId], references: [id], onDelete: Cascade)
+model Beneficiary {
+  id             String               @id @default(cuid())
+  name           String
+  age            Int
+  enrollmentDate DateTime             @map("enrollment_date")
+  status         BeneficiaryStatus
+  attendanceRate Float?               @map("attendance_rate")
+  outcomes       Json
+  demographics   Json?
+  notes          String?
+  createdAt      DateTime             @default(now()) @map("created_at")
+  updatedAt      DateTime             @updatedAt @map("updated_at")
+  programs       BeneficiaryProgram[]
 
-  @@unique([agentDefinitionId, version])
-  @@map("agent_definition_versions")
+  @@index([status])
+  @@index([enrollmentDate])
+  @@map("beneficiaries")
+}
+
+model BeneficiaryProgram {
+  id            String      @id @default(cuid())
+  beneficiaryId String      @map("beneficiary_id")
+  programId     String      @map("program_id")
+  enrolledAt    DateTime    @default(now()) @map("enrolled_at")
+  completedAt   DateTime?   @map("completed_at")
+  progress      Int         @default(0)
+  beneficiary   Beneficiary @relation(fields: [beneficiaryId], references: [id], onDelete: Cascade)
+  program       Program     @relation(fields: [programId], references: [id], onDelete: Cascade)
+
+  @@index([beneficiaryId])
+  @@index([programId])
+  @@map("beneficiary_programs")
+}
+
+model ProgramProject {
+  id          String        @id @default(cuid())
+  name        String
+  programId   String        @map("program_id")
+  description String
+  progress    Int           @default(0)
+  budget      Float
+  spent       Float         @default(0)
+  startDate   DateTime      @map("start_date")
+  dueDate     DateTime      @map("due_date")
+  status      ProjectStatus
+  assignedTo  String        @map("assigned_to")
+  milestones  Json
+  createdAt   DateTime      @default(now()) @map("created_at")
+  updatedAt   DateTime      @updatedAt @map("updated_at")
+  program     Program       @relation(fields: [programId], references: [id], onDelete: Cascade)
+
+  @@index([programId])
+  @@index([status])
+  @@index([assignedTo])
+  @@map("program_projects")
+}
+
+// ============================================================================
+// FUNDRAISING & DONORS
+// ============================================================================
+
+model Donor {
+  id              String      @id @default(cuid())
+  name            String
+  email           String      @unique
+  phone           String?
+  type            DonorType
+  totalGiving     Float       @default(0) @map("total_giving")
+  lastGift        DateTime?   @map("last_gift")
+  lastGiftAmount  Float?      @map("last_gift_amount")
+  status          DonorStatus @default(New)
+  memberSince     DateTime    @map("member_since")
+  address         String?
+  notes           String?
+  tags            String[]    @default([])
+  engagementScore Int?        @map("engagement_score")
+  preferences     Json?
+  createdAt       DateTime    @default(now()) @map("created_at")
+  updatedAt       DateTime    @updatedAt @map("updated_at")
+  donations       Donation[]
+
+  @@index([email])
+  @@index([type])
+  @@index([status])
+  @@index([lastGift])
+  @@map("donors")
+}
+
+model Donation {
+  id           String   @id @default(cuid())
+  donorId      String   @map("donor_id")
+  amount       Float
+  date         DateTime
+  campaign     String?
+  grantId      String?  @map("grant_id")
+  method       String?
+  recurring    Boolean  @default(false)
+  acknowledged Boolean  @default(false)
+  taxReceipt   String?  @map("tax_receipt")
+  notes        String?
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+  donor        Donor    @relation(fields: [donorId], references: [id], onDelete: Cascade)
+
+  @@index([donorId])
+  @@index([date])
+  @@index([campaign])
+  @@map("donations")
+}
+
+model Campaign {
+  id          String         @id @default(cuid())
+  name        String
+  goal        Float
+  raised      Float          @default(0)
+  donors      Int            @default(0)
+  startDate   DateTime       @map("start_date")
+  endDate     DateTime       @map("end_date")
+  status      CampaignStatus
+  type        CampaignType
+  description String?
+  createdAt   DateTime       @default(now()) @map("created_at")
+  updatedAt   DateTime       @updatedAt @map("updated_at")
+
+  @@index([status])
+  @@index([type])
+  @@index([endDate])
+  @@map("campaigns")
+}
+
+model Grant {
+  id              String      @id @default(cuid())
+  funder          String
+  program         String
+  amount          Float
+  status          GrantStatus
+  applicationDate DateTime    @map("application_date")
+  decisionDate    DateTime?   @map("decision_date")
+  reportDue       DateTime?   @map("report_due")
+  purpose         String
+  notes           String?
+  createdAt       DateTime    @default(now()) @map("created_at")
+  updatedAt       DateTime    @updatedAt @map("updated_at")
+
+  @@index([status])
+  @@index([reportDue])
+  @@index([funder])
+  @@map("grants")
+}
+
+// ============================================================================
+// VOLUNTEERS
+// ============================================================================
+
+model Volunteer {
+  id               String                @id @default(cuid())
+  name             String
+  email            String                @unique
+  phone            String?
+  status           VolunteerStatus
+  joinDate         DateTime              @map("join_date")
+  totalHours       Float                 @default(0) @map("total_hours")
+  skills           String[]              @default([])
+  interests        String[]              @default([])
+  availability     Json?
+  emergencyContact Json?                 @map("emergency_contact")
+  notes            String?
+  createdAt        DateTime              @default(now()) @map("created_at")
+  updatedAt        DateTime              @updatedAt @map("updated_at")
+  assignments      VolunteerAssignment[]
+
+  @@index([email])
+  @@index([status])
+  @@index([joinDate])
+  @@map("volunteers")
+}
+
+model VolunteerAssignment {
+  id          String    @id @default(cuid())
+  volunteerId String    @map("volunteer_id")
+  role        String
+  program     String?
+  startDate   DateTime  @map("start_date")
+  endDate     DateTime? @map("end_date")
+  hoursLogged Float     @default(0) @map("hours_logged")
+  notes       String?
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+  volunteer   Volunteer @relation(fields: [volunteerId], references: [id], onDelete: Cascade)
+
+  @@index([volunteerId])
+  @@index([startDate])
+  @@map("volunteer_assignments")
+}
+
+// ============================================================================
+// EVENTS
+// ============================================================================
+
+model Event {
+  id            String              @id @default(cuid())
+  name          String
+  type          EventType
+  status        EventStatus
+  startDate     DateTime            @map("start_date")
+  endDate       DateTime?           @map("end_date")
+  location      String?
+  description   String?
+  capacity      Int?
+  registered    Int                 @default(0)
+  goal          Float?
+  raised        Float?
+  coordinator   String
+  createdAt     DateTime            @default(now()) @map("created_at")
+  updatedAt     DateTime            @updatedAt @map("updated_at")
+  registrations EventRegistration[]
+
+  @@index([status])
+  @@index([type])
+  @@index([startDate])
+  @@map("events")
+}
+
+model EventRegistration {
+  id          String    @id @default(cuid())
+  eventId     String    @map("event_id")
+  name        String
+  email       String
+  phone       String?
+  tickets     Int       @default(1)
+  amount      Float?
+  attended    Boolean   @default(false)
+  checkedInAt DateTime? @map("checked_in_at")
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+  event       Event     @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  @@index([eventId])
+  @@index([email])
+  @@map("event_registrations")
+}
+
+// ============================================================================
+// COMPLIANCE & OUTREACH
+// ============================================================================
+
+model Filing {
+  id              String         @id @default(cuid())
+  category        FilingCategory
+  name            String
+  formType        String?        @map("form_type")
+  description     String
+  dueDate         DateTime       @map("due_date")
+  status          FilingStatus
+  priority        FilingPriority
+  completion      Int            @default(0)
+  assignedTo      String?        @map("assigned_to")
+  submittedDate   DateTime?      @map("submitted_date")
+  confirmationNum String?        @map("confirmation_num")
+  fee             Float?
+  notes           String?
+  createdAt       DateTime       @default(now()) @map("created_at")
+  updatedAt       DateTime       @updatedAt @map("updated_at")
+
+  @@index([category])
+  @@index([status])
+  @@index([priority])
+  @@index([dueDate])
+  @@map("filings")
+}
+
+model Outreach {
+  id         String   @id @default(cuid())
+  title      String
+  type       String
+  audience   String?
+  message    String
+  sentDate   DateTime @map("sent_date")
+  reach      Int      @default(0)
+  engagement Int      @default(0)
+  conversion Int      @default(0)
+  campaign   String?
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  @@index([sentDate])
+  @@index([campaign])
+  @@map("outreach")
+}
+
+model AuditEvent {
+  id         String   @id @default(cuid())
+  type       String
+  entityType String   @map("entity_type")
+  entityId   String   @map("entity_id")
+  userId     String   @map("user_id")
+  timestamp  DateTime @default(now())
+  data       Json
+
+  @@index([entityType, entityId])
+  @@index([userId])
+  @@index([timestamp])
+  @@map("audit_events")
+}
+
+// ============================================================================
+// ENUMS
+// ============================================================================
+
+enum ProgramCategory {
+  Education
+  Health
+  Housing
+  FoodSecurity
+  YouthServices
+  SeniorServices
+  Environment
+  Arts
+  Other
+}
+
+enum ProgramStatus {
+  Active
+  Planned
+  Completed
+  OnHold
+}
+
+enum BeneficiaryStatus {
+  Active
+  Graduated
+  Inactive
+}
+
+enum ProjectStatus {
+  OnTrack
+  AtRisk
+  Behind
+  Completed
+}
+
+enum DonorType {
+  Individual
+  Corporate
+  Foundation
+  Government
+}
+
+enum DonorStatus {
+  Active
+  Lapsed
+  New
+  Prospect
+}
+
+enum CampaignType {
+  Annual
+  Capital
+  SpecialEvent
+  Emergency
+  Major
+}
+
+enum CampaignStatus {
+  Active
+  Completed
+  Planned
+}
+
+enum GrantStatus {
+  Applied
+  UnderReview
+  Awarded
+  Rejected
+  Reported
+}
+
+enum VolunteerStatus {
+  Active
+  Inactive
+  Pending
+}
+
+enum EventType {
+  Fundraiser
+  Community
+  Training
+  Awareness
+  Volunteer
+}
+
+enum EventStatus {
+  Planned
+  Active
+  Completed
+  Cancelled
+}
+
+enum FilingCategory {
+  IRS990
+  State
+  Donor
+  Employment
+  SalesTax
+  Grant
+  Special
+}
+
+enum FilingStatus {
+  NotStarted
+  InProgress
+  PendingReview
+  Submitted
+  Approved
+  Rejected
+  Overdue
+}
+
+enum FilingPriority {
+  Critical
+  High
+  Medium
+  Low
 }

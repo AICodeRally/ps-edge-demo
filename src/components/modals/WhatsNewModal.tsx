@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * What's New Modal (PS-Edge)
+ * What's New Modal (NP-Edge)
  *
  * Introduces users to the 6 P's organizational framework
  * Shows on first visit, dismissable with "Don't show again"
@@ -31,7 +31,7 @@ const iconMap: Record<SixPCategory, React.ComponentType<{ className?: string }>>
   PURPOSE: StarIcon,
 };
 
-const WELCOME_KEY = 'ps-edge-welcome-modal-seen';
+const WELCOME_KEY = 'np-edge-welcome-modal-seen';
 const MODAL_VERSION = '2.0'; // Increment to show modal again for updates
 
 interface WhatsNewModalProps {
@@ -113,7 +113,7 @@ export function WhatsNewModal({ onClose }: WhatsNewModalProps) {
           >
             <Cross2Icon className="w-5 h-5" />
           </button>
-          <h2 className="text-3xl font-bold">Welcome to PS-Edge!</h2>
+          <h2 className="text-3xl font-bold">Welcome to NP-Edge!</h2>
           <p className="text-white/90 text-sm mt-1">
             Organized by the 6 P's Framework for nonprofit consulting excellence
           </p>

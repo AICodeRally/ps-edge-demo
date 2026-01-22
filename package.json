@@ -1,12 +1,12 @@
 {
-  "name": "ps-edge-demo",
+  "name": "np-edge-demo",
   "version": "0.1.0",
   "private": true,
-  "description": "Professional Services Edge - Phoenix Philanthropy Group Demo",
+  "description": "Nonprofit Edge - Arizona Friends of Foster Children Foundation Demo",
   "scripts": {
-    "dev": "next dev --port 3033",
+    "dev": "next dev --port 3034",
     "build": "if [ -n \"$DATABASE_URL\" ]; then prisma generate; else echo \"Skipping prisma generate (DATABASE_URL missing)\"; fi && next build",
-    "start": "next start --port 3033",
+    "start": "next start --port 3034",
     "lint": "next lint",
     "postinstall": "if [ -n \"$DATABASE_URL\" ]; then prisma generate; else echo \"Skipping prisma generate (DATABASE_URL missing)\"; fi",
     "kb:report": "node scripts/kbcc-report.js"
