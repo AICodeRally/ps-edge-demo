@@ -7,7 +7,8 @@
  * - People find what they need by what they're trying to do (the P), not which team owns it
  * - Encourages inclusion over exclusion, shared ownership over fiefdoms
  *
- * Maps pages to their corresponding P (People, Process, Platform, Performance, Profit, Purpose)
+ * Framework: PURPOSE → PEOPLE → PROCESS → PRACTICE → PIPELINE → PROFIT
+ * Focus: Nonprofit consulting operations for Phoenix Philanthropy Group
  * Used by Footer, Navbar, Breadcrumbs, and routing logic
  */
 
@@ -46,18 +47,18 @@ export const SIX_PS_NAVIGATION: PNavigation[] = [
       {
         name: 'Team',
         href: '/dashboard/people/team',
-        description: 'View and manage team members',
+        description: 'Nonprofit consulting team directory and expertise',
         legacyHref: '/dashboard/delivery/team',
       },
       {
         name: 'Capacity & Utilization',
         href: '/dashboard/people/capacity',
-        description: 'Track team capacity and utilization metrics',
+        description: 'Consultant availability and utilization across nonprofit engagements',
       },
       {
         name: 'Onboarding',
         href: '/dashboard/people/onboarding',
-        description: 'Client and employee onboarding workflows',
+        description: 'Onboarding nonprofit consultants and building sector expertise',
         legacyHref: '/dashboard/client-success/onboarding',
       },
     ],
@@ -70,43 +71,43 @@ export const SIX_PS_NAVIGATION: PNavigation[] = [
       {
         name: 'Engagements',
         href: '/dashboard/process/engagements',
-        description: 'Active client engagements and projects',
+        description: 'Active nonprofit client campaigns and consulting projects',
         legacyHref: '/dashboard/delivery/engagements',
       },
       {
         name: 'Deliverables',
         href: '/dashboard/process/deliverables',
-        description: 'Track deliverables across engagements',
+        description: 'Campaign plans, strategic roadmaps, and feasibility studies',
         legacyHref: '/dashboard/delivery/deliverables',
       },
       {
         name: 'Support',
         href: '/dashboard/process/support',
-        description: 'Client support tickets and requests',
+        description: 'Nonprofit client support and inquiry management',
         legacyHref: '/dashboard/client-success/support',
       },
       {
         name: 'Document Library',
         href: '/dashboard/process/documents',
-        description: 'Centralized document repository',
+        description: 'Templates: case statements, donor pyramids, board materials',
         legacyHref: '/dashboard/operations/documents',
       },
       {
         name: 'Knowledge Library',
         href: '/dashboard/process/knowledge',
-        description: 'Knowledge base and best practices',
+        description: 'Nonprofit sector best practices and methodologies',
         legacyHref: '/dashboard/operations/knowledge',
       },
       {
         name: 'Timesheets',
         href: '/dashboard/process/timesheets',
-        description: 'Time tracking and billable hours',
+        description: 'Consultant billable hours on nonprofit engagements',
         legacyHref: '/dashboard/finance/timesheets',
       },
       {
         name: 'Invoices',
         href: '/dashboard/process/invoices',
-        description: 'Invoice management and payments',
+        description: 'Client billing for completed nonprofit consulting work',
         legacyHref: '/dashboard/finance/invoices',
       },
     ],
@@ -117,27 +118,27 @@ export const SIX_PS_NAVIGATION: PNavigation[] = [
     landingPageHref: '/dashboard/practice',
     pages: [
       {
-        name: 'AI Tools',
-        href: '/dashboard/practice/ai',
-        description: 'AI tools for consulting delivery and product features',
+        name: 'Service Lines',
+        href: '/dashboard/practice/services',
+        description: '11 nonprofit consulting service lines (campaign, board, M&A, coaching, etc.)',
         legacyHref: '/dashboard/operations/ai',
       },
       {
-        name: 'Integrations',
-        href: '/dashboard/practice/integrations',
-        description: 'Consulting tools and NP-Edge platform connectors',
+        name: 'Methodologies',
+        href: '/dashboard/practice/methodologies',
+        description: 'Consulting frameworks and approaches for nonprofit sector',
         legacyHref: '/dashboard/operations/integrations',
       },
       {
-        name: 'Data Management',
-        href: '/dashboard/practice/data',
-        description: 'Client engagement data and NP-Edge tenant data quality',
+        name: 'Advancement Academy',
+        href: '/dashboard/practice/academy',
+        description: 'Professional development training for nonprofit professionals',
         legacyHref: '/dashboard/operations/data',
       },
       {
-        name: 'Tenant Management',
-        href: '/dashboard/practice/tenants',
-        description: 'NP-Edge customer portal and health monitoring',
+        name: 'Thought Leadership',
+        href: '/dashboard/practice/thought-leadership',
+        description: 'Nonprofit sector insights, publications, and whitepapers',
         legacyHref: '/dashboard/partner-portal/tenants',
       },
     ],
