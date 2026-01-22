@@ -57,29 +57,26 @@ export function Navbar() {
           {/* Left side: Product Name + PS Logo + Module Info */}
           <div className="flex items-center gap-6">
             <Link href="/dashboard" className="flex items-center gap-4 group">
-              {/* Product Name - Large like SPARCC */}
+              {/* Product Name - Edge for Consulting */}
               <div className="flex flex-col items-center">
                 <span
-                  className="text-3xl font-bold bg-clip-text text-transparent tracking-tight"
+                  className="text-2xl font-bold bg-clip-text text-transparent tracking-tight"
                   style={{
                     backgroundImage: 'linear-gradient(90deg, #9333ea, #c026d3, #db2777, #facc15)',
                   }}
                 >
-                  EDGE
-                </span>
-                <span className="text-[8px] text-gray-500 dark:text-gray-400 tracking-widest -mt-1">
-                  for Nonprofits
+                  Edge for Consulting
                 </span>
               </div>
 
-              {/* PS Circle Logo */}
+              {/* EC Circle Logo */}
               <div
-                className="w-14 h-14 rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow"
+                className="w-12 h-12 rounded-lg flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow"
                 style={{
                   backgroundImage: 'linear-gradient(135deg, #9333ea, #c026d3, #facc15)',
                 }}
               >
-                <span className="text-white font-bold text-xl">PS</span>
+                <span className="text-white font-bold text-lg">EC</span>
               </div>
 
               {/* Module Info */}
