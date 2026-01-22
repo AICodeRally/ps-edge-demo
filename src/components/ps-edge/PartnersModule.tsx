@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * Partners Module (7th P - Horizontal Toggleable)
+ * NP-Edge Clients Module (7th P - Horizontal Toggleable)
  * Channel Partner Management for nonprofit NP-Edge tenants
  * Displays horizontally below the main 6 P grid when enabled
  */
@@ -30,7 +30,7 @@ export function PartnersModule() {
                   Partners
                 </h2>
                 <span className="px-2 py-0.5 bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 text-xs font-medium rounded-full">
-                  Channel Module
+                  NP-Edge Tenant Management
                 </span>
               </div>
               <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
@@ -42,7 +42,7 @@ export function PartnersModule() {
             href={PARTNERS_NAVIGATION.landingPageHref}
             className="px-4 py-2 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-lg hover:from-blue-700 hover:to-cyan-700 transition-all shadow-md font-medium"
           >
-            View Partners →
+            View NP-Edge Clients →
           </Link>
         </div>
 

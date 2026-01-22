@@ -13,7 +13,9 @@
       "Bash(then)",
       "Bash(else)",
       "Skill(vercel:deploy)",
-      "Skill(vercel:logs)"
+      "Skill(vercel:logs)",
+      "mcp__plugin_playwright_playwright__browser_console_messages",
+      "mcp__plugin_playwright_playwright__browser_snapshot"
     ]
   }
 }
