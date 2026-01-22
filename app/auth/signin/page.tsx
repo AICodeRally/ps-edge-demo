@@ -1,144 +1,155 @@
 'use client';
+export const dynamic = 'force-dynamic';
 
-import { Suspense, useState } from 'react';
+import { Suspense, useState, useEffect } from 'react';
 import { signIn } from 'next-auth/react';
 import { useSearchParams } from 'next/navigation';
 
 /**
  * Sign In Form Component
- * Separated to use useSearchParams inside Suspense
+ * Matches SGM-SPARCC gold standard signin flow
  */
 function SignInForm() {
-  const [email, setEmail] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get('callbackUrl') || '/dashboard';
+  const error = searchParams.get('error');
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError(null);
+  const [email, setEmail] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
-    if (!email || !email.includes('@')) {
-      setError('Please enter a valid email address');
-      return;
+  // Load last used email from localStorage on mount
+  useEffect(() => {
+    const lastEmail = localStorage.getItem('ps-edge-last-email');
+    if (lastEmail) {
+      setEmail(lastEmail);
     }
+  }, []);
 
+  const handleEmailSignIn = async (e: React.FormEvent) => {
+    e.preventDefault();
     setIsLoading(true);
 
-    try {
-      const result = await signIn('passkey', {
-        passkey: email,
-        callbackUrl,
-        redirect: true,
-      });
+    // Save email for next time
+    localStorage.setItem('ps-edge-last-email', email);
 
-      if (result?.error) {
-        setError('Sign in failed. Please try again.');
-      }
-    } catch {
-      setError('An unexpected error occurred');
-    } finally {
-      setIsLoading(false);
-    }
+    await signIn('passkey', {
+      passkey: email,
+      callbackUrl,
+    });
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div>
-        <label
-          htmlFor="email"
-          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-        >
-          Email address
-        </label>
-        <input
-          id="email"
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="you@example.com"
-          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-          disabled={isLoading}
-          autoFocus
-        />
-      </div>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 via-white to-yellow-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+      <div className="max-w-md w-full mx-4">
+        {/* Card */}
+        <div className="bg-white/70 dark:bg-gray-900/70 backdrop-blur-sm rounded-2xl shadow-2xl p-8 border border-gray-200/50 dark:border-gray-700/50">
+          {/* Header */}
+          <div className="text-center mb-8">
+            <div
+              className="w-16 h-16 rounded-xl mx-auto mb-4 flex items-center justify-center shadow-lg"
+              style={{
+                backgroundImage: 'linear-gradient(135deg, #9333ea, #c026d3, #facc15)',
+              }}
+            >
+              <span className="text-white font-bold text-2xl">PS</span>
+            </div>
+            <h1
+              className="text-3xl font-bold bg-clip-text text-transparent"
+              style={{
+                backgroundImage: 'linear-gradient(90deg, #9333ea, #c026d3, #db2777, #facc15)',
+              }}
+            >
+              PS-Edge
+            </h1>
+            <p className="text-gray-600 dark:text-gray-400 mt-2">Professional Services Platform</p>
+          </div>
 
-      {error && (
-        <div className="text-red-600 dark:text-red-400 text-sm bg-red-50 dark:bg-red-900/20 px-3 py-2 rounded-lg">
-          {error}
+          {/* Error Message */}
+          {error && (
+            <div className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+              <p className="text-sm text-red-600 dark:text-red-400">
+                {error === 'CredentialsSignin'
+                  ? 'Invalid credentials. Please try again.'
+                  : error === 'AccessDenied'
+                  ? 'Access denied. Your account may not be active.'
+                  : 'An error occurred during sign in'}
+              </p>
+            </div>
+          )}
+
+          {/* Email Sign In */}
+          <form onSubmit={handleEmailSignIn} className="space-y-4">
+            <div>
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+              >
+                Email Address
+              </label>
+              <input
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="you@company.com"
+                disabled={isLoading}
+                autoComplete="email"
+                className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-lg focus:border-purple-500 dark:focus:border-purple-400 focus:outline-none disabled:opacity-50 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+              />
+            </div>
+            <button
+              type="submit"
+              disabled={isLoading || !email}
+              className="w-full px-4 py-3 text-white font-medium rounded-lg hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg"
+              style={{
+                backgroundImage: 'linear-gradient(90deg, #9333ea, #c026d3, #db2777, #facc15)',
+              }}
+            >
+              {isLoading ? 'Signing in...' : 'Sign In'}
+            </button>
+          </form>
+
+          {/* Footer */}
+          <div className="mt-8 text-center text-sm text-gray-500 dark:text-gray-400">
+            <p>Powered by AICR Platform</p>
+            <p className="mt-2">
+              By signing in, you agree to our{' '}
+              <a href="/terms" className="text-purple-600 dark:text-purple-400 hover:underline">
+                Terms
+              </a>{' '}
+              and{' '}
+              <a href="/privacy" className="text-purple-600 dark:text-purple-400 hover:underline">
+                Privacy Policy
+              </a>
+            </p>
+          </div>
+
+          {/* Demo Info */}
+          <div className="mt-6 p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg border border-purple-200 dark:border-purple-800">
+            <p className="text-xs text-gray-600 dark:text-gray-400 text-center">
+              <strong className="text-purple-700 dark:text-purple-300">Demo Mode:</strong> Enter any email to sign in
+            </p>
+          </div>
         </div>
-      )}
-
-      <button
-        type="submit"
-        disabled={isLoading}
-        className="w-full py-2.5 px-4 bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white font-medium rounded-lg hover:from-purple-700 hover:to-fuchsia-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
-      >
-        {isLoading ? 'Signing in...' : 'Sign in'}
-      </button>
-    </form>
+      </div>
+    </div>
   );
 }
 
 /**
  * Sign In Page for PS-Edge
- *
- * Simple email-based authentication for demo mode.
- * Accepts any valid email address.
+ * Matches SGM-SPARCC signin pattern
  */
 export default function SignInPage() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 via-white to-yellow-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-      <div className="w-full max-w-md">
-        {/* Logo */}
-        <div className="text-center mb-8">
-          <div
-            className="w-16 h-16 rounded-xl mx-auto mb-4 flex items-center justify-center text-white text-2xl font-bold"
-            style={{
-              background: 'linear-gradient(135deg, #9333ea, #c026d3, #facc15)',
-            }}
-          >
-            PS
-          </div>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
-            PS-Edge
-          </h1>
-          <p className="text-gray-600 dark:text-gray-400 mt-1">
-            Professional Services Platform
-          </p>
+    <Suspense
+      fallback={
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 via-white to-yellow-50">
+          <div className="text-gray-500">Loading...</div>
         </div>
-
-        {/* Sign In Card */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 p-8">
-          <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-6 text-center">
-            Sign in to continue
-          </h2>
-
-          <Suspense fallback={
-            <div className="space-y-4">
-              <div className="h-10 bg-gray-200 dark:bg-gray-700 rounded-lg animate-pulse" />
-              <div className="h-10 bg-gray-200 dark:bg-gray-700 rounded-lg animate-pulse" />
-            </div>
-          }>
-            <SignInForm />
-          </Suspense>
-
-          {/* Demo hint */}
-          <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
-            <p className="text-xs text-center text-gray-500 dark:text-gray-400">
-              Demo mode: Enter any valid email to sign in.
-              <br />
-              Try <span className="font-mono">admin@ppg.com</span> for admin access.
-            </p>
-          </div>
-        </div>
-
-        {/* Footer */}
-        <p className="text-center text-xs text-gray-500 dark:text-gray-400 mt-6">
-          Phoenix Philanthropy Group &copy; 2026
-        </p>
-      </div>
-    </div>
+      }
+    >
+      <SignInForm />
+    </Suspense>
   );
 }

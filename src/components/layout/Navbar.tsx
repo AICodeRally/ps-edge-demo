@@ -20,9 +20,12 @@ export function Navbar() {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Get user info from session
+  const rawRole = (session?.user as any)?.role || 'USER';
+  const roleDisplay = rawRole === 'ADMIN' ? 'Super User' : rawRole === 'USER' ? 'User' : rawRole;
+
   const user = {
     name: session?.user?.name || 'User',
-    role: (session?.user as any)?.role || 'Demo',
+    role: roleDisplay,
     email: session?.user?.email || '',
     initials: session?.user?.name?.split(' ').map(n => n[0]).join('') || 'U'
   };
@@ -146,7 +149,7 @@ export function Navbar() {
                   {/* Menu Items */}
                   <div className="py-1">
                     <Link
-                      href="/dashboard/platform/settings/profile"
+                      href="/dashboard/settings/profile"
                       onClick={() => setIsDropdownOpen(false)}
                       className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
                     >
@@ -154,7 +157,7 @@ export function Navbar() {
                       Profile
                     </Link>
                     <Link
-                      href="/dashboard/platform/settings"
+                      href="/dashboard/settings"
                       onClick={() => setIsDropdownOpen(false)}
                       className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
                     >

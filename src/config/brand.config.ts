@@ -48,8 +48,8 @@ export const BRAND_CONFIG = {
       borderClass: 'border-violet-200 dark:border-violet-800',
       hoverShadow: 'hover:shadow-violet-600/20',
     },
-    platform: {
-      name: 'Platform',
+    practice: {
+      name: 'Practice',
       color: 'fuchsia-600',       // Middle of gradient
       textClass: 'text-fuchsia-600',
       bgClass: 'bg-fuchsia-50 dark:bg-fuchsia-900/10',
@@ -64,8 +64,8 @@ export const BRAND_CONFIG = {
       borderClass: 'border-pink-200 dark:border-pink-800',
       hoverShadow: 'hover:shadow-pink-600/20',
     },
-    profit: {
-      name: 'Profit',
+    pipeline: {
+      name: 'Pipeline',
       color: 'orange-600',        // Yellow approach
       textClass: 'text-orange-600',
       bgClass: 'bg-orange-50 dark:bg-orange-900/10',

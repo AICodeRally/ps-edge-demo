@@ -1,9 +1,9 @@
 /**
- * Legacy Route - Redirects to /dashboard/platform/tenants
+ * Legacy Route - Redirects to /dashboard/practice/tenants
  */
 
 import { redirect } from 'next/navigation';
 
 export default function LegacyTenantsPage() {
-  redirect('/dashboard/platform/tenants');
+  redirect('/dashboard/practice/tenants');
 }

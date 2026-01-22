@@ -1,9 +1,9 @@
 /**
- * Legacy Route - Redirects to /dashboard/platform/data
+ * Legacy Route - Redirects to /dashboard/practice/data
  */
 
 import { redirect } from 'next/navigation';
 
 export default function LegacyDataPage() {
-  redirect('/dashboard/platform/data');
+  redirect('/dashboard/practice/data');
 }

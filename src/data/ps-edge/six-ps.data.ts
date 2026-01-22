@@ -34,17 +34,17 @@ export const AGGREGATE_SIX_PS: DepartmentSixPs = {
       { label: 'Process Adherence', value: '91%', trend: 'stable' }
     ]
   },
-  platform: {
-    category: 'PLATFORM',
-    title: 'Platform',
-    description: 'Technology, tools, and systems enablement',
+  practice: {
+    category: 'PRACTICE',
+    title: 'Practice',
+    description: 'Methodologies, tools, and delivery excellence',
     icon: '🖥️',
     color: 'text-indigo-600',
     metrics: [
-      { label: 'System Uptime', value: '99.8%', trend: 'stable' },
-      { label: 'Active Integrations', value: '8', trend: 'up', trendValue: '+1' },
-      { label: 'Data Quality Score', value: '96%', trend: 'up', trendValue: '+1%' },
-      { label: 'User Adoption', value: '89%', trend: 'up', trendValue: '+4%' }
+      { label: 'Methodology Adoption', value: '98%', trend: 'stable' },
+      { label: 'Tool Utilization', value: '91%', trend: 'up', trendValue: '+4%' },
+      { label: 'Delivery Quality', value: '4.8/5', trend: 'up', trendValue: '+0.2' },
+      { label: 'Client Training Hours', value: '124', trend: 'up', trendValue: '+12' }
     ]
   },
   performance: {
@@ -60,17 +60,17 @@ export const AGGREGATE_SIX_PS: DepartmentSixPs = {
       { label: 'Billable Hours %', value: '78%', trend: 'up', trendValue: '+2%' }
     ]
   },
-  profit: {
-    category: 'PROFIT',
-    title: 'Profit',
-    description: 'Revenue, margins, and financial health',
+  pipeline: {
+    category: 'PIPELINE',
+    title: 'Pipeline',
+    description: 'Sales pipeline, proposals, and revenue forecasting',
     icon: '💰',
     color: 'text-yellow-600',
     metrics: [
+      { label: 'Pipeline Value', value: '$1.8M', trend: 'up', trendValue: '+15%' },
+      { label: 'Proposal Win Rate', value: '42%', trend: 'down', trendValue: '-3%' },
       { label: 'Monthly Revenue', value: '$487K', trend: 'up', trendValue: '+12%' },
-      { label: 'Gross Margin', value: '64%', trend: 'up', trendValue: '+2%' },
-      { label: 'Outstanding AR', value: '$124K', trend: 'down', trendValue: '-8%' },
-      { label: 'Revenue Per Consultant', value: '$17.4K', trend: 'up', trendValue: '+8%' }
+      { label: 'Commission Payout', value: '$24K', trend: 'up', trendValue: '+8%' }
     ]
   },
   purpose: {
@@ -83,6 +83,7 @@ export const AGGREGATE_SIX_PS: DepartmentSixPs = {
       { label: 'Client Impact Score', value: '8.4/10', trend: 'up', trendValue: '+0.3' },
       { label: 'Mission Alignment', value: '92%', trend: 'stable' },
       { label: 'Community Hours', value: '146', trend: 'up', trendValue: '+24' },
+      { label: 'AI Readiness Clients', value: '3', trend: 'up', trendValue: '+3', color: 'text-purple-600' },
       { label: 'Client Retention', value: '94%', trend: 'up', trendValue: '+2%' }
     ]
   }
@@ -117,17 +118,17 @@ export const SALES_SIX_PS: DepartmentSixPs = {
       { label: 'Lead Response Time', value: '4.2 hrs', trend: 'down', trendValue: '-0.8h' }
     ]
   },
-  platform: {
-    category: 'PLATFORM',
-    title: 'Platform',
-    description: 'Sales tools and CRM effectiveness',
+  practice: {
+    category: 'PRACTICE',
+    title: 'Practice',
+    description: 'Sales methodologies and proposal tools',
     icon: '🖥️',
     color: 'text-indigo-600',
     metrics: [
-      { label: 'CRM Data Quality', value: '94%', trend: 'up', trendValue: '+2%' },
-      { label: 'Email Engagement', value: '31%', trend: 'stable' },
-      { label: 'Automation Usage', value: '76%', trend: 'up', trendValue: '+5%' },
-      { label: 'Pipeline Visibility', value: '98%', trend: 'stable' }
+      { label: 'Proposal Tool Adoption', value: '94%', trend: 'up', trendValue: '+2%' },
+      { label: 'Sales Methodology Use', value: '88%', trend: 'up', trendValue: '+6%' },
+      { label: 'CRM Data Quality', value: '91%', trend: 'stable' },
+      { label: 'Template Library Usage', value: '82%', trend: 'up', trendValue: '+4%' }
     ]
   },
   performance: {
@@ -143,17 +144,17 @@ export const SALES_SIX_PS: DepartmentSixPs = {
       { label: 'New Clients This Q', value: '7', trend: 'stable' }
     ]
   },
-  profit: {
-    category: 'PROFIT',
-    title: 'Profit',
-    description: 'Sales revenue and profitability',
+  pipeline: {
+    category: 'PIPELINE',
+    title: 'Pipeline',
+    description: 'Sales pipeline and deal tracking',
     icon: '💰',
     color: 'text-yellow-600',
     metrics: [
-      { label: 'Revenue Closed', value: '$412K', trend: 'up', trendValue: '+15%' },
-      { label: 'Avg Contract Value', value: '$58.9K', trend: 'up', trendValue: '+6%' },
-      { label: 'Sales Efficiency', value: '3.2x', trend: 'up', trendValue: '+0.3x' },
-      { label: 'CAC', value: '$8.4K', trend: 'down', trendValue: '-$1.2K' }
+      { label: 'Pipeline Value', value: '$1.8M', trend: 'up', trendValue: '+12%' },
+      { label: 'Active Deals', value: '18', trend: 'up', trendValue: '+3' },
+      { label: 'Avg Deal Size', value: '$64K', trend: 'up', trendValue: '+8%' },
+      { label: 'Commission Earned', value: '$28K', trend: 'up', trendValue: '+15%' }
     ]
   },
   purpose: {
@@ -200,17 +201,17 @@ export const DELIVERY_SIX_PS: DepartmentSixPs = {
       { label: 'Quality Score', value: '4.8/5', trend: 'stable' }
     ]
   },
-  platform: {
-    category: 'PLATFORM',
-    title: 'Platform',
-    description: 'Project management tools',
+  practice: {
+    category: 'PRACTICE',
+    title: 'Practice',
+    description: 'Delivery methodologies and toolkits',
     icon: '🖥️',
     color: 'text-indigo-600',
     metrics: [
-      { label: 'PM Tool Adoption', value: '98%', trend: 'stable' },
-      { label: 'Documentation Quality', value: '91%', trend: 'up', trendValue: '+3%' },
-      { label: 'Template Usage', value: '84%', trend: 'up', trendValue: '+6%' },
-      { label: 'Collaboration Score', value: '4.6/5', trend: 'up', trendValue: '+0.2' }
+      { label: 'Methodology Adoption', value: '98%', trend: 'stable' },
+      { label: 'Toolkit Utilization', value: '91%', trend: 'up', trendValue: '+3%' },
+      { label: 'Best Practice Compliance', value: '94%', trend: 'up', trendValue: '+2%' },
+      { label: 'Quality Framework Use', value: '89%', trend: 'up', trendValue: '+4%' }
     ]
   },
   performance: {
@@ -226,17 +227,17 @@ export const DELIVERY_SIX_PS: DepartmentSixPs = {
       { label: 'Deliverables Completed', value: '47', trend: 'up', trendValue: '+8' }
     ]
   },
-  profit: {
-    category: 'PROFIT',
-    title: 'Profit',
-    description: 'Delivery profitability',
+  pipeline: {
+    category: 'PIPELINE',
+    title: 'Pipeline',
+    description: 'Project pipeline and upcoming work',
     icon: '💰',
     color: 'text-yellow-600',
     metrics: [
-      { label: 'Project Margin', value: '68%', trend: 'up', trendValue: '+3%' },
-      { label: 'Billable Hours', value: '82%', trend: 'up', trendValue: '+2%' },
-      { label: 'Avg Hourly Rate', value: '$185', trend: 'stable' },
-      { label: 'Revenue Per Consultant', value: '$21.2K', trend: 'up', trendValue: '+9%' }
+      { label: 'Scheduled Projects', value: '12', trend: 'up', trendValue: '+2' },
+      { label: 'Pipeline Hours', value: '2,840', trend: 'up', trendValue: '+340' },
+      { label: 'Avg Project Value', value: '$58K', trend: 'up', trendValue: '+6%' },
+      { label: 'Utilization Forecast', value: '84%', trend: 'stable' }
     ]
   },
   purpose: {
@@ -283,17 +284,17 @@ export const CLIENT_SUCCESS_SIX_PS: DepartmentSixPs = {
       { label: 'Onboarding Time', value: '4.2 weeks', trend: 'down', trendValue: '-0.3w' }
     ]
   },
-  platform: {
-    category: 'PLATFORM',
-    title: 'Platform',
-    description: 'CS tools and systems',
+  practice: {
+    category: 'PRACTICE',
+    title: 'Practice',
+    description: 'Client success methodologies and frameworks',
     icon: '🖥️',
     color: 'text-indigo-600',
     metrics: [
-      { label: 'CRM Health Score', value: '96%', trend: 'stable' },
-      { label: 'Support Ticket System', value: '99%', trend: 'stable' },
-      { label: 'Client Portal Adoption', value: '82%', trend: 'up', trendValue: '+6%' },
-      { label: 'Automation Coverage', value: '68%', trend: 'up', trendValue: '+4%' }
+      { label: 'Success Framework Use', value: '96%', trend: 'stable' },
+      { label: 'Onboarding Methodology', value: '99%', trend: 'stable' },
+      { label: 'Health Score Model', value: '92%', trend: 'up', trendValue: '+4%' },
+      { label: 'Playbook Adoption', value: '88%', trend: 'up', trendValue: '+6%' }
     ]
   },
   performance: {
@@ -309,17 +310,17 @@ export const CLIENT_SUCCESS_SIX_PS: DepartmentSixPs = {
       { label: 'Client Health (Avg)', value: '8.2/10', trend: 'up', trendValue: '+0.3' }
     ]
   },
-  profit: {
-    category: 'PROFIT',
-    title: 'Profit',
-    description: 'CS revenue contribution',
+  pipeline: {
+    category: 'PIPELINE',
+    title: 'Pipeline',
+    description: 'Renewal and expansion pipeline',
     icon: '💰',
     color: 'text-yellow-600',
     metrics: [
-      { label: 'Renewal Revenue', value: '$392K', trend: 'up', trendValue: '+8%' },
-      { label: 'Expansion Revenue', value: '$124K', trend: 'up', trendValue: '+12%' },
-      { label: 'Churn Prevention', value: '$86K', trend: 'up', trendValue: '+$18K' },
-      { label: 'Avg Account Value', value: '$14.2K', trend: 'up', trendValue: '+5%' }
+      { label: 'Renewal Pipeline', value: '$420K', trend: 'up', trendValue: '+8%' },
+      { label: 'Upsell Opportunities', value: '14', trend: 'up', trendValue: '+3' },
+      { label: 'Expansion Pipeline', value: '$156K', trend: 'up', trendValue: '+12%' },
+      { label: 'At-Risk Accounts', value: '2', trend: 'down', trendValue: '-3' }
     ]
   },
   purpose: {
@@ -366,16 +367,16 @@ export const FINANCE_SIX_PS: DepartmentSixPs = {
       { label: 'Timesheet Submission', value: '94%', trend: 'up', trendValue: '+2%' }
     ]
   },
-  platform: {
-    category: 'PLATFORM',
-    title: 'Platform',
-    description: 'Finance systems and tools',
+  practice: {
+    category: 'PRACTICE',
+    title: 'Practice',
+    description: 'Financial systems and reporting frameworks',
     icon: '🖥️',
     color: 'text-indigo-600',
     metrics: [
       { label: 'Accounting System Uptime', value: '99.9%', trend: 'stable' },
-      { label: 'QuickBooks Integration', value: '98%', trend: 'stable' },
-      { label: 'Automated Invoicing', value: '84%', trend: 'up', trendValue: '+6%' },
+      { label: 'Financial Reporting Quality', value: '98%', trend: 'stable' },
+      { label: 'Process Automation', value: '84%', trend: 'up', trendValue: '+6%' },
       { label: 'Data Accuracy', value: '99.2%', trend: 'stable' }
     ]
   },
@@ -392,17 +393,17 @@ export const FINANCE_SIX_PS: DepartmentSixPs = {
       { label: 'Forecast Accuracy', value: '94%', trend: 'up', trendValue: '+1%' }
     ]
   },
-  profit: {
-    category: 'PROFIT',
-    title: 'Profit',
-    description: 'Financial health metrics',
+  pipeline: {
+    category: 'PIPELINE',
+    title: 'Pipeline',
+    description: 'Revenue forecast and collections pipeline',
     icon: '💰',
     color: 'text-yellow-600',
     metrics: [
-      { label: 'Monthly Revenue', value: '$487K', trend: 'up', trendValue: '+12%' },
-      { label: 'Gross Margin', value: '64%', trend: 'up', trendValue: '+2%' },
-      { label: 'Operating Margin', value: '22%', trend: 'up', trendValue: '+3%' },
-      { label: 'Cash on Hand', value: '$842K', trend: 'up', trendValue: '+$124K' }
+      { label: 'Revenue Forecast (Q1)', value: '$850K', trend: 'up', trendValue: '+12%' },
+      { label: 'Collections Pipeline', value: '$186K', trend: 'down', trendValue: '-8%' },
+      { label: 'Forecast Accuracy', value: '94%', trend: 'up', trendValue: '+1%' },
+      { label: 'Cash Flow Projection', value: '+$124K', trend: 'up', trendValue: '+$18K' }
     ]
   },
   purpose: {

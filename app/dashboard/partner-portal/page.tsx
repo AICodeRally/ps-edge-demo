@@ -6,5 +6,5 @@
 import { redirect } from 'next/navigation';
 
 export default function LegacyPartnerPortalDashboard() {
-  redirect('/dashboard/platform');
+  redirect('/dashboard/practice');
 }

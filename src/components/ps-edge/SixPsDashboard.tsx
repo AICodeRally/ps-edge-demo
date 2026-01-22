@@ -53,9 +53,9 @@ export function SixPsDashboard({ data, title, subtitle }: SixPsDashboardProps) {
     PURPOSE: data.purpose,
     PEOPLE: data.people,
     PROCESS: data.process,
-    PLATFORM: data.platform,
+    PRACTICE: data.practice,
     PERFORMANCE: data.performance,
-    PROFIT: data.profit,
+    PIPELINE: data.pipeline,
   };
 
   const sections = pOrder.map((category) => pMap[category]);

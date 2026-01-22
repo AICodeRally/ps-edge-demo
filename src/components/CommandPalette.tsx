@@ -51,15 +51,15 @@ export function CommandPalette() {
     { id: 'documents', label: 'Documents', description: 'Templates and files', href: '/dashboard/process/documents', category: 'Process' },
     { id: 'knowledge', label: 'Knowledge Base', description: 'Documentation', href: '/dashboard/process/knowledge', category: 'Process' },
 
-    // Platform
-    { id: 'ai-features', label: 'AI Features', description: 'Configure AI orbs', href: '/dashboard/platform/settings/ai', category: 'Platform' },
-    { id: 'integrations', label: 'Integrations', description: 'Connected services', href: '/dashboard/platform/integrations', category: 'Platform' },
-    { id: 'tenants', label: 'Tenants', description: 'Client organizations', href: '/dashboard/platform/tenants', category: 'Platform' },
+    // Practice
+    { id: 'ai-features', label: 'AI Features', description: 'Configure AI orbs', href: '/dashboard/settings/ai', category: 'Settings' },
+    { id: 'integrations', label: 'Integrations', description: 'Connected services', href: '/dashboard/practice/integrations', category: 'Practice' },
+    { id: 'tenants', label: 'Tenants', description: 'Client organizations', href: '/dashboard/practice/tenants', category: 'Practice' },
 
     // Settings
-    { id: 'settings', label: 'Settings', description: 'Platform configuration', href: '/dashboard/platform/settings', category: 'Settings' },
-    { id: 'profile', label: 'Profile', description: 'Your account', href: '/dashboard/platform/settings/profile', category: 'Settings' },
-    { id: 'brand', label: 'Brand Settings', description: 'Customize colors', href: '/dashboard/platform/settings/brand', category: 'Settings' },
+    { id: 'settings', label: 'Settings', description: 'System configuration', href: '/dashboard/settings', category: 'Settings' },
+    { id: 'profile', label: 'Profile', description: 'Your account', href: '/dashboard/settings/profile', category: 'Settings' },
+    { id: 'brand', label: 'Brand Settings', description: 'Customize colors', href: '/dashboard/settings/brand', category: 'Settings' },
   ];
 
   // Filter commands based on search

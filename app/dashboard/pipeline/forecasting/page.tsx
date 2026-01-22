@@ -1,10 +1,11 @@
 /**
- * PROFIT - Revenue Overview
+ * PIPELINE - Revenue Forecasting
+ * Sales forecasting and revenue targets
  */
 
 'use client';
 
-export default function RevenueOverviewPage() {
+export default function RevenueForecastingPage() {
   const revenueByClient = [
     { client: 'Global Giving Foundation', revenue: 487200, percentage: 20.3, contracts: 3, avgDeal: 162400 },
     { client: 'Education First Collaborative', revenue: 423800, percentage: 17.7, contracts: 2, avgDeal: 211900 },
@@ -16,12 +17,21 @@ export default function RevenueOverviewPage() {
     { client: 'Other Clients', revenue: 239000, percentage: 9.9, contracts: 8, avgDeal: 29875 },
   ];
 
+  // PPG's 11 Service Lines + AI Line of Service
   const revenueByService = [
-    { service: 'Strategic Consulting', revenue: 784200, percentage: 32.7, color: 'bg-orange-500' },
-    { service: 'Technology Implementation', revenue: 612400, percentage: 25.5, color: 'bg-amber-500' },
-    { service: 'Change Management', revenue: 487600, percentage: 20.3, color: 'bg-yellow-500' },
-    { service: 'Data Analytics', revenue: 324100, percentage: 13.5, color: 'bg-green-500' },
-    { service: 'Training & Development', revenue: 190700, percentage: 8.0, color: 'bg-blue-500' },
+    { service: 'Strategic Planning', revenue: 522000, percentage: 21.8, color: 'bg-violet-500' },
+    { service: 'Campaign Fundraising', revenue: 422000, percentage: 17.6, color: 'bg-fuchsia-500' },
+    { service: 'Board Development', revenue: 333000, percentage: 13.9, color: 'bg-pink-500' },
+    { service: 'Grant Writing', revenue: 264000, percentage: 11.0, color: 'bg-orange-500' },
+    { service: 'Executive Coaching', revenue: 209000, percentage: 8.7, color: 'bg-amber-500' },
+    { service: 'Advancement Academy', revenue: 185000, percentage: 7.7, color: 'bg-yellow-500' },
+    { service: 'Operational Fundraising', revenue: 162000, percentage: 6.8, color: 'bg-lime-500' },
+    { service: 'AI Readiness Assessments', revenue: 96000, percentage: 4.0, color: 'bg-purple-500' },
+    { service: 'Feasibility Studies', revenue: 72000, percentage: 3.0, color: 'bg-emerald-500' },
+    { service: 'Relationship Management', revenue: 60000, percentage: 2.5, color: 'bg-teal-500' },
+    { service: 'Alumni Relations', revenue: 32000, percentage: 1.3, color: 'bg-cyan-500' },
+    { service: 'Interim Management', revenue: 26000, percentage: 1.1, color: 'bg-sky-500' },
+    { service: 'M&A Advisory', revenue: 17000, percentage: 0.7, color: 'bg-blue-500' },
   ];
 
   const monthlyRevenue = [
@@ -37,8 +47,8 @@ export default function RevenueOverviewPage() {
   return (
     <div className="h-full flex flex-col">
       <div className="px-6 py-4 border-b border-gray-200 dark:border-dark-border-default bg-white dark:bg-dark-bg-secondary">
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Revenue Overview</h1>
-        <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">Revenue tracking and forecasting</p>
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Revenue Forecasting</h1>
+        <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">Sales forecasting and revenue targets</p>
         
         {/* Stats Cards */}
         <div className="grid grid-cols-5 gap-3 mt-4">

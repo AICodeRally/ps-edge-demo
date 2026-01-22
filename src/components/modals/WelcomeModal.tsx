@@ -1,11 +1,10 @@
 'use client';
 
 /**
- * What's New Modal (PS-Edge)
+ * Welcome Modal (PS-Edge)
  *
  * Introduces users to the 6 P's organizational framework
  * Shows on first visit, dismissable with "Don't show again"
- * Matches SGM-SPARCC gold standard onboarding pattern
  */
 
 import { useState, useEffect } from 'react';
@@ -17,7 +16,6 @@ import {
   GearIcon,
   RocketIcon,
   BarChartIcon,
-  PieChartIcon,
   StarIcon,
 } from '@radix-ui/react-icons';
 
@@ -27,18 +25,18 @@ const iconMap: Record<SixPCategory, React.ComponentType<{ className?: string }>>
   PROCESS: GearIcon,
   PRACTICE: RocketIcon,
   PERFORMANCE: BarChartIcon,
-  PIPELINE: BarChartIcon, // Using BarChartIcon for sales pipeline visual
+  PIPELINE: BarChartIcon,
   PURPOSE: StarIcon,
 };
 
 const WELCOME_KEY = 'ps-edge-welcome-modal-seen';
-const MODAL_VERSION = '2.0'; // Increment to show modal again for updates
+const MODAL_VERSION = '1.0'; // Increment to show modal again for updates
 
-interface WhatsNewModalProps {
+interface WelcomeModalProps {
   onClose?: () => void;
 }
 
-export function WhatsNewModal({ onClose }: WhatsNewModalProps) {
+export function WelcomeModal({ onClose }: WelcomeModalProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [dontShowAgain, setDontShowAgain] = useState(false);
 
@@ -46,8 +44,7 @@ export function WhatsNewModal({ onClose }: WhatsNewModalProps) {
     // Check if user has seen this version of the modal
     const seenVersion = localStorage.getItem(WELCOME_KEY);
     if (seenVersion !== MODAL_VERSION) {
-      // Show after brief delay
-      setTimeout(() => setIsOpen(true), 800);
+      setIsOpen(true);
     }
   }, []);
 
@@ -65,19 +62,14 @@ export function WhatsNewModal({ onClose }: WhatsNewModalProps) {
 
   const sixPs = [
     {
-      category: 'PURPOSE' as SixPCategory,
-      description: 'Mission alignment and client impact',
-      features: ['Mission', 'Success', 'Renewals', 'Proposals', 'Clients'],
-    },
-    {
       category: 'PEOPLE' as SixPCategory,
-      description: 'Team capacity and workforce management',
-      features: ['Team Dashboard', 'Capacity Planning', 'Onboarding'],
+      description: 'Team capacity, utilization, and workforce management',
+      features: ['Team Dashboard', 'Capacity Planning', 'Onboarding', 'Skills Matrix'],
     },
     {
       category: 'PROCESS' as SixPCategory,
-      description: 'Workflow efficiency and deliverables',
-      features: ['Engagements', 'Deliverables', 'Support', 'Knowledge'],
+      description: 'Workflow efficiency, deliverables, and operations',
+      features: ['Engagements', 'Deliverables', 'Support', 'Documents', 'Knowledge'],
     },
     {
       category: 'PRACTICE' as SixPCategory,
@@ -91,8 +83,13 @@ export function WhatsNewModal({ onClose }: WhatsNewModalProps) {
     },
     {
       category: 'PERFORMANCE' as SixPCategory,
-      description: 'KPIs and operational metrics',
+      description: 'KPIs, outcomes, and operational metrics',
       features: ['KPI Dashboard', 'Health', 'Benchmarks', 'Signals'],
+    },
+    {
+      category: 'PURPOSE' as SixPCategory,
+      description: 'Mission alignment and client impact',
+      features: ['Mission Dashboard', 'Success', 'Renewals', 'Proposals', 'Clients'],
     },
   ];
 
@@ -139,7 +136,7 @@ export function WhatsNewModal({ onClose }: WhatsNewModalProps) {
                 return (
                   <div
                     key={category}
-                    className="border-2 rounded-xl p-4 hover:shadow-lg transition-all cursor-default"
+                    className="border-2 rounded-xl p-4 hover:shadow-lg transition-all"
                     style={{
                       borderColor: `${config.colorHex}40`,
                       backgroundColor: `${config.colorHex}08`,
@@ -193,10 +190,11 @@ export function WhatsNewModal({ onClose }: WhatsNewModalProps) {
             <div className="bg-teal-50 dark:bg-teal-900/20 border-2 border-teal-200 dark:border-teal-800 rounded-xl p-4">
               <h3 className="text-sm font-bold text-teal-700 dark:text-teal-300 mb-1 inline-flex items-center gap-1.5">
                 <CheckCircledIcon className="w-4 h-4" />
-                Nonprofit Consulting Pack
+                Built for Nonprofit Consulting
               </h3>
               <p className="text-xs text-teal-600 dark:text-teal-400 leading-relaxed">
-                This deployment includes the Nonprofit Consulting Pack with 11 specialized service lines: campaign fundraising, strategic planning, board development, grant writing, executive coaching, and more. Now featuring 2026 AI Line of Service for ethical AI adoption.
+                All features designed specifically for nonprofit consulting firms. Track strategic planning,
+                capital campaigns, board development, and more with demo data tailored to the sector.
               </p>
             </div>
           </div>

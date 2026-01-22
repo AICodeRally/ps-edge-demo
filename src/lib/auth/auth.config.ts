@@ -5,7 +5,7 @@ import CredentialsProvider from 'next-auth/providers/credentials';
  * NextAuth.js Configuration for PS-Edge
  *
  * Multi-tenant Professional Services platform with:
- * - Credentials (passkey) for demo mode
+ * - Credentials (passkey) for email-based demo signin
  * - Session enrichment with tenant context
  * - Role-based access control
  */
@@ -18,7 +18,7 @@ export const authOptions: AuthOptions = {
       credentials: {
         passkey: { label: 'Email', type: 'email' },
       },
-      async authorize(credentials) {
+      async authorize(credentials: any) {
         // Demo mode: accept any valid email
         const email = credentials?.passkey?.trim();
         if (email && email.includes('@')) {
@@ -34,17 +34,25 @@ export const authOptions: AuthOptions = {
           let tenantSlug = 'ps-edge';
           let tenantName = 'Phoenix Philanthropy Group';
 
-          // Admin for ppg.com domain
-          if (domain === 'ppg.com' || domain === 'phoenixphilanthropy.com') {
+          // Super User (Admin) access for core domains
+          if (
+            domain === 'ppg.com' ||
+            domain === 'phoenixphilanthropy.com' ||
+            domain === 'aicoderally.com' ||
+            domain === 'iacoderally.com' || // Handle typo variant
+            domain === 'demo.com' ||
+            domain === 'consultant.com'
+          ) {
             role = 'ADMIN';
+
+            // AICR team gets special branding
+            if (domain === 'aicoderally.com' || domain === 'iacoderally.com') {
+              tenantSlug = 'aicr';
+              tenantName = 'AICR Platform Team';
+            }
           }
 
-          // Demo/consultant domains get elevated access
-          if (domain === 'demo.com' || domain === 'consultant.com') {
-            role = 'ADMIN';
-            tenantSlug = 'ps-edge-demo';
-            tenantName = 'PS-Edge Demo';
-          }
+          console.log('Auth: Email =', email, '| Domain =', domain, '| Role =', role);
 
           return {
             id: `user-${email.replace(/[^a-z0-9]/gi, '-')}`,
@@ -80,7 +88,7 @@ export const authOptions: AuthOptions = {
         token.tenantId = `tenant-${(user as any).tenantSlug || 'ps-edge'}`;
         token.tenantSlug = (user as any).tenantSlug || 'ps-edge';
         token.tenantName = (user as any).tenantName || 'Phoenix Philanthropy Group';
-        token.tenantTier = 'PROFESSIONAL'; // PS-Edge default tier
+        token.tenantTier = 'PROFESSIONAL';
       }
       return token;
     },

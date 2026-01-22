@@ -11,7 +11,9 @@
       "Bash(for file in /Users/toddlebaron/dev/ps-edge-demo/app/dashboard/platform/usage/page.tsx /Users/toddlebaron/dev/ps-edge-demo/app/dashboard/platform/tenants/page.tsx /Users/toddlebaron/dev/ps-edge-demo/app/dashboard/platform/integrations/page.tsx /Users/toddlebaron/dev/ps-edge-demo/app/dashboard/platform/ai/page.tsx /Users/toddlebaron/dev/ps-edge-demo/app/dashboard/platform/data/page.tsx /Users/toddlebaron/dev/ps-edge-demo/app/dashboard/profit/timesheets/page.tsx /Users/toddlebaron/dev/ps-edge-demo/app/dashboard/profit/commissions/page.tsx /Users/toddlebaron/dev/ps-edge-demo/app/dashboard/profit/invoices/page.tsx /Users/toddlebaron/dev/ps-edge-demo/app/dashboard/profit/revenue/page.tsx)",
       "Bash(if grep -q \"🚧\" \"$file\")",
       "Bash(then)",
-      "Bash(else)"
+      "Bash(else)",
+      "Skill(vercel:deploy)",
+      "Skill(vercel:logs)"
     ]
   }
 }

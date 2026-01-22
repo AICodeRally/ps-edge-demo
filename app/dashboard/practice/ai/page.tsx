@@ -116,8 +116,8 @@ export default function AIPage() {
                       <td className="px-4 py-3 text-sm text-gray-600 dark:text-gray-400">{request.duration}</td>
                       <td className="px-4 py-3">
                         <span className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${
-                          request.status === 'Success' 
-                            ? 'bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300' 
+                          request.status === 'Success'
+                            ? 'bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300'
                             : 'bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-300'
                         }`}>
                           {request.status}
@@ -127,6 +127,79 @@ export default function AIPage() {
                   ))}
                 </tbody>
               </table>
+            </div>
+          </div>
+
+          {/* 2026 AI Line of Service - Phase 1 Pilot Projects */}
+          <div className="grid grid-cols-2 gap-6">
+            <div className="card">
+              <div className="p-4 border-b border-gray-200 dark:border-dark-border-default">
+                <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">AI Pilot Projects</h2>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">Phase 2 client implementations</p>
+              </div>
+              <div className="p-4 space-y-4">
+                <div className="p-3 bg-purple-50 dark:bg-purple-900/20 rounded-lg border border-purple-200 dark:border-purple-800">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                    <h3 className="font-semibold text-sm text-gray-900 dark:text-gray-100">Donor Analytics Pilot</h3>
+                  </div>
+                  <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">Safe Harbor Housing - Predictive donor analytics dashboard</p>
+                  <div className="space-y-1 text-xs text-gray-600 dark:text-gray-400">
+                    <div>• Database: 12K donors, 8-year history</div>
+                    <div>• Goal: Identify 50-75 high-propensity major donors</div>
+                    <div>• Status: Vendor selection finalized, Q1 2026 launch</div>
+                  </div>
+                </div>
+                <div className="p-3 bg-purple-50 dark:bg-purple-900/20 rounded-lg border border-purple-200 dark:border-purple-800">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="w-2 h-2 rounded-full bg-yellow-500"></div>
+                    <h3 className="font-semibold text-sm text-gray-900 dark:text-gray-100">FAQ Chatbot Pilot</h3>
+                  </div>
+                  <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">Hopewell Foundation - Donor support chatbot</p>
+                  <div className="space-y-1 text-xs text-gray-600 dark:text-gray-400">
+                    <div>• Use case: Automated donor FAQ responses</div>
+                    <div>• Knowledge base: 150+ Q&A pairs, 3 years of data</div>
+                    <div>• Status: Requirements gathering phase</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="card">
+              <div className="p-4 border-b border-gray-200 dark:border-dark-border-default">
+                <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Ethical AI Compliance</h2>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">Responsible AI governance metrics</p>
+              </div>
+              <div className="p-4 space-y-3">
+                <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-900/20 rounded-lg">
+                  <div>
+                    <div className="text-sm font-medium text-gray-900 dark:text-gray-100">Human Oversight</div>
+                    <div className="text-xs text-gray-600 dark:text-gray-400">All AI-generated content reviewed</div>
+                  </div>
+                  <div className="text-lg font-bold text-green-600 dark:text-green-400">100%</div>
+                </div>
+                <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-900/20 rounded-lg">
+                  <div>
+                    <div className="text-sm font-medium text-gray-900 dark:text-gray-100">Data Privacy Compliance</div>
+                    <div className="text-xs text-gray-600 dark:text-gray-400">GDPR/FERPA compliant processing</div>
+                  </div>
+                  <div className="text-lg font-bold text-green-600 dark:text-green-400">✓</div>
+                </div>
+                <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-900/20 rounded-lg">
+                  <div>
+                    <div className="text-sm font-medium text-gray-900 dark:text-gray-100">Bias Monitoring</div>
+                    <div className="text-xs text-gray-600 dark:text-gray-400">Active detection and mitigation</div>
+                  </div>
+                  <div className="text-lg font-bold text-green-600 dark:text-green-400">Active</div>
+                </div>
+                <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-900/20 rounded-lg">
+                  <div>
+                    <div className="text-sm font-medium text-gray-900 dark:text-gray-100">AI Governance Policy</div>
+                    <div className="text-xs text-gray-600 dark:text-gray-400">Internal policy finalized, tested with 3 clients</div>
+                  </div>
+                  <div className="text-lg font-bold text-purple-600 dark:text-purple-400">Phase 1</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

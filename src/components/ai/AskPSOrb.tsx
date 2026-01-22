@@ -160,14 +160,14 @@ export function AskPSOrb({ appName = 'PS-Edge', enabled = true, position = 'fixe
 
       {/* Chat Panel - Slides in from right */}
       {isOpen && !isMinimized && (
-        <div className="fixed bottom-4 right-4 z-40 flex h-[600px] w-96 flex-col rounded-lg bg-white dark:bg-dark-bg-secondary shadow-2xl border border-gray-200 dark:border-dark-border-default">
+        <div className="fixed bottom-4 right-4 z-40 flex h-[750px] w-[600px] flex-col rounded-lg bg-white dark:bg-dark-bg-secondary shadow-2xl border border-gray-200 dark:border-dark-border-default">
           {/* Header */}
           <div className="flex items-center justify-between border-b border-gray-200 dark:border-dark-border-default bg-gradient-to-r from-teal-500 to-cyan-500 p-4 text-white rounded-t-lg">
             <div className="flex items-center gap-2">
-              <ChatBubbleIcon className="h-5 w-5" />
+              <ChatBubbleIcon className="h-6 w-6" />
               <div>
-                <h3 className="font-semibold">AskPS</h3>
-                <p className="text-xs text-teal-100">Professional Services AI Assistant</p>
+                <h3 className="font-semibold text-lg">AskPS</h3>
+                <p className="text-sm text-teal-100">Professional Services AI Assistant</p>
               </div>
             </div>
             <div className="flex items-center gap-2">

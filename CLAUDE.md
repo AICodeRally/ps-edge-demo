@@ -6,8 +6,19 @@
 ## What Is This?
 
 **PS-Edge Demo** (Professional Services Edge) is a dual-purpose platform for **Phoenix Philanthropy Group (PPG)**:
-1. **Professional Services Operations** - Consulting business management (clients, projects, proposals, time tracking, billing)
-2. **Channel Partner Portal** - Multi-tenant nonprofit client management (telemetry, benchmarking, health monitoring)
+
+1. **Consulting Operations (Primary)** - PPG's nonprofit consulting business
+   - 11 service lines: Campaign fundraising, strategic planning, board development, grant writing, executive coaching, M&A advisory, operational fundraising, relationship management, interim management, philanthropy advisory, alumni relations
+   - 2026 AI Line of Service: AI readiness assessments, ethical governance advisory, pilot implementations
+   - Advancement Academy training programs
+
+2. **Channel Partner Portal (Secondary)** - NP-Edge software sales
+   - Multi-tenant nonprofit client management
+   - Telemetry ingestion and health monitoring
+   - Performance benchmarking across nonprofit clients
+   - Revenue tracking for channel sales
+
+**Current Demo:** Nonprofit Consulting Pack deployed
 
 ## Tech Stack
 
@@ -82,8 +93,9 @@ npx prisma db push  # Push schema changes
 
 ## AI Features
 
-- **OpsChief Orb** - Business health insights (dark purple gradient)
+- **OpsChief Orb** - Business health insights and operational alerts (dark purple gradient)
 - **AskPS Orb** - Conversational assistant (light purple gradient)
+- **Pulse Orb** - AI-curated content feed with nonprofit sector articles, best practices, and trends (purple gradient)
 - Purple = AI (consistent visual language)
 
 ## Critical Notes

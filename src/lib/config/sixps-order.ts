@@ -9,15 +9,15 @@ const SIXPS_ORDER_KEY = 'ps-edge-sixps-order';
 
 /**
  * Default 6 P's order
- * Purpose, People, Process, Platform (Product), Performance (Pipeline), Profit (Performance)
+ * Purpose, People, Process, Practice, Pipeline, Performance
  */
 export const DEFAULT_SIXPS_ORDER: SixPCategory[] = [
   'PURPOSE',
   'PEOPLE',
   'PROCESS',
-  'PLATFORM',
+  'PRACTICE',
+  'PIPELINE',
   'PERFORMANCE',
-  'PROFIT',
 ];
 
 /**

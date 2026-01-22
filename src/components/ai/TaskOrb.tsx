@@ -130,14 +130,14 @@ export function TaskOrb({ enabled = true }: TaskOrbProps) {
 
       {/* Panel */}
       {isOpen && (
-        <div className="fixed bottom-20 right-20 z-50 w-[450px] bg-white dark:bg-gray-900 rounded-lg shadow-2xl border border-gray-200 dark:border-gray-700 max-h-[600px] flex flex-col">
+        <div className="fixed bottom-20 right-20 z-50 w-[600px] bg-white dark:bg-gray-900 rounded-lg shadow-2xl border border-gray-200 dark:border-gray-700 max-h-[750px] flex flex-col">
           {/* Header */}
           <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
-                <h3 className="font-bold text-gray-900 dark:text-gray-100">Tasks</h3>
+                <h3 className="font-bold text-lg text-gray-900 dark:text-gray-100">Tasks</h3>
                 {isOffline && (
-                  <span className="text-xs text-yellow-600 dark:text-yellow-400">(Offline Mode)</span>
+                  <span className="text-sm text-yellow-600 dark:text-yellow-400">(Offline Mode)</span>
                 )}
               </div>
               <button

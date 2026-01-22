@@ -1,9 +1,9 @@
 /**
- * Legacy Route - Redirects to /dashboard/platform/integrations
+ * Legacy Route - Redirects to /dashboard/practice/integrations
  */
 
 import { redirect } from 'next/navigation';
 
 export default function LegacyIntegrationsPage() {
-  redirect('/dashboard/platform/integrations');
+  redirect('/dashboard/practice/integrations');
 }

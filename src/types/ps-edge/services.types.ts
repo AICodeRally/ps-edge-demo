@@ -51,8 +51,21 @@ export interface Client {
 // ============================================================================
 
 export type EngagementType =
-  | 'CAPITAL_CAMPAIGN'
+  | 'CAMPAIGN_FUNDRAISING'
+  | 'VOLUNTEER_LEADERSHIP'
+  | 'EXECUTIVE_COACHING'
+  | 'MERGERS_ACQUISITIONS'
+  | 'OPERATIONAL_FUNDRAISING'
+  | 'RELATIONSHIP_MANAGEMENT'
+  | 'INTERIM_MANAGEMENT'
+  | 'PHILANTHROPY_ADVISORY'
+  | 'ALUMNI_RELATIONS'
+  | 'ADVANCEMENT_ACADEMY'
+  | 'AI_READINESS_ASSESSMENT'
+  | 'AI_GOVERNANCE_ADVISORY'
+  | 'AI_PILOT_IMPLEMENTATION'
   | 'STRATEGIC_PLANNING'
+  | 'CAPITAL_CAMPAIGN'
   | 'BOARD_DEVELOPMENT'
   | 'GRANT_WRITING'
   | 'FEASIBILITY_STUDY'
@@ -321,8 +334,21 @@ export interface Consultant {
 // ============================================================================
 
 export const ENGAGEMENT_TYPE_LABELS: Record<EngagementType, string> = {
-  CAPITAL_CAMPAIGN: 'Capital Campaign',
+  CAMPAIGN_FUNDRAISING: 'Campaign Fundraising',
+  VOLUNTEER_LEADERSHIP: 'Volunteer Leadership',
+  EXECUTIVE_COACHING: 'Executive Coaching',
+  MERGERS_ACQUISITIONS: 'Mergers & Acquisitions',
+  OPERATIONAL_FUNDRAISING: 'Operational Fundraising',
+  RELATIONSHIP_MANAGEMENT: 'Relationship Management',
+  INTERIM_MANAGEMENT: 'Interim Management',
+  PHILANTHROPY_ADVISORY: 'Philanthropy Advisory',
+  ALUMNI_RELATIONS: 'Alumni Relations',
+  ADVANCEMENT_ACADEMY: 'Advancement Academy',
+  AI_READINESS_ASSESSMENT: 'AI Readiness Assessment',
+  AI_GOVERNANCE_ADVISORY: 'AI Governance Advisory',
+  AI_PILOT_IMPLEMENTATION: 'AI Pilot Implementation',
   STRATEGIC_PLANNING: 'Strategic Planning',
+  CAPITAL_CAMPAIGN: 'Capital Campaign',
   BOARD_DEVELOPMENT: 'Board Development',
   GRANT_WRITING: 'Grant Writing',
   FEASIBILITY_STUDY: 'Feasibility Study',

@@ -7,6 +7,7 @@ import { z } from 'zod';
  */
 
 export const EngagementTypeSchema = z.enum([
+  // Core consulting services (existing)
   'CAPITAL_CAMPAIGN',
   'STRATEGIC_PLANNING',
   'BOARD_DEVELOPMENT',
@@ -15,6 +16,23 @@ export const EngagementTypeSchema = z.enum([
   'FUNDRAISING_STRATEGY',
   'TRAINING_WORKSHOP',
   'NPEDGE_IMPLEMENTATION',
+
+  // PPG's 11 service lines (comprehensive)
+  'CAMPAIGN_FUNDRAISING',        // Major gifts & capital campaigns
+  'VOLUNTEER_LEADERSHIP',        // Board & volunteer engagement
+  'EXECUTIVE_COACHING',          // Leadership development
+  'MERGERS_ACQUISITIONS',        // Organizational partnerships
+  'OPERATIONAL_FUNDRAISING',     // Annual giving & donor programs
+  'RELATIONSHIP_MANAGEMENT',     // Donor stewardship & cultivation
+  'INTERIM_MANAGEMENT',          // Leadership transitions
+  'PHILANTHROPY_ADVISORY',       // Strategic philanthropy planning
+  'ALUMNI_RELATIONS',            // Constituent engagement
+  'ADVANCEMENT_ACADEMY',         // Training & professional development
+
+  // 2026 AI Line of Service
+  'AI_READINESS_ASSESSMENT',     // Phase 1: AI readiness evaluations
+  'AI_GOVERNANCE_ADVISORY',      // Ethical AI policy development
+  'AI_PILOT_IMPLEMENTATION',     // Small-scale AI implementations
 ]);
 export type EngagementType = z.infer<typeof EngagementTypeSchema>;
 
@@ -90,6 +108,7 @@ export type EngagementFilters = z.infer<typeof EngagementFiltersSchema>;
 
 // Display labels
 export const ENGAGEMENT_TYPE_LABELS: Record<EngagementType, string> = {
+  // Core consulting services
   CAPITAL_CAMPAIGN: 'Capital Campaign',
   STRATEGIC_PLANNING: 'Strategic Planning',
   BOARD_DEVELOPMENT: 'Board Development',
@@ -98,4 +117,21 @@ export const ENGAGEMENT_TYPE_LABELS: Record<EngagementType, string> = {
   FUNDRAISING_STRATEGY: 'Fundraising Strategy',
   TRAINING_WORKSHOP: 'Training Workshop',
   NPEDGE_IMPLEMENTATION: 'NP-Edge Implementation',
+
+  // PPG's 11 service lines
+  CAMPAIGN_FUNDRAISING: 'Campaign Fundraising',
+  VOLUNTEER_LEADERSHIP: 'Volunteer Leadership',
+  EXECUTIVE_COACHING: 'Executive Coaching',
+  MERGERS_ACQUISITIONS: 'Mergers & Acquisitions',
+  OPERATIONAL_FUNDRAISING: 'Operational Fundraising',
+  RELATIONSHIP_MANAGEMENT: 'Relationship Management',
+  INTERIM_MANAGEMENT: 'Interim Management',
+  PHILANTHROPY_ADVISORY: 'Philanthropy Advisory',
+  ALUMNI_RELATIONS: 'Alumni Relations',
+  ADVANCEMENT_ACADEMY: 'Advancement Academy',
+
+  // 2026 AI Line of Service
+  AI_READINESS_ASSESSMENT: 'AI Readiness Assessment',
+  AI_GOVERNANCE_ADVISORY: 'AI Governance Advisory',
+  AI_PILOT_IMPLEMENTATION: 'AI Pilot Implementation',
 };

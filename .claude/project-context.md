@@ -6,20 +6,22 @@
 
 ## Product Description
 
-**PS-Edge (Professional Services Edge)** is a dual-purpose platform combining:
+**PS-Edge (Professional Services Edge)** is a dual-purpose platform for Phoenix Philanthropy Group (PPG):
 
-1. **Professional Services Operations** - Consulting business management
-   - Client relationship management
-   - Project/engagement tracking
-   - Team capacity & utilization
-   - Time tracking & billing
-   - Proposal management
+1. **Consulting Operations (Primary)** - PPG's nonprofit consulting business
+   - 11 service lines: Campaign fundraising, strategic planning, board development, grant writing, executive coaching, M&A advisory, operational fundraising, relationship management, interim management, philanthropy advisory, alumni relations
+   - 2026 AI Line of Service: AI readiness assessments, ethical governance advisory, pilot implementations
+   - Advancement Academy training programs
+   - Client relationship management, project tracking, team capacity, billing, proposals
 
-2. **Channel Partner Portal** - Multi-tenant nonprofit client management
-   - Telemetry signal ingestion
-   - Performance benchmarking
-   - Health monitoring
-   - Usage analytics
+2. **Channel Partner Portal (Secondary)** - NP-Edge software sales
+   - Multi-tenant nonprofit client management
+   - Telemetry signal ingestion from NP-Edge deployments
+   - Performance benchmarking across nonprofit clients
+   - Health monitoring and usage analytics
+   - Revenue tracking for channel commissions
+
+**Current Demo:** Nonprofit Consulting Pack deployment showcasing PPG's full service range
 
 ## Technology Stack
 
@@ -128,9 +130,9 @@ Primary navigation organized by 6 categories:
 
 All AI components use purple-themed gradients:
 
-- **OpsChiefOrb** - Business health insights (dark purple)
+- **OpsChiefOrb** - Business health insights and operational alerts (dark purple)
 - **AskPSOrb** - Conversational assistant (light purple)
-- **PulseOrb** - Health metrics widget
+- **PulseOrb** - AI-curated content feed (articles, best practices, sector news)
 - **TaskOrb** - Task management widget
 
 ## Context Provider Stack

@@ -39,9 +39,9 @@ export function Footer() {
     const pMap: Record<string, SixPCategory> = {
       'people': 'PEOPLE',
       'process': 'PROCESS',
-      'platform': 'PLATFORM',
+      'practice': 'PRACTICE',
       'performance': 'PERFORMANCE',
-      'profit': 'PROFIT',
+      'pipeline': 'PIPELINE',
       'purpose': 'PURPOSE',
     };
 
@@ -51,67 +51,71 @@ export function Footer() {
   const activeSixP = getActiveSixP();
 
   return (
-    <footer className="fixed bottom-0 left-0 right-0 z-40 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
-      {/* Gradient Border */}
-      <div
-        className="h-0.5 w-full"
-        style={{
-          background: 'linear-gradient(90deg, #9333ea, #c026d3, #db2777, #facc15)',
-        }}
-      />
-
-      <div className="px-4 py-3 space-y-2">
-        {/* Row 1: 6 P's Links */}
-        <div className="flex items-center justify-center gap-4 text-xs text-gray-500 dark:text-gray-400">
-          {/* 6 P's Navigation Links */}
-          <div className="flex flex-wrap items-center justify-center gap-1">
-            {sixPsOrder.map((pCategory, index) => {
+    <footer
+      className="bg-white dark:bg-gray-900 shadow-sm border-t-4 border-transparent fixed bottom-0 left-0 right-0 z-40"
+      style={{
+        borderImage: 'linear-gradient(to right, #9333ea, #c026d3, #db2777, #facc15) 1',
+      }}
+    >
+      <div className="w-full px-6 py-4">
+        <div className="text-center space-y-2">
+          {/* Row 1: 6 P's Quick Links */}
+          <div className="flex items-center justify-center gap-6 mb-2">
+            {sixPsOrder.map((pCategory) => {
               const pConfig = SIX_PS_DEFINITIONS[pCategory];
               const isActive = activeSixP === pCategory;
               const pSlug = pCategory.toLowerCase();
 
               return (
-                <div key={pCategory} className="flex items-center gap-1">
-                  <Link
-                    href={`/dashboard/${pSlug}`}
-                    className={`px-2 py-1 rounded transition-all ${
-                      isActive
-                        ? `${pConfig.color} font-semibold ${pConfig.bgColor}`
-                        : 'hover:text-purple-600 dark:hover:text-purple-400'
-                    }`}
-                    title={pConfig.description}
-                  >
-                    {pConfig.title}
-                  </Link>
-                  {index < sixPsOrder.length - 1 && (
-                    <span className="text-gray-300 dark:text-gray-600">|</span>
-                  )}
-                </div>
+                <Link
+                  key={pCategory}
+                  href={`/dashboard/${pSlug}`}
+                  className={`text-base transition-all font-bold px-3 py-1 rounded ${
+                    isActive
+                      ? 'underline scale-110'
+                      : 'hover:underline hover:bg-purple-50 dark:hover:bg-purple-900/20'
+                  }`}
+                  style={{
+                    color: pConfig.colorHex,
+                    backgroundColor: isActive ? `${pConfig.colorHex}20` : 'transparent',
+                  }}
+                  title={pConfig.description}
+                >
+                  {pConfig.title}
+                </Link>
               );
             })}
           </div>
-        </div>
 
-        {/* Row 2: Copyright + Legal */}
-        <div className="flex items-center justify-center gap-1 text-xs text-gray-400 dark:text-gray-500">
-          <span>© 2026 BHG Consulting</span>
-          <span className="mx-1">•</span>
-          <Link href="#" className="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
-            Privacy
-          </Link>
-          <span className="mx-1">•</span>
-          <Link href="#" className="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
-            Terms
-          </Link>
-          <span className="mx-1">•</span>
-          <Link href="#" className="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
-            Support
-          </Link>
-        </div>
+          {/* Row 2: Copyright + Legal */}
+          <div className="flex items-center justify-center gap-6 text-xs text-gray-500 dark:text-gray-400">
+            <span>© 2026 AICodeRally</span>
+            <span>•</span>
+            <Link href="/legal" className="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
+              Privacy
+            </Link>
+            <span>•</span>
+            <Link href="/legal" className="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
+              Terms
+            </Link>
+            <span>•</span>
+            <Link href="/legal" className="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
+              Support
+            </Link>
+          </div>
 
-        {/* Row 3: Branding */}
-        <div className="text-center text-xs text-gray-400 dark:text-gray-500">
-          An Edge Biz Ops Solution • Powered by AICR
+          {/* Row 3: Branding */}
+          <div className="text-xs text-gray-500 dark:text-gray-400">
+            <span>An Edge Biz Ops Solution • Powered by </span>
+            <span
+              className="font-bold bg-clip-text text-transparent"
+              style={{
+                backgroundImage: 'linear-gradient(90deg, #9333ea, #c026d3, #db2777, #facc15)',
+              }}
+            >
+              AICR
+            </span>
+          </div>
         </div>
       </div>
     </footer>

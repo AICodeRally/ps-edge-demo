@@ -47,8 +47,9 @@ export async function GET(request: NextRequest) {
     const { tenantId, department } = validation.data;
 
     // TODO: Replace with actual business logic analysis
-    // For now, return mock insights based on the 6Ps data
+    // For now, return mock insights based on the 6Ps data + 2026 AI Line of Service
     const insights: OpsChiefInsight[] = [
+      // Core Operations Insights
       {
         id: 'insight_1',
         type: 'alert',
@@ -97,15 +98,46 @@ export async function GET(request: NextRequest) {
         severity: 'low',
         actionable: false,
       },
+
+      // 2026 AI Line of Service Insights
       {
-        id: 'insight_6',
+        id: 'insight_ai_1',
+        type: 'info',
+        title: 'AI Readiness Assessment Demand Growing',
+        description: '5 nonprofit clients inquiring about AI strategy (donor analytics, chatbots, automation). Phase 1 framework validated through Hopewell assessment. 85% of sector exploring AI but only 24% have formal plans.',
+        timestamp: new Date(),
+        severity: 'low',
+        actionable: true,
+        suggestedAction: 'Schedule 2 additional AI readiness assessments in Q1. Focus on clients with strong donor databases (>5K donors). Use Phase 1 template: data audit, quick-win identification, ethical governance roadmap.',
+      },
+      {
+        id: 'insight_ai_2',
         type: 'warning',
-        title: 'Lakeside Arts Support Ticket Aging',
-        description: 'Client portal issue open for 8 days (SLA: 5 days). Dashboard showing incorrect volunteer hours. Client satisfaction may decline if not resolved soon.',
+        title: 'Donor Analytics Pilot Ready to Launch',
+        description: 'Safe Harbor Housing approved AI donor analytics pilot ($22K Phase 2 project). Donor database audit complete (12K donors, 8-year history). Predictive model could identify 50-75 high-propensity major donors.',
         timestamp: new Date(),
         severity: 'medium',
         actionable: true,
-        suggestedAction: 'Escalate to technical lead. Schedule client call to demonstrate progress and set expectations. Consider temporary manual workaround.',
+        suggestedAction: 'Finalize vendor selection (2 analytics platforms evaluated). Ensure ethical AI policy compliance. Set pilot success metrics: identify 50+ prospects, track conversion rate over 6 months.',
+      },
+      {
+        id: 'insight_ai_3',
+        type: 'info',
+        title: 'Advancement Academy AI Workshop High Interest',
+        description: 'AI in Fundraising 101 workshop (Feb 15) has 47 registrations from 18 nonprofit organizations. Interest exceeds capacity. Could expand to series.',
+        timestamp: new Date(),
+        severity: 'low',
+        actionable: false,
+      },
+      {
+        id: 'insight_ai_4',
+        type: 'info',
+        title: 'AI Governance Framework Reusable Asset',
+        description: 'Internal AI Use Policy finalized and tested with 3 Phase 1 clients. 76% of nonprofits lack AI governance policy (benchmark data). This framework is becoming reusable consulting deliverable.',
+        timestamp: new Date(),
+        severity: 'low',
+        actionable: true,
+        suggestedAction: 'Package AI governance framework as standalone deliverable ($8-12K). Market to clients exploring AI but not ready for full implementation.',
       },
     ];
 

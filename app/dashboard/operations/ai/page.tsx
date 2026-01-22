@@ -1,9 +1,9 @@
 /**
- * Legacy Route - Redirects to /dashboard/platform/ai
+ * Legacy Route - Redirects to /dashboard/practice/ai
  */
 
 import { redirect } from 'next/navigation';
 
 export default function LegacyAIPage() {
-  redirect('/dashboard/platform/ai');
+  redirect('/dashboard/practice/ai');
 }
