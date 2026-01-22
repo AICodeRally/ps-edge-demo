@@ -22,21 +22,26 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
             <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
               <Link href="/" className="flex items-center gap-3">
                 <div
-                  className="w-10 h-10 rounded-lg flex items-center justify-center shadow-lg"
+                  className="w-12 h-12 rounded-full flex items-center justify-center shadow-lg"
                   style={{
                     backgroundImage: 'linear-gradient(135deg, #9333ea, #c026d3, #facc15)',
                   }}
                 >
-                  <span className="text-white font-bold text-sm">EC</span>
+                  <span className="text-white font-bold text-lg">EC</span>
                 </div>
-                <span
-                  className="text-2xl font-bold bg-clip-text text-transparent"
-                  style={{
-                    backgroundImage: 'linear-gradient(90deg, #9333ea, #c026d3, #db2777, #facc15)',
-                  }}
-                >
-                  Edge for Consulting
-                </span>
+                <div className="flex flex-col">
+                  <span
+                    className="text-3xl font-bold bg-clip-text text-transparent"
+                    style={{
+                      backgroundImage: 'linear-gradient(90deg, #9333ea, #c026d3, #db2777, #facc15)',
+                    }}
+                  >
+                    EDGE
+                  </span>
+                  <span className="text-[10px] text-gray-500 dark:text-gray-400 tracking-widest -mt-1">
+                    for Consulting
+                  </span>
+                </div>
               </Link>
               <Link
                 href="/auth/signin"
