@@ -68,18 +68,18 @@ export function Navbar() {
                   EDGE
                 </span>
                 <span className="text-[8px] text-gray-500 dark:text-gray-400 tracking-widest -mt-1">
-                  for Foster Care
+                  for Nonprofits
                 </span>
               </div>
 
-              {/* AF Circle Logo */}
+              {/* NP Circle Logo */}
               <div
                 className="w-14 h-14 rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow"
                 style={{
                   backgroundImage: 'linear-gradient(135deg, #22c55e, #14b8a6)',
                 }}
               >
-                <span className="text-white font-bold text-xl">AF</span>
+                <span className="text-white font-bold text-xl">NP</span>
               </div>
 
               {/* Module Info */}
@@ -129,7 +129,7 @@ export function Navbar() {
                 <div
                   className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold shadow-md"
                   style={{
-                    backgroundImage: 'linear-gradient(135deg, #9333ea, #c026d3, #facc15)',
+                    backgroundImage: 'linear-gradient(135deg, #22c55e, #14b8a6)',
                   }}
                 >
                   {user.initials}
