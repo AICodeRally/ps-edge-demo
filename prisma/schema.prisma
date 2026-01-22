@@ -1,13 +1,15 @@
 // NP-Edge Prisma Schema
 // Nonprofit Management Platform for Arizona Friends of Foster Children Foundation (AFFCF)
 
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters", "multiSchema"]
+}
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
-}
-
-generator client {
-  provider = "prisma-client-js"
+  schemas  = ["np_edge"]
 }
 
 // ============================================================================
@@ -37,6 +39,7 @@ model Program {
   @@index([category])
   @@index([manager])
   @@map("programs")
+  @@schema("np_edge")
 }
 
 model Beneficiary {
@@ -56,6 +59,7 @@ model Beneficiary {
   @@index([status])
   @@index([enrollmentDate])
   @@map("beneficiaries")
+  @@schema("np_edge")
 }
 
 model BeneficiaryProgram {
@@ -71,6 +75,7 @@ model BeneficiaryProgram {
   @@index([beneficiaryId])
   @@index([programId])
   @@map("beneficiary_programs")
+  @@schema("np_edge")
 }
 
 model ProgramProject {
@@ -94,6 +99,7 @@ model ProgramProject {
   @@index([status])
   @@index([assignedTo])
   @@map("program_projects")
+  @@schema("np_edge")
 }
 
 // ============================================================================
@@ -125,6 +131,7 @@ model Donor {
   @@index([status])
   @@index([lastGift])
   @@map("donors")
+  @@schema("np_edge")
 }
 
 model Donation {
@@ -147,6 +154,7 @@ model Donation {
   @@index([date])
   @@index([campaign])
   @@map("donations")
+  @@schema("np_edge")
 }
 
 model Campaign {
@@ -167,6 +175,7 @@ model Campaign {
   @@index([type])
   @@index([endDate])
   @@map("campaigns")
+  @@schema("np_edge")
 }
 
 model Grant {
@@ -187,6 +196,7 @@ model Grant {
   @@index([reportDue])
   @@index([funder])
   @@map("grants")
+  @@schema("np_edge")
 }
 
 // ============================================================================
@@ -214,6 +224,7 @@ model Volunteer {
   @@index([status])
   @@index([joinDate])
   @@map("volunteers")
+  @@schema("np_edge")
 }
 
 model VolunteerAssignment {
@@ -232,6 +243,7 @@ model VolunteerAssignment {
   @@index([volunteerId])
   @@index([startDate])
   @@map("volunteer_assignments")
+  @@schema("np_edge")
 }
 
 // ============================================================================
@@ -260,6 +272,7 @@ model Event {
   @@index([type])
   @@index([startDate])
   @@map("events")
+  @@schema("np_edge")
 }
 
 model EventRegistration {
@@ -279,6 +292,7 @@ model EventRegistration {
   @@index([eventId])
   @@index([email])
   @@map("event_registrations")
+  @@schema("np_edge")
 }
 
 // ============================================================================
@@ -308,6 +322,7 @@ model Filing {
   @@index([priority])
   @@index([dueDate])
   @@map("filings")
+  @@schema("np_edge")
 }
 
 model Outreach {
@@ -327,6 +342,7 @@ model Outreach {
   @@index([sentDate])
   @@index([campaign])
   @@map("outreach")
+  @@schema("np_edge")
 }
 
 model AuditEvent {
@@ -342,6 +358,7 @@ model AuditEvent {
   @@index([userId])
   @@index([timestamp])
   @@map("audit_events")
+  @@schema("np_edge")
 }
 
 // ============================================================================
@@ -358,6 +375,7 @@ enum ProgramCategory {
   Environment
   Arts
   Other
+  @@schema("np_edge")
 }
 
 enum ProgramStatus {
@@ -365,12 +383,14 @@ enum ProgramStatus {
   Planned
   Completed
   OnHold
+  @@schema("np_edge")
 }
 
 enum BeneficiaryStatus {
   Active
   Graduated
   Inactive
+  @@schema("np_edge")
 }
 
 enum ProjectStatus {
@@ -378,6 +398,7 @@ enum ProjectStatus {
   AtRisk
   Behind
   Completed
+  @@schema("np_edge")
 }
 
 enum DonorType {
@@ -385,6 +406,7 @@ enum DonorType {
   Corporate
   Foundation
   Government
+  @@schema("np_edge")
 }
 
 enum DonorStatus {
@@ -392,6 +414,7 @@ enum DonorStatus {
   Lapsed
   New
   Prospect
+  @@schema("np_edge")
 }
 
 enum CampaignType {
@@ -400,12 +423,14 @@ enum CampaignType {
   SpecialEvent
   Emergency
   Major
+  @@schema("np_edge")
 }
 
 enum CampaignStatus {
   Active
   Completed
   Planned
+  @@schema("np_edge")
 }
 
 enum GrantStatus {
@@ -414,12 +439,14 @@ enum GrantStatus {
   Awarded
   Rejected
   Reported
+  @@schema("np_edge")
 }
 
 enum VolunteerStatus {
   Active
   Inactive
   Pending
+  @@schema("np_edge")
 }
 
 enum EventType {
@@ -428,6 +455,7 @@ enum EventType {
   Training
   Awareness
   Volunteer
+  @@schema("np_edge")
 }
 
 enum EventStatus {
@@ -435,6 +463,7 @@ enum EventStatus {
   Active
   Completed
   Cancelled
+  @@schema("np_edge")
 }
 
 enum FilingCategory {
@@ -445,6 +474,7 @@ enum FilingCategory {
   SalesTax
   Grant
   Special
+  @@schema("np_edge")
 }
 
 enum FilingStatus {
@@ -455,6 +485,7 @@ enum FilingStatus {
   Approved
   Rejected
   Overdue
+  @@schema("np_edge")
 }
 
 enum FilingPriority {
@@ -462,4 +493,5 @@ enum FilingPriority {
   High
   Medium
   Low
+  @@schema("np_edge")
 }
