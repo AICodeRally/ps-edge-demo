@@ -11,80 +11,85 @@ export const AGGREGATE_SIX_PS: DepartmentSixPs = {
   people: {
     category: 'PEOPLE',
     title: 'People',
-    description: 'Team capacity, utilization, and workforce metrics',
+    description: 'Nonprofit consultant expertise and capacity',
     icon: '👥',
     color: 'text-purple-600',
     metrics: [
-      { label: 'Total Team Members', value: '28', trend: 'up', trendValue: '+2' },
-      { label: 'Avg Utilization', value: '84%', trend: 'up', trendValue: '+3%' },
-      { label: 'Active Engagements', value: '12', trend: 'stable' },
-      { label: 'Team Satisfaction', value: '4.6/5', trend: 'up', trendValue: '+0.2' }
+      { label: 'Nonprofit Consultants', value: '28', trend: 'up', trendValue: '+2' },
+      { label: 'Consultant Utilization', value: '84%', trend: 'up', trendValue: '+3%' },
+      { label: 'Active Nonprofit Engagements', value: '12', trend: 'stable' },
+      { label: 'CFRE Certified', value: '14', trend: 'up', trendValue: '+2' },
+      { label: 'Consultant Satisfaction', value: '4.6/5', trend: 'up', trendValue: '+0.2' }
     ]
   },
   process: {
     category: 'PROCESS',
     title: 'Process',
-    description: 'Workflow efficiency, deliverables, and timelines',
+    description: 'Campaign execution and nonprofit engagement delivery',
     icon: '⚙️',
-    color: 'text-blue-600',
+    color: 'text-violet-600',
     metrics: [
-      { label: 'On-Time Delivery', value: '94%', trend: 'up', trendValue: '+2%' },
-      { label: 'Avg Cycle Time', value: '6.2 days', trend: 'down', trendValue: '-0.5d' },
+      { label: 'Campaign On-Time Completion', value: '94%', trend: 'up', trendValue: '+2%' },
+      { label: 'Avg Engagement Cycle Time', value: '6.2 months', trend: 'down', trendValue: '-0.5mo' },
       { label: 'Deliverables This Month', value: '47', trend: 'up', trendValue: '+8' },
+      { label: 'Client Satisfaction (NPS)', value: '78', trend: 'up', trendValue: '+5' },
       { label: 'Process Adherence', value: '91%', trend: 'stable' }
     ]
   },
   practice: {
     category: 'PRACTICE',
     title: 'Practice',
-    description: 'Methodologies, tools, and delivery excellence',
-    icon: '🖥️',
-    color: 'text-indigo-600',
+    description: 'Service lines, methodologies, and nonprofit expertise',
+    icon: '🎓',
+    color: 'text-fuchsia-600',
     metrics: [
-      { label: 'Methodology Adoption', value: '98%', trend: 'stable' },
-      { label: 'Tool Utilization', value: '91%', trend: 'up', trendValue: '+4%' },
-      { label: 'Delivery Quality', value: '4.8/5', trend: 'up', trendValue: '+0.2' },
-      { label: 'Client Training Hours', value: '124', trend: 'up', trendValue: '+12' }
+      { label: 'Service Lines', value: '12', trend: 'up', trendValue: '+1', color: 'text-purple-600' },
+      { label: 'Campaign Revenue', value: '$1.2M', trend: 'up', trendValue: '+18%' },
+      { label: 'Avg Service Margin', value: '42.5%', trend: 'up', trendValue: '+1.2%' },
+      { label: 'Advancement Academy Enrollments', value: '22', trend: 'up', trendValue: '+5' },
+      { label: 'Client Satisfaction by Service', value: '4.7/5', trend: 'up', trendValue: '+0.1' }
     ]
   },
   performance: {
     category: 'PERFORMANCE',
     title: 'Performance',
-    description: 'KPIs, outcomes, and operational metrics',
+    description: 'Business outcomes - operational and financial metrics',
     icon: '📊',
-    color: 'text-green-600',
+    color: 'text-orange-600',
     metrics: [
-      { label: 'Client Satisfaction (NPS)', value: '72', trend: 'stable' },
-      { label: 'Proposal Win Rate', value: '42%', trend: 'down', trendValue: '-3%' },
-      { label: 'Project Success Rate', value: '96%', trend: 'up', trendValue: '+2%' },
-      { label: 'Billable Hours %', value: '78%', trend: 'up', trendValue: '+2%' }
+      { label: 'Nonprofit Client Satisfaction (NPS)', value: '72', trend: 'stable' },
+      { label: 'Campaign Success Rate', value: '96%', trend: 'up', trendValue: '+2%' },
+      { label: 'Consultant Utilization × Realization', value: '78%', trend: 'up', trendValue: '+2%' },
+      { label: 'Gross Margin', value: '42.5%', trend: 'up', trendValue: '+1.2%' },
+      { label: 'Monthly Recurring Revenue', value: '$487K', trend: 'up', trendValue: '+12%' }
     ]
   },
   pipeline: {
     category: 'PIPELINE',
     title: 'Pipeline',
-    description: 'Sales pipeline, proposals, and revenue forecasting',
-    icon: '💰',
-    color: 'text-yellow-600',
+    description: 'Nonprofit prospect pipeline and sales forecasting',
+    icon: '📈',
+    color: 'text-pink-600',
     metrics: [
-      { label: 'Pipeline Value', value: '$1.8M', trend: 'up', trendValue: '+15%' },
+      { label: 'Nonprofit Prospect Pipeline', value: '$1.8M', trend: 'up', trendValue: '+15%' },
       { label: 'Proposal Win Rate', value: '42%', trend: 'down', trendValue: '-3%' },
-      { label: 'Monthly Revenue', value: '$487K', trend: 'up', trendValue: '+12%' },
-      { label: 'Commission Payout', value: '$24K', trend: 'up', trendValue: '+8%' }
+      { label: 'Avg Sales Cycle', value: '87 days', trend: 'down', trendValue: '-5d' },
+      { label: 'New Nonprofit Prospects', value: '18', trend: 'up', trendValue: '+6' },
+      { label: 'Forecasted Monthly Revenue', value: '$487K', trend: 'up', trendValue: '+12%' }
     ]
   },
   purpose: {
     category: 'PURPOSE',
     title: 'Purpose',
-    description: 'Mission alignment, client satisfaction, and impact',
+    description: 'Nonprofit sector impact and client mission advancement',
     icon: '🎯',
-    color: 'text-red-600',
+    color: 'text-yellow-600',
     metrics: [
-      { label: 'Client Impact Score', value: '8.4/10', trend: 'up', trendValue: '+0.3' },
-      { label: 'Mission Alignment', value: '92%', trend: 'stable' },
-      { label: 'Community Hours', value: '146', trend: 'up', trendValue: '+24' },
-      { label: 'AI Readiness Clients', value: '3', trend: 'up', trendValue: '+3', color: 'text-purple-600' },
-      { label: 'Client Retention', value: '94%', trend: 'up', trendValue: '+2%' }
+      { label: 'Nonprofit Client Impact', value: '8.4/10', trend: 'up', trendValue: '+0.3' },
+      { label: 'Dollars Raised for Clients', value: '$124M', trend: 'up', trendValue: '+$18M' },
+      { label: 'Nonprofit Leaders Coached', value: '146', trend: 'up', trendValue: '+24' },
+      { label: 'Campaigns Completed', value: '23', trend: 'up', trendValue: '+5' },
+      { label: 'Nonprofit Client Retention', value: '94%', trend: 'up', trendValue: '+2%' }
     ]
   }
 };
