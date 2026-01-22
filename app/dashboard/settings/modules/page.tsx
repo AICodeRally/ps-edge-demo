@@ -10,7 +10,7 @@ import { SetPageTitle } from '@/src/components/SetPageTitle';
 import { Share2Icon } from '@radix-ui/react-icons';
 
 export default function ModulesSettingsPage() {
-  const { partnersEnabled, setNPEdgeEnabled } = useModules();
+  const { partnersEnabled, setChannelPortalEnabled } = useModules();
 
   return (
     <div className="h-full flex flex-col">
@@ -28,7 +28,7 @@ export default function ModulesSettingsPage() {
           <div className="card">
             <div className="p-6">
               <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
-                NP-Edge Client Module
+                Channel Portal Module
               </h3>
 
               <div className="flex items-start justify-between">
@@ -36,7 +36,7 @@ export default function ModulesSettingsPage() {
                   <div className="flex items-center gap-2 mb-2">
                     <span className="text-blue-600"><Share2Icon className="w-5 h-5" /></span>
                     <h4 className="font-medium text-gray-900 dark:text-gray-100">
-                      NP-Edge Clients (7th P)
+                      Channel Portal (7th P)
                     </h4>
                   </div>
                   <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
@@ -65,7 +65,7 @@ export default function ModulesSettingsPage() {
 
                 <div className="flex flex-col items-end gap-2">
                   <button
-                    onClick={() => setNPEdgeEnabled(!partnersEnabled)}
+                    onClick={() => setChannelPortalEnabled(!partnersEnabled)}
                     className={'relative inline-flex h-8 w-14 items-center rounded-full transition-colors ' + (
                       partnersEnabled
                         ? 'bg-blue-600'

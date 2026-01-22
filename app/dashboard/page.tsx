@@ -12,10 +12,10 @@ import { PartnersModule } from '@/src/components/ps-edge/PartnersModule';
 import { AGGREGATE_SIX_PS } from '@/src/data/ps-edge/six-ps.data';
 import { BRAND_CONFIG } from '@/src/config/brand.config';
 import { SetPageTitle } from '@/src/components/SetPageTitle';
-import { useNPEdgeEnabled } from '@/src/contexts/ModulesContext';
+import { useChannelPortalEnabled } from '@/src/contexts/ModulesContext';
 
 export default function Dashboard() {
-  const npEdgeEnabled = useNPEdgeEnabled();
+  const channelPortalEnabled = useChannelPortalEnabled();
 
   return (
     <div className="h-full flex flex-col">
@@ -23,11 +23,11 @@ export default function Dashboard() {
       <div className="h-14 flex items-center px-6 border-b border-gray-200 dark:border-dark-border-default bg-white dark:bg-dark-bg-secondary">
         <div>
           <h1 className={`text-xl font-bold ${BRAND_CONFIG.gradient.textClass}`}>
-            {npEdgeEnabled ? '6P + NP-Edge Clients Dashboard' : '6P Performance Dashboard'}
+            {channelPortalEnabled ? '6P + Channel Portal Dashboard' : '6P Performance Dashboard'}
           </h1>
           <p className="text-xs text-gray-600 dark:text-gray-400">
-            {npEdgeEnabled
-              ? 'Purpose, People, Process, Practice, Pipeline, Profit + NP-Edge Client Management'
+            {channelPortalEnabled
+              ? 'Purpose, People, Process, Practice, Pipeline, Profit + Channel Portal - Nonprofit Tenant Management'
               : 'Purpose, People, Process, Practice, Pipeline, Profit'
             }
           </p>
@@ -44,7 +44,7 @@ export default function Dashboard() {
           />
 
           {/* 7th P: NP-EDGE CLIENTS - Horizontal Module (Toggleable) */}
-          {npEdgeEnabled && <PartnersModule />}
+          {channelPortalEnabled && <PartnersModule />}
         </div>
       </div>
     </div>
