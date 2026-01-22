@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { PersonIcon, MixerHorizontalIcon, LightningBoltIcon } from '@radix-ui/react-icons';
+import { PersonIcon, MixerHorizontalIcon, LightningBoltIcon, ComponentInstanceIcon } from '@radix-ui/react-icons';
 
 export default function SettingsPage() {
   const settingsSections = [
@@ -22,6 +22,12 @@ export default function SettingsPage() {
       description: 'Control AI orb visibility and feature toggles',
       href: '/dashboard/settings/ai',
       icon: LightningBoltIcon,
+    },
+    {
+      title: 'Business Modules',
+      description: 'Toggle optional modules like Channel Partners (7th P)',
+      href: '/dashboard/settings/modules',
+      icon: ComponentInstanceIcon,
     },
   ];
 

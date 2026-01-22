@@ -253,6 +253,56 @@ export const SIX_PS_NAVIGATION: PNavigation[] = [
 ];
 
 /**
+ * 7th P: PARTNERS (Toggleable Channel Partner Module)
+ *
+ * Displayed horizontally below the main 6 P grid when enabled.
+ * Manages nonprofit NP-Edge tenant monitoring, telemetry, and channel revenue.
+ */
+export const PARTNERS_NAVIGATION = {
+  category: 'PARTNERS' as const,
+  slug: 'partners',
+  landingPageHref: '/dashboard/partners',
+  pages: [
+    {
+      name: 'Client Tenants',
+      href: '/dashboard/partners/tenants',
+      description: 'Nonprofit organizations using NP-Edge',
+      legacyHref: '/dashboard/partner-portal/tenants',
+    },
+    {
+      name: 'Signals Inbox',
+      href: '/dashboard/partners/signals',
+      description: 'Real-time health alerts from client deployments',
+      legacyHref: '/dashboard/partner-portal/signals',
+    },
+    {
+      name: 'Benchmarks',
+      href: '/dashboard/partners/benchmarks',
+      description: 'Portfolio-wide performance analytics',
+      legacyHref: '/dashboard/partner-portal/benchmarks',
+    },
+    {
+      name: 'Usage Analytics',
+      href: '/dashboard/partners/usage',
+      description: 'API usage and performance monitoring',
+      legacyHref: '/dashboard/partner-portal/usage',
+    },
+    {
+      name: 'Commissions',
+      href: '/dashboard/partners/commissions',
+      description: 'Revenue sharing and vendor costs',
+      legacyHref: '/dashboard/partner-portal/commissions',
+    },
+    {
+      name: 'Partner Revenue',
+      href: '/dashboard/partners/revenue',
+      description: 'MRR, ARR, and revenue stream tracking',
+      legacyHref: '/dashboard/partner-portal/revenue',
+    },
+  ],
+};
+
+/**
  * Get P navigation by category
  */
 export function getPNavigation(category: SixPCategory): PNavigation | undefined {

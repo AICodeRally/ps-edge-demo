@@ -10,6 +10,7 @@ import { PageKbPanel } from '@/src/components/kb/PageKbPanel';
 import { CommandPalette } from '@/src/components/CommandPalette';
 import { WhatsNewModal } from '@/src/components/modals/WhatsNewModal';
 import { useAIFeature } from '@/src/components/ai/AISettingsProvider';
+import { ModulesProvider } from '@/src/contexts/ModulesContext';
 
 /**
  * Dashboard Layout (SGM Pattern with Full AICR Integration)
@@ -56,5 +57,9 @@ function DashboardLayoutContent({ children }: { children: React.ReactNode }) {
 }
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
-  return <DashboardLayoutContent>{children}</DashboardLayoutContent>;
+  return (
+    <ModulesProvider>
+      <DashboardLayoutContent>{children}</DashboardLayoutContent>
+    </ModulesProvider>
+  );
 }

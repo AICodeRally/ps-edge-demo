@@ -101,8 +101,8 @@ function SixPCard({ section }: { section: SixPSection }) {
     <div className={`relative p-3 rounded-lg border-2 ${definition.borderColor} ${definition.bgColor} transition-all duration-300 hover:shadow-lg ${definition.hoverShadow} group`}>
       {/* Header */}
       <div className="flex items-center gap-2 mb-2">
-        <div className={`w-10 h-10 flex items-center justify-center ${definition.bgColor} ${definition.borderColor} border rounded-lg ${definition.color} group-hover:scale-110 transition-transform`}>
-          <Icon className="w-5 h-5" />
+        <div className="w-10 h-10 flex items-center justify-center bg-white dark:bg-white rounded-lg shadow-md group-hover:scale-110 transition-transform">
+          <Icon className={`w-6 h-6 ${definition.color}`} />
         </div>
         <div className="flex-1 min-w-0">
           <h3 className={`text-sm font-bold ${definition.color} truncate`}>
