@@ -1,6 +1,3 @@
-import { PulseWidget } from '@/src/components/pulse/PulseWidget';
-import { TaskWidget } from '@/src/components/tasks/TaskWidget';
-
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-gray-50">
@@ -10,14 +7,8 @@ export default function HomePage() {
             NP Edge Demo
           </h1>
           <p className="text-xl text-gray-600">
-            Nonprofit Management Platform - Now on Next.js 16
+            Nonprofit Management Platform for Arizona Friends of Foster Children Foundation
           </p>
-        </div>
-
-        {/* AICR Platform Widgets */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          <PulseWidget />
-          <TaskWidget />
         </div>
 
         <div className="bg-white rounded-lg shadow-lg p-8">
@@ -46,14 +37,14 @@ export default function HomePage() {
               <p className="text-sm text-gray-600">990 forms & filings</p>
             </div>
             <div className="p-4 border border-gray-200 rounded">
-              <h3 className="font-semibold text-gray-900">Outreach</h3>
-              <p className="text-sm text-gray-600">Community engagement</p>
+              <h3 className="font-semibold text-gray-900">Events</h3>
+              <p className="text-sm text-gray-600">Events & registrations</p>
             </div>
           </div>
         </div>
         <div className="mt-8 text-sm text-gray-500 text-center">
-          <p>Migration Status: Next.js conversion complete ✓</p>
-          <p>Next: Prisma database integration</p>
+          <p>NP-Edge Demo - Port 3034</p>
+          <p>Arizona Friends of Foster Children Foundation</p>
         </div>
       </div>
     </div>
