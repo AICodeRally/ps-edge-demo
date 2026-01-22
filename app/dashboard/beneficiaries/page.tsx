@@ -1,6 +1,6 @@
-import Link from 'next/link';
+'use client';
 
-export const dynamic = 'force-dynamic';
+import Link from 'next/link';
 
 // Mock data for AFFCF beneficiaries
 const mockBeneficiaries = [

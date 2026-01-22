@@ -1,22 +1,18 @@
+'use client';
+
 import Link from 'next/link';
-import { getAllPrograms, getProgramStats } from '@/src/lib/queries/programs';
+import { programs } from '@/src/data/np-edge/programsData';
 
-export const dynamic = 'force-dynamic';
-
-type ProgramRow = {
-  id: string;
-  name: string;
-  category: string;
-  status: string;
-  manager: string;
-  budget: number;
-  beneficiaries: number;
-  targetBeneficiaries: number;
-};
-
-export default async function ProgramsPage() {
-  const programs = (await getAllPrograms()) as ProgramRow[];
-  const stats = await getProgramStats();
+export default function ProgramsPage() {
+  // Calculate stats from mock data
+  const stats = {
+    total: programs.length,
+    totalPrograms: programs.length,
+    active: programs.filter(p => p.status === 'Active').length,
+    activePrograms: programs.filter(p => p.status === 'Active').length,
+    totalBudget: programs.reduce((sum, p) => sum + p.budget, 0),
+    totalBeneficiaries: programs.reduce((sum, p) => sum + p.beneficiaries, 0),
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">

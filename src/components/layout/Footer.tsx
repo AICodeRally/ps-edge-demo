@@ -57,7 +57,7 @@ export function Footer() {
 
           {/* Row 2: Copyright + Legal */}
           <div className="flex items-center justify-center gap-6 text-xs text-gray-500 dark:text-gray-400">
-            <span>© 2026 Arizona Friends of Foster Children Foundation</span>
+            <span>© 2026 AICodeRally</span>
             <span>•</span>
             <Link href="/legal" className="hover:text-green-600 dark:hover:text-green-400 transition-colors">
               Privacy
@@ -70,7 +70,7 @@ export function Footer() {
 
           {/* Row 3: Branding Tagline */}
           <div className="text-[10px] text-gray-400 dark:text-gray-600 tracking-widest uppercase">
-            Enriching lives of Arizona foster children
+            An Edge Biz Ops Solution • Powered by AICR
           </div>
         </div>
       </div>

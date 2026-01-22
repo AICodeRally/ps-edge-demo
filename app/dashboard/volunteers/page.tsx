@@ -1,22 +1,21 @@
+'use client';
+
 import Link from 'next/link';
-import { getAllVolunteers, getVolunteerStats } from '@/src/lib/queries/volunteers';
+import { volunteers } from '@/src/data/np-edge/volunteersData';
 
-export const dynamic = 'force-dynamic';
-
-type VolunteerRow = {
-  id: string;
-  name: string;
-  email: string;
-  status: string;
-  skills: string[];
-  totalHours: number;
-  assignments: Array<unknown>;
-  joinDate: string | Date;
-};
-
-export default async function VolunteersPage() {
-  const volunteers = (await getAllVolunteers()) as VolunteerRow[];
-  const stats = await getVolunteerStats();
+export default function VolunteersPage() {
+  // Calculate stats from mock data
+  const totalHrs = volunteers.reduce((sum, v) => sum + v.totalHours, 0);
+  const avgHrs = totalHrs / volunteers.length;
+  const stats = {
+    total: volunteers.length,
+    totalVolunteers: volunteers.length,
+    active: volunteers.filter(v => v.status === 'Active').length,
+    activeVolunteers: volunteers.filter(v => v.status === 'Active').length,
+    totalHours: totalHrs,
+    avgHours: Math.round(avgHrs),
+    avgHoursPerVolunteer: avgHrs,
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">
@@ -110,7 +109,7 @@ export default async function VolunteersPage() {
                     {volunteer.totalHours}
                   </td>
                   <td className="px-6 py-4 text-sm text-gray-600">
-                    {volunteer.assignments.length} active
+                    {volunteer.assignedPrograms.length} active
                   </td>
                   <td className="px-6 py-4 text-sm text-gray-600">
                     {new Date(volunteer.joinDate).toLocaleDateString()}

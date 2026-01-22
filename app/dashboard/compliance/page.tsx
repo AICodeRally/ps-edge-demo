@@ -1,7 +1,7 @@
+'use client';
+
 import Link from 'next/link';
 import { FileTextIcon, CheckCircledIcon, ClockIcon } from '@radix-ui/react-icons';
-
-export const dynamic = 'force-dynamic';
 
 // Mock data for AFFCF compliance
 const mockComplianceItems = [

@@ -27,7 +27,13 @@ export function PageKbProvider({ children }: { children: React.ReactNode }) {
   const [kbContent, setKbContent] = useState<PageKbContent | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
   const abortControllerRef = useRef<AbortController | null>(null);
+
+  // Wait for mount to avoid suspense issues
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const fetchKbContent = async () => {
     // Abort previous request if still pending
@@ -69,14 +75,16 @@ export function PageKbProvider({ children }: { children: React.ReactNode }) {
   };
 
   useEffect(() => {
-    fetchKbContent();
+    if (mounted) {
+      fetchKbContent();
+    }
 
     return () => {
       if (abortControllerRef.current) {
         abortControllerRef.current.abort();
       }
     };
-  }, [pathname]);
+  }, [pathname, mounted]);
 
   return (
     <PageKbContext.Provider

@@ -1,22 +1,19 @@
+'use client';
+
 import Link from 'next/link';
-import { getAllDonors, getDonorStats } from '@/src/lib/queries/donors';
+import { donors } from '@/src/data/np-edge/fundraisingData';
 
-export const dynamic = 'force-dynamic';
-
-type DonorRow = {
-  id: string;
-  name: string;
-  email: string;
-  type: string;
-  status: string;
-  totalGiving: number;
-  lastGift: string | Date | null;
-  memberSince: string | Date;
-};
-
-export default async function DonorsPage() {
-  const donors = (await getAllDonors()) as DonorRow[];
-  const stats = await getDonorStats();
+export default function DonorsPage() {
+  // Calculate stats from mock data
+  const totalGiving = donors.reduce((sum, d) => sum + d.totalGiving, 0);
+  const stats = {
+    totalDonors: donors.length,
+    activeDonors: donors.filter(d => d.status === 'Active').length,
+    totalGiving: totalGiving,
+    totalRaised: totalGiving, // Same as totalGiving for donors
+    avgGift: Math.round(totalGiving / donors.length),
+    avgDonation: Math.round(totalGiving / donors.length),
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">
