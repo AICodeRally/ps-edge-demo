@@ -1,12 +1,12 @@
 {
-  "name": "np-edge-demo",
+  "name": "ps-edge-demo",
   "version": "0.1.0",
   "private": true,
-  "description": "Nonprofit Edge - Arizona Friends of Foster Children Foundation Demo",
+  "description": "Professional Services Edge - Phoenix Philanthropy Group Demo",
   "scripts": {
-    "dev": "next dev --port 3034",
+    "dev": "next dev --port 3033",
     "build": "next build",
-    "start": "next start --port 3034",
+    "start": "next start --port 3033",
     "lint": "next lint",
     "kb:report": "node scripts/kbcc-report.js"
   },
