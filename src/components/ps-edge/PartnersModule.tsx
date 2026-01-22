@@ -7,6 +7,7 @@
  */
 
 import Link from 'next/link';
+import { Share2Icon } from '@radix-ui/react-icons';
 import { PARTNERS_NAVIGATION } from '@/src/config/navigation.config';
 
 export function PartnersModule() {
@@ -20,8 +21,8 @@ export function PartnersModule() {
         {/* Header */}
         <div className="flex items-start justify-between mb-6">
           <div className="flex items-center gap-4">
-            <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg">
-              <span className="text-2xl">🤝</span>
+            <div className="w-14 h-14 bg-white dark:bg-white rounded-xl flex items-center justify-center shadow-lg">
+              <Share2Icon className="w-7 h-7 text-blue-600" />
             </div>
             <div>
               <div className="flex items-center gap-2">

@@ -7,6 +7,7 @@
 
 import { useModules } from '@/src/contexts/ModulesContext';
 import { SetPageTitle } from '@/src/components/SetPageTitle';
+import { Share2Icon } from '@radix-ui/react-icons';
 
 export default function ModulesSettingsPage() {
   const { partnersEnabled, setPartnersEnabled } = useModules();
@@ -33,7 +34,7 @@ export default function ModulesSettingsPage() {
               <div className="flex items-start justify-between">
                 <div className="flex-1 mr-6">
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="text-2xl">🤝</span>
+                    <span className="text-blue-600"><Share2Icon className="w-5 h-5" /></span>
                     <h4 className="font-medium text-gray-900 dark:text-gray-100">
                       Partners (7th P)
                     </h4>
