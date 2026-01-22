@@ -15,15 +15,19 @@
  */
 
 export const BRAND_CONFIG = {
-  // Main brand gradient (used in logo, headers)
+  // Main brand gradient (used in logo, headers, AI orbs)
   gradient: {
-    from: 'green-600',
-    via: 'teal-600',
-    to: 'teal-600',
+    from: '#22c55e',      // green-500
+    via: '#10b981',       // emerald-500
+    to: '#14b8a6',        // teal-500
+    // Tailwind classes
+    fromColor: 'green-500',
+    viaColor: 'emerald-500',
+    toColor: 'teal-500',
     // CSS classes for gradient
-    bgClass: 'bg-gradient-to-r from-green-600 to-teal-600',
-    bgClassBr: 'bg-gradient-to-br from-green-600 to-teal-600',
-    textClass: 'bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent',
+    bgClass: 'bg-gradient-to-r from-green-500 via-emerald-500 to-teal-500',
+    bgClassBr: 'bg-gradient-to-br from-green-500 via-emerald-500 to-teal-500',
+    textClass: 'bg-gradient-to-r from-green-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent',
   },
 
   // Nonprofit Module Colors (green/teal theme)

@@ -134,7 +134,7 @@ export function AskPSOrb({ appName = 'PS-Edge', enabled = true, position = 'fixe
   // AI orbs always use purple - don't change with brand settings
   // AskPS uses lighter, brighter purple/violet
   const buttonStyle = {
-    background: 'linear-gradient(135deg, #7c3aed, #a855f7)', // purple-600 to purple-500
+    background: 'linear-gradient(135deg, #22c55e, #10b981, #14b8a6)', // purple-600 to purple-500
     boxShadow: '0 0 20px rgba(168, 85, 247, 0.4)',
   };
 
