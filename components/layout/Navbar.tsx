@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { useSession, signOut } from 'next-auth/react';
-import { usePageTitle } from '@/src/context/PageTitleContext';
+import { usePageTitle } from '@/context/PageTitleContext';
 import { PersonIcon, GearIcon, ExitIcon, ChevronDownIcon } from '@radix-ui/react-icons';
 
 /**

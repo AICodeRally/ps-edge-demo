@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { appRegistryService, CreateAppRegistrySchema } from '@/src/lib/acc';
+import { appRegistryService, CreateAppRegistrySchema } from '@/lib/acc';
 
 /**
  * GET /api/aicc/acc/apps

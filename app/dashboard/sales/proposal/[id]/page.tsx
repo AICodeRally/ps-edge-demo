@@ -6,12 +6,12 @@
 'use client';
 
 import { useParams, useRouter } from 'next/navigation';
-import { MOCK_PROPOSALS } from '@/src/data/ps-edge/proposals.data';
-import { MOCK_CLIENTS } from '@/src/data/ps-edge/clients.data';
+import { MOCK_PROPOSALS } from '@/data/ps-edge/proposals.data';
+import { MOCK_CLIENTS } from '@/data/ps-edge/clients.data';
 import {
   getProposalStatusColor,
   ENGAGEMENT_TYPE_LABELS,
-} from '@/src/types/ps-edge/services.types';
+} from '@/types/ps-edge/services.types';
 import {
   ArrowLeftIcon,
   CalendarIcon,

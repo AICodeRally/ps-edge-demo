@@ -3,7 +3,7 @@ import {
   agentDefinitionService,
   syncService,
   UpdateAgentContractSchema,
-} from '@/src/lib/acc';
+} from '@/lib/acc';
 
 interface RouteParams {
   params: Promise<{ slug: string }>;

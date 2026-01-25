@@ -7,10 +7,10 @@
 'use client';
 
 import Link from 'next/link';
-import { SIX_PS_DEFINITIONS, type SixPCategory, type SixPMetric } from '@/src/types/ps-edge/six-ps.types';
-import { getPNavigation } from '@/src/config/navigation.config';
-import { AGGREGATE_SIX_PS } from '@/src/data/ps-edge/six-ps.data';
-import { SetPageTitle } from '@/src/components/SetPageTitle';
+import { SIX_PS_DEFINITIONS, type SixPCategory, type SixPMetric } from '@/types/ps-edge/six-ps.types';
+import { getPNavigation } from '@/config/navigation.config';
+import { AGGREGATE_SIX_PS } from '@/data/ps-edge/six-ps.data';
+import { SetPageTitle } from '@/components/SetPageTitle';
 import * as RadixIcons from '@radix-ui/react-icons';
 import {
   ArrowUpIcon,

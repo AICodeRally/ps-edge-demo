@@ -3,7 +3,7 @@
  * Allows users to customize the display order of the 6 P's
  */
 
-import type { SixPCategory } from '@/src/types/ps-edge/six-ps.types';
+import type { SixPCategory } from '@/types/ps-edge/six-ps.types';
 
 const SIXPS_ORDER_KEY = 'ps-edge-sixps-order';
 

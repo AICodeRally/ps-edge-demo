@@ -1,11 +1,11 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import { ThemeProvider } from '@/src/context/ThemeContext'
-import { BrandProvider } from '@/src/context/BrandContext'
-import { SessionProvider } from '@/src/lib/auth/SessionProvider'
-import { AISettingsProvider } from '@/src/components/ai/AISettingsProvider'
-import { PageTitleProvider } from '@/src/context/PageTitleContext'
-import { PageKbProvider } from '@/src/components/kb/PageKbProvider'
+import { ThemeProvider } from '@/context/ThemeContext'
+import { BrandProvider } from '@/context/BrandContext'
+import { SessionProvider } from '@/lib/auth/SessionProvider'
+import { AISettingsProvider } from '@/components/ai/AISettingsProvider'
+import { PageTitleProvider } from '@/context/PageTitleContext'
+import { PageKbProvider } from '@/components/kb/PageKbProvider'
 
 export const metadata: Metadata = {
   title: 'PS-Edge',

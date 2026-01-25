@@ -13,7 +13,7 @@ import {
   toggleAIOrbs,
   toggleAIFeature,
   resetAISettings,
-} from '@/src/lib/config/ai-settings';
+} from '@/lib/config/ai-settings';
 
 interface AISettingsContextType {
   settings: AISettings;

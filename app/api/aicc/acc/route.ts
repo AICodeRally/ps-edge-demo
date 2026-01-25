@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import { appRegistryService, agentDefinitionService, syncService } from '@/src/lib/acc';
-import type { ACCDashboardStats } from '@/src/lib/acc';
+import { appRegistryService, agentDefinitionService, syncService } from '@/lib/acc';
+import type { ACCDashboardStats } from '@/lib/acc';
 
 /**
  * GET /api/aicc/acc

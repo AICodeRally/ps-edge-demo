@@ -7,9 +7,9 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { DataTable } from '@/src/components/tables/DataTable';
-import { MOCK_CONSULTANTS } from '@/src/data/ps-edge/consultants.data';
-import type { Consultant, ConsultantRole } from '@/src/types/ps-edge/services.types';
+import { DataTable } from '@/components/tables/DataTable';
+import { MOCK_CONSULTANTS } from '@/data/ps-edge/consultants.data';
+import type { Consultant, ConsultantRole } from '@/types/ps-edge/services.types';
 
 function getUtilizationColor(utilization: number): string {
   if (utilization >= 90) return 'text-red-600 dark:text-red-400';

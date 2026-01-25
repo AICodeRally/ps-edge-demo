@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-import { SIX_PS_DEFINITIONS, type SixPCategory } from '@/src/types/ps-edge/six-ps.types';
+import { SIX_PS_DEFINITIONS, type SixPCategory } from '@/types/ps-edge/six-ps.types';
 import {
   PersonIcon,
   GearIcon,

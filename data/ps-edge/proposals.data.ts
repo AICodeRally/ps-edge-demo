@@ -3,7 +3,7 @@
  * Sales proposals for new engagements
  */
 
-import type { Proposal } from '@/src/types/ps-edge/services.types';
+import type { Proposal } from '@/types/ps-edge/services.types';
 
 export const MOCK_PROPOSALS: Proposal[] = [
   {

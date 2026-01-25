@@ -14,8 +14,8 @@ import {
   TrashIcon,
   DownloadIcon,
 } from '@radix-ui/react-icons';
-import type { AgentContract } from '@/src/lib/acc';
-import { PROVIDER_INFO } from '@/src/lib/acc/adapters';
+import type { AgentContract } from '@/lib/acc';
+import { PROVIDER_INFO } from '@/lib/acc/adapters';
 
 interface AgentWithId extends AgentContract {
   id: string;

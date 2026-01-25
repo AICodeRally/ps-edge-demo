@@ -3,7 +3,7 @@
  * Aggregate and department-specific 6Ps metrics
  */
 
-import type { DepartmentSixPs } from '@/src/types/ps-edge/six-ps.types';
+import type { DepartmentSixPs } from '@/types/ps-edge/six-ps.types';
 
 // AGGREGATE 6Ps (All Departments Combined)
 export const AGGREGATE_SIX_PS: DepartmentSixPs = {

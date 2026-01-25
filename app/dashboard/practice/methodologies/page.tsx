@@ -5,7 +5,7 @@
 
 'use client';
 
-import { SetPageTitle } from '@/src/components/SetPageTitle';
+import { SetPageTitle } from '@/components/SetPageTitle';
 
 export default function MethodologiesPage() {
   const methodologies = [

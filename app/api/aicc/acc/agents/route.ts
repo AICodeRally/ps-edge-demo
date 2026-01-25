@@ -3,7 +3,7 @@ import {
   agentDefinitionService,
   appRegistryService,
   CreateAgentContractSchema,
-} from '@/src/lib/acc';
+} from '@/lib/acc';
 
 /**
  * GET /api/aicc/acc/agents

@@ -33,7 +33,7 @@ export interface DepartmentSixPs {
   purpose: SixPSection;
 }
 
-import { BRAND_CONFIG } from '@/src/config/brand.config';
+import { BRAND_CONFIG } from '@/config/brand.config';
 
 // 6Ps Definitions with Radix icon names - Colors derived from brand gradient
 export const SIX_PS_DEFINITIONS: Record<SixPCategory, { title: string; description: string; iconName: string; color: string; colorHex: string; bgColor: string; borderColor: string; hoverShadow: string }> = {

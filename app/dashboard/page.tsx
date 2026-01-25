@@ -7,12 +7,12 @@
 
 'use client';
 
-import { SixPsDashboard } from '@/src/components/ps-edge/SixPsDashboard';
-import { PartnersModule } from '@/src/components/ps-edge/PartnersModule';
-import { AGGREGATE_SIX_PS } from '@/src/data/ps-edge/six-ps.data';
-import { BRAND_CONFIG } from '@/src/config/brand.config';
-import { SetPageTitle } from '@/src/components/SetPageTitle';
-import { useChannelPortalEnabled } from '@/src/contexts/ModulesContext';
+import { SixPsDashboard } from '@/components/ps-edge/SixPsDashboard';
+import { PartnersModule } from '@/components/ps-edge/PartnersModule';
+import { AGGREGATE_SIX_PS } from '@/data/ps-edge/six-ps.data';
+import { BRAND_CONFIG } from '@/config/brand.config';
+import { SetPageTitle } from '@/components/SetPageTitle';
+import { useChannelPortalEnabled } from '@/contexts/ModulesContext';
 
 export default function Dashboard() {
   const channelPortalEnabled = useChannelPortalEnabled();

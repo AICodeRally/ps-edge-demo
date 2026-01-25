@@ -3,7 +3,7 @@
  * PPG's consulting clients (nonprofits they advise)
  */
 
-import type { Client } from '@/src/types/ps-edge/services.types';
+import type { Client } from '@/types/ps-edge/services.types';
 
 export const MOCK_CLIENTS: Client[] = [
   {

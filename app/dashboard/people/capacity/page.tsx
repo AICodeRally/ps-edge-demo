@@ -5,7 +5,7 @@
 
 'use client';
 
-import { MOCK_CONSULTANTS } from '@/src/data/ps-edge/consultants.data';
+import { MOCK_CONSULTANTS } from '@/data/ps-edge/consultants.data';
 
 export default function CapacityPage() {
   // Calculate aggregated metrics

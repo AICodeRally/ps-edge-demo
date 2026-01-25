@@ -1,6 +1,6 @@
 'use client';
 
-import { BRAND_CONFIG } from '@/src/config/brand.config';
+import { BRAND_CONFIG } from '@/config/brand.config';
 import { MixerHorizontalIcon } from '@radix-ui/react-icons';
 
 export default function BrandPage() {

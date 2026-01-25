@@ -3,7 +3,7 @@
  * PPG staff members (consultants)
  */
 
-import type { Consultant } from '@/src/types/ps-edge/services.types';
+import type { Consultant } from '@/types/ps-edge/services.types';
 
 export const MOCK_CONSULTANTS: Consultant[] = [
   {

@@ -7,14 +7,14 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { DataTable } from '@/src/components/tables/DataTable';
-import { MOCK_ENGAGEMENTS } from '@/src/data/ps-edge/engagements.data';
-import { MOCK_CLIENTS } from '@/src/data/ps-edge/clients.data';
-import type { Engagement, EngagementStatus } from '@/src/types/ps-edge/services.types';
+import { DataTable } from '@/components/tables/DataTable';
+import { MOCK_ENGAGEMENTS } from '@/data/ps-edge/engagements.data';
+import { MOCK_CLIENTS } from '@/data/ps-edge/clients.data';
+import type { Engagement, EngagementStatus } from '@/types/ps-edge/services.types';
 import {
   getEngagementStatusColor,
   ENGAGEMENT_TYPE_LABELS,
-} from '@/src/types/ps-edge/services.types';
+} from '@/types/ps-edge/services.types';
 
 export default function EngagementsPage() {
   const router = useRouter();

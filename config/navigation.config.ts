@@ -12,7 +12,7 @@
  * Used by Footer, Navbar, Breadcrumbs, and routing logic
  */
 
-import { type SixPCategory } from '@/src/types/ps-edge/six-ps.types';
+import { type SixPCategory } from '@/types/ps-edge/six-ps.types';
 
 export interface NavPage {
   name: string;

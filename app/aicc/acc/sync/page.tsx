@@ -12,7 +12,7 @@ import {
   CrossCircledIcon,
   ClockIcon,
 } from '@radix-ui/react-icons';
-import type { SyncResult } from '@/src/lib/acc';
+import type { SyncResult } from '@/lib/acc';
 
 interface SyncStatus {
   lastGlobalSync: string | null;

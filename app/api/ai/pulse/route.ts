@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getAISettings } from '@/src/lib/config/ai-settings';
+import { getAISettings } from '@/lib/config/ai-settings';
 
 /**
  * Pulse API - AI-curated content feed

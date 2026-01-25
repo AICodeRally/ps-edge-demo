@@ -15,7 +15,7 @@ import {
   ClockIcon,
   DotsHorizontalIcon,
 } from '@radix-ui/react-icons';
-import type { AppRegistry } from '@/src/lib/acc';
+import type { AppRegistry } from '@/lib/acc';
 
 interface AppWithAgents extends AppRegistry {
   agents?: Array<{ id: string; slug: string; name: string; status: string }>;

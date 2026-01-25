@@ -1,16 +1,16 @@
 'use client';
 
-import { Navbar } from '@/src/components/layout/Navbar';
-import { Footer } from '@/src/components/layout/Footer';
-import { OpsChiefOrb } from '@/src/components/ai/OpsChiefOrb';
-import { AskPSOrb } from '@/src/components/ai/AskPSOrb';
-import { PulseOrb } from '@/src/components/ai/PulseOrb';
-import { TaskOrb } from '@/src/components/ai/TaskOrb';
-import { PageKbPanel } from '@/src/components/kb/PageKbPanel';
-import { CommandPalette } from '@/src/components/CommandPalette';
-import { WhatsNewModal } from '@/src/components/modals/WhatsNewModal';
-import { useAIFeature } from '@/src/components/ai/AISettingsProvider';
-import { ModulesProvider } from '@/src/contexts/ModulesContext';
+import { Navbar } from '@/components/layout/Navbar';
+import { Footer } from '@/components/layout/Footer';
+import { OpsChiefOrb } from '@/components/ai/OpsChiefOrb';
+import { AskPSOrb } from '@/components/ai/AskPSOrb';
+import { PulseOrb } from '@/components/ai/PulseOrb';
+import { TaskOrb } from '@/components/ai/TaskOrb';
+import { PageKbPanel } from '@/components/kb/PageKbPanel';
+import { CommandPalette } from '@/components/CommandPalette';
+import { WhatsNewModal } from '@/components/modals/WhatsNewModal';
+import { useAIFeature } from '@/components/ai/AISettingsProvider';
+import { ModulesProvider } from '@/contexts/ModulesContext';
 
 /**
  * Dashboard Layout (SGM Pattern with Full AICR Integration)

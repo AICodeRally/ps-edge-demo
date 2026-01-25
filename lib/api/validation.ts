@@ -5,7 +5,7 @@
  *
  * Usage:
  * ```typescript
- * import { validateRequestBody, validateQueryParams } from '@/src/lib/api/validation';
+ * import { validateRequestBody, validateQueryParams } from '@/lib/api/validation';
  * import { z } from 'zod';
  *
  * const BodySchema = z.object({ name: z.string().min(1) });

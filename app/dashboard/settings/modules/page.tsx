@@ -5,8 +5,8 @@
  * Toggle optional business modules (like Partners/Channel Portal)
  */
 
-import { useModules } from '@/src/contexts/ModulesContext';
-import { SetPageTitle } from '@/src/components/SetPageTitle';
+import { useModules } from '@/contexts/ModulesContext';
+import { SetPageTitle } from '@/components/SetPageTitle';
 import { Share2Icon } from '@radix-ui/react-icons';
 
 export default function ModulesSettingsPage() {

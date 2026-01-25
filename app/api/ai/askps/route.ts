@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { validateRequestBody, errorResponse, successResponse } from '@/src/lib/api/validation';
+import { validateRequestBody, errorResponse, successResponse } from '@/lib/api/validation';
 
 /**
  * Request validation schema

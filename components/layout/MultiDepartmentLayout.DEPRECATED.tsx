@@ -20,10 +20,10 @@ import {
 } from '@radix-ui/react-icons';
 import { Breadcrumbs } from './Breadcrumbs';
 import { UserDropdown } from './UserDropdown';
-import { useTheme } from '@/src/context/ThemeContext';
-import { BRAND_CONFIG } from '@/src/config/brand.config';
-import { OpsChiefOrb } from '@/src/components/ai/OpsChiefOrb';
-import { AskPSOrb } from '@/src/components/ai/AskPSOrb';
+import { useTheme } from '@/context/ThemeContext';
+import { BRAND_CONFIG } from '@/config/brand.config';
+import { OpsChiefOrb } from '@/components/ai/OpsChiefOrb';
+import { AskPSOrb } from '@/components/ai/AskPSOrb';
 
 interface NavItem {
   name: string;

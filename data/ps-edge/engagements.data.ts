@@ -3,7 +3,7 @@
  * Consulting projects (strategic plans, capital campaigns, etc.)
  */
 
-import type { Engagement } from '@/src/types/ps-edge/services.types';
+import type { Engagement } from '@/types/ps-edge/services.types';
 
 export const MOCK_ENGAGEMENTS: Engagement[] = [
   {

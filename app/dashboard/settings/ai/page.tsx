@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import { useAISettings } from '@/src/components/ai/AISettingsProvider';
+import { useAISettings } from '@/components/ai/AISettingsProvider';
 import {
   LightningBoltIcon,
   ChatBubbleIcon,

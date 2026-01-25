@@ -14,9 +14,9 @@ import {
   ArrowRightIcon,
   LayersIcon,
 } from '@radix-ui/react-icons';
-import type { DepartmentSixPs, SixPSection, SixPCategory } from '@/src/types/ps-edge/six-ps.types';
-import { SIX_PS_DEFINITIONS } from '@/src/types/ps-edge/six-ps.types';
-import { getSixPsOrder } from '@/src/lib/config/sixps-order';
+import type { DepartmentSixPs, SixPSection, SixPCategory } from '@/types/ps-edge/six-ps.types';
+import { SIX_PS_DEFINITIONS } from '@/types/ps-edge/six-ps.types';
+import { getSixPsOrder } from '@/lib/config/sixps-order';
 
 // Icon mapping
 const ICON_MAP = {

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { SunIcon, MoonIcon, DesktopIcon } from '@radix-ui/react-icons';
-import { useTheme } from '@/src/context/ThemeContext';
+import { useTheme } from '@/context/ThemeContext';
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();

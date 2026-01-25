@@ -8,7 +8,7 @@
 
 import Link from 'next/link';
 import { Share2Icon, LightningBoltIcon } from '@radix-ui/react-icons';
-import { PARTNERS_NAVIGATION } from '@/src/config/navigation.config';
+import { PARTNERS_NAVIGATION } from '@/config/navigation.config';
 
 // Card styling with gradients
 const CARD_STYLES: Record<string, { gradient: string; border: string; aiSuggestion?: string }> = {

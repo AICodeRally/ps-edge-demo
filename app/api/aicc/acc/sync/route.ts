@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { syncService, SyncRequestSchema } from '@/src/lib/acc';
+import { syncService, SyncRequestSchema } from '@/lib/acc';
 
 /**
  * GET /api/aicc/acc/sync

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { appRegistryService, syncService, UpdateAppRegistrySchema } from '@/src/lib/acc';
+import { appRegistryService, syncService, UpdateAppRegistrySchema } from '@/lib/acc';
 
 interface RouteParams {
   params: Promise<{ slug: string }>;

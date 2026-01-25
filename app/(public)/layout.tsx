@@ -1,8 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { SessionProvider } from '@/src/lib/auth/SessionProvider';
-import { ThemeProvider } from '@/src/context/ThemeContext';
+import { SessionProvider } from '@/lib/auth/SessionProvider';
+import { ThemeProvider } from '@/context/ThemeContext';
 
 interface PublicLayoutProps {
   children: React.ReactNode;

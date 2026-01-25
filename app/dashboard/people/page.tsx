@@ -3,7 +3,7 @@
  * Team capacity, utilization, and workforce metrics
  */
 
-import { PLandingPage } from '@/src/components/ps-edge/PLandingPage';
+import { PLandingPage } from '@/components/ps-edge/PLandingPage';
 
 export default function PeoplePage() {
   return <PLandingPage category="PEOPLE" />;

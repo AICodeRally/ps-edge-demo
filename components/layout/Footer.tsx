@@ -3,8 +3,8 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { SIX_PS_DEFINITIONS, type SixPCategory } from '@/src/types/ps-edge/six-ps.types';
-import { getSixPsOrder } from '@/src/lib/config/sixps-order';
+import { SIX_PS_DEFINITIONS, type SixPCategory } from '@/types/ps-edge/six-ps.types';
+import { getSixPsOrder } from '@/lib/config/sixps-order';
 
 /**
  * Footer Component (SGM Pattern with 6 P's Navigation)

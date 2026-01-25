@@ -18,7 +18,7 @@ import {
   CrossCircledIcon,
   ClockIcon,
 } from '@radix-ui/react-icons';
-import type { ACCDashboardStats } from '@/src/lib/acc';
+import type { ACCDashboardStats } from '@/lib/acc';
 
 export default function ACCDashboard() {
   const [stats, setStats] = useState<ACCDashboardStats | null>(null);

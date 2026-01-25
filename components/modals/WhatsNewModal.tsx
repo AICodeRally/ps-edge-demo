@@ -9,7 +9,7 @@
  */
 
 import { useState, useEffect } from 'react';
-import { SIX_PS_DEFINITIONS, type SixPCategory } from '@/src/types/ps-edge/six-ps.types';
+import { SIX_PS_DEFINITIONS, type SixPCategory } from '@/types/ps-edge/six-ps.types';
 import {
   CheckCircledIcon,
   Cross2Icon,
