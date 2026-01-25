@@ -1,110 +1,38 @@
-import type { AuthOptions } from 'next-auth';
-import CredentialsProvider from 'next-auth/providers/credentials';
-
 /**
- * NextAuth.js Configuration for PS-Edge
+ * NextAuth.js Configuration (using @aicr/auth)
  *
- * Multi-tenant Professional Services platform with:
- * - Credentials (passkey) for email-based demo signin
- * - Session enrichment with tenant context
- * - Role-based access control
+ * PS-Edge Demo - Professional Services platform
+ * Phoenix Philanthropy Group
  */
 
-export const authOptions: AuthOptions = {
-  providers: [
-    CredentialsProvider({
-      id: 'passkey',
-      name: 'Email',
-      credentials: {
-        passkey: { label: 'Email', type: 'email' },
-      },
-      async authorize(credentials: any) {
-        // Demo mode: accept any valid email
-        const email = credentials?.passkey?.trim();
-        if (email && email.includes('@')) {
-          // Extract name from email
-          const name = email
-            .split('@')[0]
-            .replace(/[._-]/g, ' ')
-            .replace(/\b\w/g, (c: string) => c.toUpperCase());
+import type { AuthOptions } from 'next-auth';
+import CredentialsProvider from 'next-auth/providers/credentials';
+import { createAuthOptionsV4, type AuthConfig } from '@aicr/auth/v4';
 
-          // Determine role and tenant from email domain
-          const domain = email.split('@')[1];
-          let role = 'USER';
-          let tenantSlug = 'ps-edge';
-          let tenantName = 'Phoenix Philanthropy Group';
-
-          // Super User (Admin) access for core domains
-          if (
-            domain === 'ppg.com' ||
-            domain === 'phoenixphilanthropy.com' ||
-            domain === 'aicoderally.com' ||
-            domain === 'iacoderally.com' || // Handle typo variant
-            domain === 'demo.com' ||
-            domain === 'consultant.com'
-          ) {
-            role = 'ADMIN';
-
-            // AICR team gets special branding
-            if (domain === 'aicoderally.com' || domain === 'iacoderally.com') {
-              tenantSlug = 'aicr';
-              tenantName = 'AICR Platform Team';
-            }
-          }
-
-          console.log('Auth: Email =', email, '| Domain =', domain, '| Role =', role);
-
-          return {
-            id: `user-${email.replace(/[^a-z0-9]/gi, '-')}`,
-            name: name || 'Demo User',
-            email: email,
-            role,
-            tenantSlug,
-            tenantName,
-          };
-        }
-        return null;
-      },
-    }),
-  ],
-
-  session: {
-    strategy: 'jwt',
-    maxAge: 30 * 24 * 60 * 60, // 30 days
+const authConfig: AuthConfig = {
+  bindingMode: 'synthetic',
+  providers: {
+    credentials: true,
   },
-
+  synthetic: {
+    defaultRole: 'ADMIN',
+    defaultTenantId: 'tenant-ps-edge',
+    defaultTenantSlug: 'ps-edge',
+    defaultTenantName: 'Phoenix Philanthropy Group',
+    defaultTenantTier: 'PROFESSIONAL',
+  },
   pages: {
     signIn: '/auth/signin',
     signOut: '/auth/signout',
     error: '/auth/error',
   },
-
-  callbacks: {
-    async jwt({ token, user }) {
-      // On initial sign-in, enrich token with user data
-      if (user) {
-        token.userId = user.id;
-        token.role = (user as any).role || 'USER';
-        token.tenantId = `tenant-${(user as any).tenantSlug || 'ps-edge'}`;
-        token.tenantSlug = (user as any).tenantSlug || 'ps-edge';
-        token.tenantName = (user as any).tenantName || 'Phoenix Philanthropy Group';
-        token.tenantTier = 'PROFESSIONAL';
-      }
-      return token;
-    },
-
-    async session({ session, token }) {
-      if (session.user) {
-        (session.user as any).id = token.userId as string;
-        (session.user as any).role = token.role as string;
-        (session.user as any).tenantId = token.tenantId as string;
-        (session.user as any).tenantSlug = token.tenantSlug as string;
-        (session.user as any).tenantName = token.tenantName as string;
-        (session.user as any).tenantTier = token.tenantTier as string;
-      }
-      return session;
-    },
+  session: {
+    maxAge: 30 * 24 * 60 * 60, // 30 days
   },
-
-  debug: process.env.NODE_ENV === 'development',
 };
+
+// Create auth options using shared factory
+export const authOptions: AuthOptions = createAuthOptionsV4({
+  config: authConfig,
+  CredentialsProvider,
+}) as AuthOptions;
