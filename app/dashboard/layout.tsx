@@ -2,15 +2,15 @@
 
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
-import { OpsChiefOrb } from '@/components/ai/OpsChiefOrb';
-import { AskPSOrb } from '@/components/ai/AskPSOrb';
-import { PulseOrb } from '@/components/ai/PulseOrb';
-import { TaskOrb } from '@/components/ai/TaskOrb';
 import { PageKbPanel } from '@/components/kb/PageKbPanel';
 import { CommandPalette } from '@/components/CommandPalette';
 import { WhatsNewModal } from '@/components/modals/WhatsNewModal';
 import { useAIFeature } from '@/components/ai/AISettingsProvider';
 import { ModulesProvider } from '@/contexts/ModulesContext';
+
+// @aicr/orbs package - AI Dock with macOS-style UI
+import { OrbProvider, AIDock } from '@aicr/orbs';
+import orbManifest from '../../orb-manifest.json';
 
 /**
  * Dashboard Layout (SGM Pattern with Full AICR Integration)
@@ -26,11 +26,6 @@ import { ModulesProvider } from '@/contexts/ModulesContext';
  * No sidebar - mobile-first design with footer-based navigation.
  */
 function DashboardLayoutContent({ children }: { children: React.ReactNode }) {
-  // Check individual orb settings
-  const opsChiefEnabled = useAIFeature('opsChief');
-  const askPSEnabled = useAIFeature('askPS');
-  const pulseEnabled = useAIFeature('pulse');
-  const tasksEnabled = useAIFeature('tasks');
   const pageKbEnabled = useAIFeature('pageKb');
 
   return (
@@ -43,15 +38,13 @@ function DashboardLayoutContent({ children }: { children: React.ReactNode }) {
       <CommandPalette />
       <WhatsNewModal />
 
-      {/* 5 AI Orbs - Conditionally rendered based on settings */}
-      {/* Bottom-left stack */}
-      <OpsChiefOrb appName="PS-Edge" enabled={opsChiefEnabled} />
-      <PulseOrb enabled={pulseEnabled} />
-      <PageKbPanel enabled={pageKbEnabled} />
+      {/* AI Dock - macOS-style unified orb interface from @aicr/orbs */}
+      <OrbProvider manifest={orbManifest as any}>
+        <AIDock />
+      </OrbProvider>
 
-      {/* Bottom-right stack */}
-      <TaskOrb enabled={tasksEnabled} />
-      <AskPSOrb appName="PS-Edge" enabled={askPSEnabled} />
+      {/* Page KB Panel - remains separate as it's a slide-out panel */}
+      <PageKbPanel enabled={pageKbEnabled} />
     </div>
   );
 }
