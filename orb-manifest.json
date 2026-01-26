@@ -1,0 +1,44 @@
+{
+  "app": "ps-edge",
+  "platform": "aicr",
+  "version": "1.0.0",
+  "orbs": {
+    "ask": {
+      "extends": "@aicr/orbs/ask",
+      "enabled": true,
+      "overrides": {
+        "name": "Ask PS",
+        "endpoints": {
+          "invoke": "/api/ai/askps"
+        }
+      }
+    },
+    "ops": {
+      "extends": "@aicr/orbs/ops",
+      "enabled": true,
+      "overrides": {
+        "name": "OpsChief"
+      }
+    },
+    "pulse": {
+      "extends": "@aicr/orbs/pulse",
+      "enabled": true
+    },
+    "tasks": {
+      "extends": "@aicr/orbs/tasks",
+      "enabled": true
+    },
+    "kb": {
+      "extends": "@aicr/orbs/kb",
+      "enabled": true,
+      "overrides": {
+        "name": "PS Docs"
+      }
+    }
+  },
+  "dock": {
+    "position": "bottom",
+    "autoHide": false,
+    "magnification": true
+  }
+}
